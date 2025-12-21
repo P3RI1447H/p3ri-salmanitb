@@ -1,4 +1,3 @@
-
 # Website P3RI 1447H
 
 Repository resmi untuk pengembangan website P3RI (Panitia Pelaksana Program Ramadhan dan Idul Adha) Masjid Salman ITB tahun 1447H.
@@ -16,6 +15,18 @@ Kita menggunakan teknologi standar industri modern agar performa cepat dan code 
 - **Database:** Supabase
 - **Icons:** Lucide React
 - **Deployment:** Vercel
+
+## Development Environment & Tools
+
+Untuk menjaga konsistensi kode antar anggota tim, harap gunakan tools berikut:
+
+- **IDE:** Visual Studio Code (VS Code)
+- **Version Control System (VCS):** Git & GitHub
+- **API Testing:** Postman (untuk tes endpoint Supabase jika perlu)
+- **AI Tools yang Diperbolehkan:**
+  - ChatGPT / Gemini (untuk brainstorming logic & debugging)
+  - GitHub Copilot / Cursor (untuk autocomplete code)
+  - *Catatan:* Dilarang copy-paste kode AI mentah-mentah tanpa memahami cara kerjanya. Pastikan kode diperiksa ulang.
 
 ## Struktur Folder Project
 
@@ -118,90 +129,74 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ---
 
-## Tutorial Git Lengkap (Panduan Kontribusi)
+## Workflow & Guidelines (Panduan Kontribusi)
 
-Untuk menjaga kerapihan kode, setiap anggota tim wajib mengikuti alur kerja (workflow) berikut ini.
+Untuk menjaga kerapihan kode dan memudahkan kolaborasi, setiap anggota tim **wajib** mengikuti aturan berikut.
 
-### 1. Persiapan Awal (Hanya sekali)
+### 1. Version Control System (VCS)
 
-Clone repository ke laptop kamu:
+Kita menggunakan **Git** sebagai sistem pengontrol versi dan **GitHub** sebagai tempat penyimpanan kode (repository).
 
-```bash
-git clone [https://github.com/P3RI-salmanitb/p3ri-salmanitb.git](https://github.com/P3RI-salmanitb/p3ri-salmanitb.git)
-cd p3ri-salmanitb
-npm install
+* **Git** digunakan di laptop masing-masing untuk menyimpan perubahan (save checkpoint).
+* **GitHub** digunakan untuk menggabungkan kode antar anggota tim.
 
-```
+### 2. Aturan Branching (Cabang)
 
-### 2. Sebelum Mulai Ngoding (Wajib Branch Baru)
+Dilarang melakukan coding langsung di branch `main`. Gunakan format penamaan branch berikut:
 
-JANGAN PERNAH coding langsung di branch `main`. Buat branch baru sesuai fitur yang mau dikerjakan.
+`tipe/nama-fitur-singkat`
 
-**Rumus Branch:** `tipe/nama-fitur`
+* **feat/** : Untuk fitur baru (contoh: `feat/navbar`, `feat/kalender`)
+* **fix/** : Untuk perbaikan bug (contoh: `fix/tombol-error`)
+* **style/** : Untuk perbaikan styling/css (contoh: `style/margin-home`)
+* **docs/** : Untuk perubahan dokumentasi (contoh: `docs/update-readme`)
 
-* `feat/` = Fitur baru (contoh: `feat/navbar`, `feat/kalender`)
-* `fix/` = Perbaikan bug (contoh: `fix/tombol-error`)
-* `style/` = Perbaikan tampilan (contoh: `style/margin-home`)
-
-**Perintah:**
+**Cara membuat branch:**
 
 ```bash
-# Pindah ke main dulu untuk ambil update terbaru
-git checkout main
-git pull origin main
-
-# Buat branch baru
 git checkout -b feat/nama-fitur-kamu
 
 ```
 
-### 3. Cara Save Perubahan (Commit)
+### 3. Semantic Commit Messages
 
-Setelah selesai coding atau melakukan perubahan file:
+Pesan commit harus jelas dan mengikuti standar Semantic Commit agar mudah dibaca oleh tim lain.
 
-1. **Cek status file:**
-```bash
-git status
+**Format:** `tipe: deskripsi singkat apa yang dilakukan`
 
-```
+**Daftar Tipe:**
 
+* `feat`: Menambahkan fitur baru.
+* `fix`: Memperbaiki bug.
+* `docs`: Mengubah dokumentasi (readme, komentar).
+* `style`: Mengubah tampilan (spasi, format, css) tanpa mengubah logika.
+* `refactor`: Mengubah susunan kodingan tanpa mengubah fitur (bersih-bersih kode).
+* `chore`: Tugas-tugas kecil (update package, config).
 
-(File yang berubah akan berwarna merah).
-2. **Pilih file yang mau disimpan:**
-```bash
-git add .
+**Contoh Benar:**
 
-```
+* `feat: menambahkan komponen navbar`
+* `fix: memperbaiki error pada tombol donasi`
+* `style: merapikan margin halaman home`
 
+**Contoh Salah:**
 
-(Titik artinya memilih semua file).
-3. **Simpan dengan pesan yang jelas:**
-```bash
-git commit -m "feat: Menambahkan fitur login"
+* `update`
+* `benerin bug`
+* `final fix banget`
 
-```
+### 4. Pull Request (PR)
 
+Setelah kode selesai di-push ke branch kamu, lakukan Pull Request ke `main` melalui website GitHub.
 
-Gunakan bahasa yang jelas agar tim tahu apa yang kamu ubah.
+**Syarat PR:**
 
-### 4. Upload ke GitHub (Push)
+1. Berikan judul PR sesuai semantic commit (contoh: `feat: Menambahkan halaman donasi`).
+2. Tulis deskripsi singkat apa yang kamu kerjakan.
+3. Minimal di-review oleh 1 orang teman tim atau Tech Lead sebelum di-merge.
+4. Pastikan tidak ada konflik (conflict) dengan branch `main`.
 
-Setelah di-commit, upload kodingan kamu ke branch kamu sendiri di GitHub.
-
-```bash
-git push -u origin feat/nama-fitur-kamu
-
-```
-
-### 5. Menggabungkan Code (Pull Request)
-
-1. Buka repository GitHub di browser.
-2. Akan muncul tombol kuning **"Compare & pull request"**. Klik tombol itu.
-3. Tulis judul dan deskripsi apa yang kamu kerjakan.
-4. Klik **Create Pull Request**.
-5. Kabari di grup WhatsApp: "Guys, aku udah push fitur Navbar, tolong review ya."
-
-### Cheat Sheet Git (Daftar Perintah Cepat)
+### Cheat Sheet Git
 
 | Perintah | Fungsi |
 | --- | --- |
@@ -223,7 +218,5 @@ git push -u origin feat/nama-fitur-kamu
 | **Frontend C** | Timeline (Kalender) | CalendarView, ModalDetail, Logic Fetching Jadwal |
 | **Frontend D** | Static Pages | Halaman Infak, Live Stream, Sponsor |
 | **Backend** | Database & API | Setup Supabase, Table Structure, Koneksi API |
-
-```
 
 ```
