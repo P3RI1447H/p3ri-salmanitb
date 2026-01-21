@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react"; 
+import { DONATION_ITEMS } from "../lib/constants";
+import DonationCard from "../components/features/DonationCard";
 import GalleryCarousel from "../components/features/GalleryCarousel";
 
 const HomePage = () => {
@@ -71,6 +73,30 @@ const HomePage = () => {
                 </div>
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#F7FFD8] py-10 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 md:px-12 lg:px-20">
+        <div className="max-w-360 mx-auto">
+          <div className="text-center mb-8 md:mb-10 lg:mb-12">
+            <h2 className="text-[#21272A] font-forum text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-normal mb-6 md:mb-8 lg:mb-12">
+              Beramal di Bulan Suci, Bersama P3RI
+            </h2>
+            <p className="text-[#21272A] font-montserrat text-sm sm:text-base md:text-lg lg:text-xl font-medium max-w-7xl mx-auto mb-8 md:mb-12 lg:mb-16">
+              P3RI membantu anda dalam menyalurkan infak, sedekah, dan donasi kepada orang-orang yang membutuhkan.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {DONATION_ITEMS.map((item) => (
+              <DonationCard
+                key={item.id}
+                title={item.title}
+                summary={item.summary}
+                image_url={item.image_url}
+                link={item.link}
+              />
+            ))}
           </div>
         </div>
       </section>
