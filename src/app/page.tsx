@@ -63,8 +63,8 @@ export default function Home() {
   };
 
   return (
-    <main className="bg-[#F7FFD8]">
-      <section className="relative w-full h-screen bg-[#91AE4C] rounded-b-[32px] md:rounded-b-[64px] shadow-[0px_4px_32px_0px_rgba(0,0,0,0.25),inset_0px_-4px_24px_0px_rgba(255,255,255,0.5)] overflow-hidden">
+    <main className="bg-background-page">
+      <section className="relative w-full h-screen bg-hero-bg rounded-b-[32px] md:rounded-b-[64px] shadow-[0px_4px_32px_0px_rgba(0,0,0,0.25),inset_0px_-4px_24px_0px_rgba(255,255,255,0.5)] overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="relative w-full h-full lg:w-3/4">
             <Image
@@ -74,7 +74,7 @@ export default function Home() {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent from-10% to-[#91AE4C] to-75% lg:bg-[radial-gradient(150%_165%_at_-50%_50%,_transparent_64%,_#91AE4C_70%)] xl:bg-[radial-gradient(165%_195%_at_-50%_50%,_transparent_64%,_#91AE4C_70%)]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent from-10% to-hero-bg to-75% lg:bg-[radial-gradient(150%_165%_at_-50%_50%,_transparent_64%,_var(--color-hero-bg)_70%)] xl:bg-[radial-gradient(165%_195%_at_-50%_50%,_transparent_64%,_var(--color-hero-bg)_70%)]" />
           </div>
         </div>
 
@@ -92,13 +92,13 @@ export default function Home() {
             <div className="flex flex-row items-center justify-start gap-3 md:gap-4">
               <Link
                 href="/timeline"
-                className="bg-[#FFB800] text-[#353B00] font-montserrat text-sm md:text-base lg:text-lg font-bold px-6 md:px-8 py-3 md:py-4 rounded-full shadow-[0px_2px_20px_0px_rgba(0,0,0,0.25)] hover:brightness-110 transition-all"
+                className="bg-accent text-accent-foreground font-montserrat text-sm md:text-base lg:text-lg font-bold px-6 md:px-8 py-3 md:py-4 rounded-full shadow-[0px_2px_20px_0px_rgba(0,0,0,0.25)] hover:brightness-110 transition-all"
               >
                 Lihat Jadwal
               </Link>
               <Link
                 href="/infak"
-                className="bg-[#353B00] text-white font-montserrat text-sm md:text-base lg:text-lg font-bold px-6 md:px-8 py-3 md:py-4 rounded-full shadow-[0px_2px_20px_0px_rgba(0,0,0,0.25)] hover:brightness-110 transition-all"
+                className="bg-secondary text-white font-montserrat text-sm md:text-base lg:text-lg font-bold px-6 md:px-8 py-3 md:py-4 rounded-full shadow-[0px_2px_20px_0px_rgba(0,0,0,0.25)] hover:brightness-110 transition-all"
               >
                 Infak & Zakat
               </Link>
@@ -107,7 +107,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[#F7FFD8] p-6 flex items-center justify-center">
+      <section className="bg-background-page p-6 flex items-center justify-center">
         <div
           className="max-w-348 mx-auto shadow-[0px_4px_32px_0px_rgba(0,0,0,0.25)] rounded-[32px] md:rounded-[48px] lg:rounded-[56px] p-6 sm:p-10 md:p-14 text-center"
           style={{
@@ -117,10 +117,10 @@ export default function Home() {
           }}
         >
           <div className="flex flex-col items-center gap-6 md:gap-10 lg:gap-12">
-            <h2 className="text-[#21272A] font-forum text-4xl md:text-5xl lg:text-[56px] font-normal leading-tight">
+            <h2 className="text-foreground font-forum text-4xl md:text-5xl lg:text-[56px] font-normal leading-tight">
               Banyak kegiatan yang kami buat, spesial untuk Anda
             </h2>
-            <p className="text-[#21272A] font-montserrat text-xs md:text-lg lg:text-xl font-medium leading-normal">
+            <p className="text-foreground font-montserrat text-xs md:text-lg lg:text-xl font-medium leading-normal">
               Rhoncus morbi et augue nec, in id ullamcorper at sit. Condimentum
               sit nunc in eros scelerisque sed. Commodo in viverra nunc,
               ullamcorper ut. Non, amet, aliquet scelerisque nullam sagittis,
@@ -130,10 +130,10 @@ export default function Home() {
             <div className="relative inline-block">
               <Link
                 href="/timeline"
-                className="inline-flex items-center bg-[#FFC80B] text-[#353B00] font-montserrat text-sm md:text-base lg:text-lg font-bold pl-6 md:pl-10 pr-[3px] py-[3px] rounded-full shadow-[0px_4px_32px_0px_rgba(0,0,0,0.25)] hover:brightness-105 transition-all"
+                className="inline-flex items-center bg-accent text-accent-foreground font-montserrat text-sm md:text-base lg:text-lg font-bold pl-6 md:pl-10 pr-[3px] py-[3px] rounded-full shadow-[0px_4px_32px_0px_rgba(0,0,0,0.25)] hover:brightness-105 transition-all"
               >
                 Jadwal Lengkap
-                <div className="ml-4 md:ml-6 w-[40px] h-[40px] md:w-[50px] md:h-[50px] text-white bg-[#9C4299] rounded-full flex items-center justify-center shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] hover:brightness-105 transition-all">
+                <div className="ml-4 md:ml-6 w-[40px] h-[40px] md:w-[50px] md:h-[50px] text-white bg-brand-purple rounded-full flex items-center justify-center shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] hover:brightness-105 transition-all">
                   <ArrowRight size={20} strokeWidth={2.5} />
                 </div>
               </Link>
@@ -142,13 +142,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[#F7FFD8] py-10 sm:py-14 md:py-16 lg:py-20 px-10 md:px-12 lg:px-20">
+      <section className="bg-background-page py-10 sm:py-14 md:py-16 lg:py-20 px-10 md:px-12 lg:px-20">
         <div className="max-w-360 mx-auto">
           <div className="text-center mb-8 md:mb-10 lg:mb-12">
-            <h2 className="text-[#21272A] font-forum text-4xl md:text-5xl lg:text-6xl font-normal mb-6 md:mb-8 lg:mb-12 leading-tight">
+            <h2 className="text-foreground font-forum text-4xl md:text-5xl lg:text-6xl font-normal mb-6 md:mb-8 lg:mb-12 leading-tight">
               Program Ramadhan, Idul Adha, dan Idul Fitri
             </h2>
-            <p className="text-[#21272A] font-montserrat text-xs md:text-lg lg:text-xl font-medium max-w-7xl mx-auto mb-8 md:mb-12 lg:mb-16 leading-normal">
+            <p className="text-foreground font-montserrat text-xs md:text-lg lg:text-xl font-medium max-w-7xl mx-auto mb-8 md:mb-12 lg:mb-16 leading-normal">
               Hidupkan Ramadhan, Idul Adha, dan Idul Fitri 1447 H bersama
               program-program kegiatan P3RI Salman.
             </p>
@@ -169,7 +169,7 @@ export default function Home() {
             <button
               onClick={handlePrevPage}
               disabled={currentPage === 1}
-              className="w-9 h-9 sm:w-11 sm:h-11 md:w-14 md:h-14 rounded-full bg-white text-[#8F9F00] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-all flex items-center justify-center shadow-md flex-shrink-0"
+              className="w-9 h-9 sm:w-11 sm:h-11 md:w-14 md:h-14 rounded-full bg-card text-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-all flex items-center justify-center shadow-md flex-shrink-0"
             >
               <ChevronLeft
                 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
@@ -180,7 +180,7 @@ export default function Home() {
             <div className="flex items-center gap-1.5 md:gap-4">
               {getPaginationGroup().length > 0 &&
                 getPaginationGroup()[0]! > 1 && (
-                  <span className="text-[#21272A] font-montserrat text-xs md:text-xl px-1">
+                  <span className="text-foreground font-montserrat text-xs md:text-xl px-1">
                     ...
                   </span>
                 )}
@@ -191,8 +191,8 @@ export default function Home() {
                   onClick={() => setCurrentPage(page)}
                   className={`w-9 h-9 sm:w-11 sm:h-11 md:w-14 md:h-14 rounded-full font-montserrat text-xs sm:text-sm md:text-xl font-semibold transition-all shadow-md ${
                     currentPage === page
-                      ? "bg-[#FFC80B] text-[#353B00]"
-                      : "bg-white text-[#21272A] hover:bg-gray-100"
+                      ? "bg-accent text-accent-foreground"
+                      : "bg-card text-foreground hover:bg-gray-100"
                   }`}
                 >
                   {page}
@@ -202,7 +202,7 @@ export default function Home() {
               {getPaginationGroup().length > 0 &&
                 getPaginationGroup()[getPaginationGroup().length - 1]! <
                   totalPages && (
-                  <span className="text-[#21272A] font-montserrat text-xs md:text-xl px-1">
+                  <span className="text-foreground font-montserrat text-xs md:text-xl px-1">
                     ...
                   </span>
                 )}
@@ -211,7 +211,7 @@ export default function Home() {
             <button
               onClick={handleNextPage}
               disabled={currentPage === totalPages}
-              className="w-9 h-9 sm:w-11 sm:h-11 md:w-14 md:h-14 rounded-full bg-white text-[#8F9F00] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-all flex items-center justify-center shadow-md flex-shrink-0"
+              className="w-9 h-9 sm:w-11 sm:h-11 md:w-14 md:h-14 rounded-full bg-card text-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-all flex items-center justify-center shadow-md flex-shrink-0"
             >
               <ChevronRight
                 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
@@ -222,12 +222,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[#F7FFD8] px-6 pb-10 pt-8 md:pt-10 md:pb-14 md:px-12 lg:px-20 lg:pt-14 lg:pb-20">
+      <section className="bg-background-page px-6 pb-10 pt-8 md:pt-10 md:pb-14 md:px-12 lg:px-20 lg:pt-14 lg:pb-20">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-[#21272A] font-forum text-4xl md:text-5xl font-normal leading-tight mb-6 md:mb-10 lg:mb-12">
+          <h2 className="text-foreground font-forum text-4xl md:text-5xl font-normal leading-tight mb-6 md:mb-10 lg:mb-12">
             Tahun Lalu di P3RI
           </h2>
-          <p className="text-[#21272A] font-montserrat text-xs md:text-lg lg:text-xl font-medium leading-normal px-4">
+          <p className="text-foreground font-montserrat text-xs md:text-lg lg:text-xl font-medium leading-normal px-4">
             Rhoncus morbi et augue nec, in id ullamcorper at sit. Condimentum
             sit nunc in eros scelerisque sed. Commodo in viverra nunc,
             ullamcorper ut. Non, amet, aliquet scelerisque nullam sagittis,
@@ -237,7 +237,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative bg-[#F7FFD8] py-10 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 md:px-12 lg:px-20 overflow-hidden">
+      <section className="relative bg-background-page py-10 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 md:px-12 lg:px-20 overflow-hidden">
         <div className="absolute inset-0">
           <div
             className="relative w-full h-full"
@@ -262,7 +262,7 @@ export default function Home() {
 
         <div className="relative max-w-360 mx-auto z-10">
           <div className="text-center mb-12">
-            <h2 className="text-[#21272A] font-forum text-4xl md:text-5xl font-normal text-center mb-8 md:mb-10 lg:mb-12">
+            <h2 className="text-foreground font-forum text-4xl md:text-5xl font-normal text-center mb-8 md:mb-10 lg:mb-12">
               FAQs
             </h2>
           </div>
@@ -272,17 +272,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[#EDEDBC] px-6 md:px-12 lg:px-20 py-10 sm:py-14 md:py-16 lg:py-20">
+      <section className="bg-background-section px-6 md:px-12 lg:px-20 py-10 sm:py-14 md:py-16 lg:py-20">
         <div className="max-w-360 mx-auto flex flex-col gap-10 md:gap-14 lg:gap-16">
           <div className="text-center flex flex-col gap-8 md:gap-12 lg:gap-16">
-            <h2 className="text-[#21272A] font-forum text-4xl md:text-5xl lg:text-5xl font-normal">
+            <h2 className="text-foreground font-forum text-4xl md:text-5xl lg:text-5xl font-normal">
               Sponsor
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 lg:gap-8"></div>
           </div>
 
           <div className="text-center flex flex-col gap-8 md:gap-12 lg:gap-16">
-            <h2 className="text-[#21272A] font-forum text-4xl md:text-5xl lg:text-5xl font-normal">
+            <h2 className="text-foreground font-forum text-4xl md:text-5xl lg:text-5xl font-normal">
               Media Partner
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 lg:gap-8"></div>

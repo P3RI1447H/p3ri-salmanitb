@@ -22,29 +22,27 @@ export default function Footer() {
   const isActive = (href: string) => pathname === href;
 
   return (
-    <footer className="relative w-full bg-[#4F5900] overflow-hidden">
-      <div 
+    <footer className="relative w-full bg-primary overflow-hidden">
+      <div
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: `url('/images/footer-bg.png')`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: '#4F5900',
-          backgroundBlendMode: 'soft-light'
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: "var(--color-primary)",
+          backgroundBlendMode: "soft-light",
         }}
       />
 
       <div className="relative z-20 w-full mx-auto pt-12 pb-12 lg:pt-6 lg:pb-12 flex flex-col justify-center items-start gap-12">
-        
         <div className="self-stretch flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-12 px-8 md:px-20">
-          
           <div className="flex justify-between items-center w-full md:w-auto md:flex-shrink-0">
             <Link href="/">
-              <Image 
-                src="/images/logo-p3ri.png" 
-                alt="Logo P3RI" 
-                width={60} 
+              <Image
+                src="/images/logo-p3ri.png"
+                alt="Logo P3RI"
+                width={60}
                 height={60}
                 className="object-contain"
               />
@@ -52,10 +50,10 @@ export default function Footer() {
 
             <div className="flex md:hidden justify-end items-center gap-6">
               {socialLinks.map((social) => (
-                <Link 
-                  key={social.name} 
-                  href={social.href} 
-                  className="text-white hover:text-[#ADCD61] transition-colors"
+                <Link
+                  key={social.name}
+                  href={social.href}
+                  className="text-white hover:text-text-highlight transition-colors"
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -69,11 +67,13 @@ export default function Footer() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="px-2 py-2 md:py-3 flex justify-start items-center gap-2 text-white hover:text-[#ADCD61] transition-colors"
+                className="px-2 py-2 md:py-3 flex justify-start items-center gap-2 text-white hover:text-text-highlight transition-colors"
               >
-                <div className={`text-base font-montserrat leading-6 ${
-                  isActive(link.href) ? 'font-bold' : 'font-semibold'
-                }`}>
+                <div
+                  className={`text-base font-montserrat leading-6 ${
+                    isActive(link.href) ? "font-bold" : "font-semibold"
+                  }`}
+                >
                   {link.name}
                 </div>
               </Link>
@@ -82,23 +82,21 @@ export default function Footer() {
 
           <div className="hidden md:flex flex-shrink-0 justify-end items-center gap-6">
             {socialLinks.map((social) => (
-              <Link 
-                key={social.name} 
-                href={social.href} 
-                className="text-white hover:text-[#ADCD61] transition-colors"
+              <Link
+                key={social.name}
+                href={social.href}
+                className="text-white hover:text-text-highlight transition-colors"
                 aria-label={social.name}
               >
                 {social.icon}
               </Link>
             ))}
           </div>
-
         </div>
 
         <div className="self-stretch text-center text-white text-sm font-medium font-montserrat leading-5 px-6">
           P3RI @ 2026. All rights reserved.
         </div>
-
       </div>
     </footer>
   );

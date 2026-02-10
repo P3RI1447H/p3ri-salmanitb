@@ -27,7 +27,7 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-0 z-50">
-      <nav className="bg-[#4F5900] w-full h-16 md:h-20 flex items-center shadow-md">
+      <nav className="bg-primary w-full h-16 md:h-20 flex items-center shadow-md">
         <div className="w-full flex items-center justify-between px-4 sm:px-8 md:px-12 lg:px-20 h-full gap-6 md:gap-[48px]">
           <Link
             href="/"
@@ -45,7 +45,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Menu */}
-          <ul className="hidden md:flex flex-1 p-1 bg-[#353B00] rounded-3xl justify-end items-center gap-4 list-none m-0">
+          <ul className="hidden md:flex flex-1 p-1 bg-secondary rounded-3xl justify-end items-center gap-4 list-none m-0">
             {menuItems.map((item) => (
               <li key={item.name}>
                 <Link
@@ -53,8 +53,8 @@ const Navbar = () => {
                   className={cn(
                     "px-4 py-3 rounded-3xl flex justify-start items-center gap-3 transition-colors",
                     isActive(item.href)
-                      ? "bg-[#FFC80B] text-[#353B00]"
-                      : "text-white hover:text-[#FFC80B]",
+                      ? "bg-accent text-accent-foreground"
+                      : "text-white hover:text-accent",
                   )}
                   aria-current={isActive(item.href) ? "page" : undefined}
                 >
@@ -70,7 +70,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden text-white p-2 hover:bg-[#3A4200] rounded transition-colors focus:outline-none focus:ring-2 focus:ring-[#FFC80B]"
+            className="md:hidden text-white p-2 hover:bg-secondary/80 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
@@ -84,9 +84,9 @@ const Navbar = () => {
       {isOpen && (
         <div
           id="mobile-menu"
-          className="md:hidden fixed inset-0 bg-[#4F5900] z-40 overflow-y-auto"
+          className="md:hidden fixed inset-0 bg-primary z-40 overflow-y-auto"
         >
-          <div className="flex items-center justify-between px-6 h-16 border-b border-[#3A4200]">
+          <div className="flex items-center justify-between px-6 h-16 border-b border-secondary">
             <Link href="/" onClick={closeMenu} aria-label="Home">
               <Image
                 src="/images/logo-p3ri.png"
@@ -99,7 +99,7 @@ const Navbar = () => {
 
             <button
               onClick={closeMenu}
-              className="text-white p-2 hover:bg-[#3A4200] rounded transition-colors focus:outline-none focus:ring-2 focus:ring-[#FFC80B]"
+              className="text-white p-2 hover:bg-secondary rounded transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
               aria-label="Close menu"
             >
               <X size={24} />
@@ -113,10 +113,10 @@ const Navbar = () => {
                   href={item.href}
                   onClick={closeMenu}
                   className={cn(
-                    "block py-4 text-base font-semibold font-montserrat border-b border-[#3A4200] transition-colors",
+                    "block py-4 text-base font-semibold font-montserrat border-b border-secondary transition-colors",
                     isActive(item.href)
-                      ? "text-[#ADCD61]"
-                      : "text-white hover:text-[#FFC80B]",
+                      ? "text-text-highlight"
+                      : "text-white hover:text-accent",
                   )}
                   aria-current={isActive(item.href) ? "page" : undefined}
                 >

@@ -12,7 +12,7 @@ interface ProgramCardProps {
 const ProgramCard = ({ slug, title, summary, image }: ProgramCardProps) => {
   return (
     <Link href={`/program/${slug}`} className="block h-full">
-      <div className="bg-white rounded-2xl md:rounded-3xl shadow-2xl border-2 border-white hover:border-[#8014A6] transition-all flex flex-col h-full overflow-hidden">
+      <div className="bg-card rounded-2xl md:rounded-3xl shadow-2xl border-2 border-white hover:border-brand-purple-hover transition-all flex flex-col h-full overflow-hidden">
         <Image
           src={image || "/images/empty-img.png"}
           alt={title}
@@ -22,17 +22,17 @@ const ProgramCard = ({ slug, title, summary, image }: ProgramCardProps) => {
         />
 
         <div className="pt-6 px-6 pb-6 flex flex-col flex-1">
-          <h3 className="text-[#21272A] font-forum text-2xl md:text-3xl mb-3 line-clamp-2">
+          <h3 className="text-card-foreground font-forum text-2xl md:text-3xl mb-3 line-clamp-2">
             {title}
           </h3>
 
-          <p className="text-[#21272A] font-montserrat text-sm md:text-base font-medium line-clamp-3 md:line-clamp-4">
+          <p className="text-card-foreground font-montserrat text-sm md:text-base font-medium line-clamp-3 md:line-clamp-4">
             {summary}
           </p>
 
           <div className="flex-1"></div>
 
-          <div className="flex items-center gap-3 text-[#8F9F00] hover:text-[#8014A6] font-montserrat text-sm md:text-base font-semibold transition-colors mt-8">
+          <div className="flex items-center gap-3 text-text-muted hover:text-brand-purple-hover font-montserrat text-sm md:text-base font-semibold transition-colors mt-8">
             Lihat Selengkapnya
             <ArrowRight size={18} strokeWidth={2.5} className="md:w-5 md:h-5" />
           </div>

@@ -42,15 +42,15 @@ export default function ProgramDetailPage({
   const getNextIndex = () => (currentImageIndex + 1) % images.length;
 
   return (
-    <main className="bg-[#F7FFD8] min-h-screen">
+    <main className="bg-background-page min-h-screen">
       <section className="w-full px-6 md:px-20 pt-20 lg:pt-20 pb-10 md:pb-20 flex flex-col items-center">
-        <h1 className="text-[#21272A] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-forum text-center leading-tight mb-[50px]">
+        <h1 className="text-foreground text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-forum text-center leading-tight mb-[50px]">
           {program.title}
         </h1>
 
         <div className="relative w-full flex items-center justify-center gap-4 md:gap-10">
           <div
-            className="hidden md:block w-[20%] lg:w-72 aspect-[4/3] bg-white rounded-[20px] border border-neutral-300 overflow-hidden flex-shrink-0 cursor-pointer hover:opacity-80 transition-all duration-500"
+            className="hidden md:block w-[20%] lg:w-72 aspect-[4/3] bg-card rounded-[20px] border border-neutral-300 overflow-hidden flex-shrink-0 cursor-pointer hover:opacity-80 transition-all duration-500"
             onClick={() => goToSlide(getPrevIndex())}
           >
             <Image
@@ -62,7 +62,7 @@ export default function ProgramDetailPage({
             />
           </div>
 
-          <div className="w-full max-w-[90%] md:w-[50%] lg:w-[550px] aspect-video md:aspect-[4/3] bg-white rounded-[20px] border border-neutral-300 overflow-hidden relative shadow-lg">
+          <div className="w-full max-w-[90%] md:w-[50%] lg:w-[550px] aspect-video md:aspect-[4/3] bg-card rounded-[20px] border border-neutral-300 overflow-hidden relative shadow-lg">
             <Image
               src={images[currentImageIndex] ?? "/images/empty-img.png"}
               alt="main"
@@ -73,7 +73,7 @@ export default function ProgramDetailPage({
           </div>
 
           <div
-            className="hidden md:block w-[20%] lg:w-72 aspect-[4/3] bg-white rounded-[20px] border border-neutral-300 overflow-hidden flex-shrink-0 cursor-pointer hover:opacity-80 transition-all duration-500"
+            className="hidden md:block w-[20%] lg:w-72 aspect-[4/3] bg-card rounded-[20px] border border-neutral-300 overflow-hidden flex-shrink-0 cursor-pointer hover:opacity-80 transition-all duration-500"
             onClick={() => goToSlide(getNextIndex())}
           >
             <Image
@@ -89,19 +89,19 @@ export default function ProgramDetailPage({
         <div className="mt-12 md:mt-20">
           <Link
             href="#detailtimeline"
-            className="bg-[#353B00] text-[#FFFFFF] font-montserrat text-sm md:text-base lg:text-lg font-semibold px-6 md:px-8 py-3 md:py-4 rounded-full shadow-[0px_2px_20px_0px_rgba(0,0,0,0.25)] hover:brightness-110 transition-all"
+            className="bg-secondary text-white font-montserrat text-sm md:text-base lg:text-lg font-semibold px-6 md:px-8 py-3 md:py-4 rounded-full shadow-[0px_2px_20px_0px_rgba(0,0,0,0.25)] hover:brightness-110 transition-all"
           >
             Lihat Timeline
           </Link>
         </div>
       </section>
 
-      <section className="w-full bg-gradient-to-r from-[#ADCD61] via-white to-[#ADCD61] p-20">
+      <section className="w-full bg-gradient-to-r from-text-highlight via-white to-text-highlight p-20">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-[#353B00] text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-forum mb-6 md:mb-10">
+          <h2 className="text-secondary text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-forum mb-6 md:mb-10">
             Deskripsi Program
           </h2>
-          <p className="text-[#353B00] text-sm sm:text-base md:text-lg lg:text-xl font-medium font-montserrat max-w-4xl mx-auto leading-relaxed">
+          <p className="text-secondary text-sm sm:text-base md:text-lg lg:text-xl font-medium font-montserrat max-w-4xl mx-auto leading-relaxed">
             {program.details.description}
           </p>
         </div>
@@ -111,14 +111,14 @@ export default function ProgramDetailPage({
         id="detailtimeline"
         className="w-full px-6 md:px-20 pt-12 md:pt-20 flex flex-col items-center scroll-mt-20"
       >
-        <h2 className="text-[#21272A] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-forum mb-12">
+        <h2 className="text-foreground text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-forum mb-12">
           Timeline
         </h2>
 
         <div className="w-fit mb-16">
-          <div className="px-10 py-4 md:px-14 bg-[#4F5900] rounded-2xl shadow-md flex justify-center items-center gap-5">
+          <div className="px-10 py-4 md:px-14 bg-primary rounded-2xl shadow-md flex justify-center items-center gap-5">
             <MapPin size={32} className="text-white flex-shrink-0" />
-            <div className="text-[#FFD640] text-base sm:text-lg md:text-xl font-semibold font-montserrat text-center whitespace-nowrap">
+            <div className="text-status-warning text-base sm:text-lg md:text-xl font-semibold font-montserrat text-center whitespace-nowrap">
               {program.location}
             </div>
           </div>
@@ -127,27 +127,27 @@ export default function ProgramDetailPage({
         <div className="w-full max-w-5xl mx-auto relative pb-20">
           {program.details.timeline.length === 1 ? (
             <div className="flex flex-col items-center gap-8">
-              <div className="h-12 px-8 bg-gradient-to-r from-[#9C4299] to-[#7B1F78] rounded-full flex items-center justify-center">
+              <div className="h-12 px-8 bg-gradient-to-r from-brand-purple to-brand-purple-dark rounded-full flex items-center justify-center">
                 <span className="text-white font-bold font-montserrat">
-                  {program.details.timeline[0].date}
+                  {program.details.timeline[0]!.date}
                 </span>
               </div>
-              <div className="w-full max-w-md bg-white rounded-2xl p-8 shadow-xl text-center">
-                <h3 className="text-[#9C4299] text-xl font-bold mb-2 font-montserrat">
-                  {program.details.timeline[0].activity}
+              <div className="w-full max-w-md bg-card rounded-2xl p-8 shadow-xl text-center">
+                <h3 className="text-brand-purple text-xl font-bold mb-2 font-montserrat">
+                  {program.details.timeline[0]!.activity}
                 </h3>
-                <p className="text-[#9C4299] font-semibold text-sm mb-4">
-                  {program.details.timeline[0].time}
+                <p className="text-brand-purple font-semibold text-sm mb-4">
+                  {program.details.timeline[0]!.time}
                 </p>
-                <p className="text-[#52525B] font-medium font-montserrat">
-                  {program.details.timeline[0].info}
+                <p className="text-text-gray font-medium font-montserrat">
+                  {program.details.timeline[0]!.info}
                 </p>
               </div>
             </div>
           ) : (
             <>
               <div
-                className="absolute left-6 md:left-1/2 top-20 md:-translate-x-1/2 z-0 w-[2px] bg-[#DC2626]"
+                className="absolute left-6 md:left-1/2 top-20 md:-translate-x-1/2 z-0 w-[2px] bg-destructive"
                 style={{
                   bottom: "10rem",
                 }}
@@ -163,12 +163,12 @@ export default function ProgramDetailPage({
                       className={`flex items-start md:items-center w-full flex-row md:${isEven ? "flex-row" : "flex-row-reverse"}`}
                     >
                       <div className="md:hidden flex flex-col items-center relative mr-8">
-                        <div className="w-8 h-8 rounded-full bg-[#7B1F78] z-20 ring-8 ring-[#F7FFD8]" />
+                        <div className="w-8 h-8 rounded-full bg-brand-purple-dark z-20 ring-8 ring-background-page" />
                         <div
                           className="absolute left-[calc(100%+8px)] top-1/2 h-[2px] w-10"
                           style={{
                             backgroundImage:
-                              "repeating-linear-gradient(to right, #9C4299 0, #9C4299 6px, transparent 6px, transparent 12px)",
+                              "repeating-linear-gradient(to right, var(--color-brand-purple) 0, var(--color-brand-purple) 6px, transparent 6px, transparent 12px)",
                           }}
                         />
                       </div>
@@ -176,20 +176,20 @@ export default function ProgramDetailPage({
                       <div
                         className={`flex flex-col gap-4 w-full md:w-[42%] md:${isEven ? "items-start" : "items-end"}`}
                       >
-                        <div className="h-10 px-6 bg-gradient-to-r from-[#9C4299] to-[#7B1F78] rounded-full flex items-center w-fit shadow-sm">
+                        <div className="h-10 px-6 bg-gradient-to-r from-brand-purple to-brand-purple-dark rounded-full flex items-center w-fit shadow-sm">
                           <span className="text-white text-sm font-bold font-montserrat">
                             {item.date}
                           </span>
                         </div>
 
-                        <div className="bg-white rounded-2xl p-6 shadow-xl w-full border border-white/20">
-                          <h3 className="text-[#9C4299] text-lg md:text-xl font-bold font-montserrat">
+                        <div className="bg-card rounded-2xl p-6 shadow-xl w-full border border-white/20">
+                          <h3 className="text-brand-purple text-lg md:text-xl font-bold font-montserrat">
                             {item.activity}
                           </h3>
-                          <p className="text-[#9C4299] font-semibold text-xs md:text-sm mb-3">
+                          <p className="text-brand-purple font-semibold text-xs md:text-sm mb-3">
                             {item.time}
                           </p>
-                          <p className="text-[#52525B] text-xs md:text-sm font-medium leading-relaxed font-montserrat">
+                          <p className="text-text-gray text-xs md:text-sm font-medium leading-relaxed font-montserrat">
                             {item.info}
                           </p>
                         </div>
@@ -200,11 +200,11 @@ export default function ProgramDetailPage({
                           className={`absolute top-1/2 h-[2px] w-16 ${isEven ? "right-[calc(50%+16px)]" : "left-[calc(50%+16px)]"}`}
                           style={{
                             backgroundImage:
-                              "repeating-linear-gradient(to right, #9C4299 0, #9C4299 6px, transparent 6px, transparent 12px)",
+                              "repeating-linear-gradient(to right, var(--color-brand-purple) 0, var(--color-brand-purple) 6px, transparent 6px, transparent 12px)",
                           }}
                         />
 
-                        <div className="w-8 h-8 rounded-full bg-[#7B1F78] z-20 ring-8 ring-[#F7FFD8]" />
+                        <div className="w-8 h-8 rounded-full bg-brand-purple-dark z-20 ring-8 ring-background-page" />
                       </div>
 
                       <div className="hidden md:block md:w-[42%]" />
@@ -221,13 +221,13 @@ export default function ProgramDetailPage({
             <Link
               href={program.registration_url}
               target="_blank"
-              className="relative h-14 px-10 py-4 bg-[#FFC80B] group-hover:bg-[#9C4299] rounded-full flex items-center shadow-[0px_4px_32px_0px_rgba(0,0,0,0.25)] hover:brightness-105 transition-all duration-300 border-2 border-[#FFC80B] group-hover:border-[#9C4299]"
+              className="relative h-14 px-10 py-4 bg-accent group-hover:bg-brand-purple rounded-full flex items-center shadow-[0px_4px_32px_0px_rgba(0,0,0,0.25)] hover:brightness-105 transition-all duration-300 border-2 border-accent group-hover:border-brand-purple"
             >
-              <div className="absolute left-[2px] top-[2px] group-hover:left-auto group-hover:right-[2px] w-12 h-12 bg-[#9C4299] group-hover:bg-[#91AE4C] rounded-full flex items-center justify-center shadow-lg transition-all duration-300">
+              <div className="absolute left-[2px] top-[2px] group-hover:left-auto group-hover:right-[2px] w-12 h-12 bg-brand-purple group-hover:bg-hero-bg rounded-full flex items-center justify-center shadow-lg transition-all duration-300">
                 <ArrowRight size={24} className="text-white" />
               </div>
 
-              <span className="text-[#353B00] group-hover:text-white text-lg md:text-xl font-semibold font-montserrat pl-12 group-hover:pl-0 group-hover:pr-12 transition-all duration-300">
+              <span className="text-accent-foreground group-hover:text-white text-lg md:text-xl font-semibold font-montserrat pl-12 group-hover:pl-0 group-hover:pr-12 transition-all duration-300">
                 Daftar Sekarang
               </span>
             </Link>
