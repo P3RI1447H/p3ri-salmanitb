@@ -10,7 +10,6 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
-  
   const [programsPerPage, setProgramsPerPage] = useState(1);
 
   useEffect(() => {
@@ -35,7 +34,10 @@ export default function Home() {
   const totalPages = Math.ceil(PROGRAMS_DATA.length / programsPerPage);
   const indexOfLastProgram = currentPage * programsPerPage;
   const indexOfFirstProgram = indexOfLastProgram - programsPerPage;
-  const currentPrograms = PROGRAMS_DATA.slice(indexOfFirstProgram, indexOfLastProgram);
+  const currentPrograms = PROGRAMS_DATA.slice(
+    indexOfFirstProgram,
+    indexOfLastProgram,
+  );
 
   const handlePrevPage = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 1));
@@ -47,7 +49,7 @@ export default function Home() {
 
   const getPaginationGroup = () => {
     let start = Math.max(currentPage - 2, 1);
-    let end = Math.min(start + 4, totalPages);
+    const end = Math.min(start + 4, totalPages);
 
     if (end - start < 4) {
       start = Math.max(end - 4, 1);
@@ -82,7 +84,10 @@ export default function Home() {
               Ramadhan dan Idul Adha bersama P3RI
             </h1>
             <p className="text-white font-montserrat text-sm lg:text-lg font-medium leading-normal">
-              Proin quis cras euismod sit et metus risus ut. Semper nam vel morbi sit cursus tincidunt massa et a. Dolor odio parturient cursus justo nunc enim, a, sit facilisi. Eleifend at ac lacus, ullamcorper mauris eget tortor mollis.
+              Proin quis cras euismod sit et metus risus ut. Semper nam vel
+              morbi sit cursus tincidunt massa et a. Dolor odio parturient
+              cursus justo nunc enim, a, sit facilisi. Eleifend at ac lacus,
+              ullamcorper mauris eget tortor mollis.
             </p>
             <div className="flex flex-row items-center justify-start gap-3 md:gap-4">
               <Link
@@ -103,11 +108,12 @@ export default function Home() {
       </section>
 
       <section className="bg-[#F7FFD8] p-6 flex items-center justify-center">
-        <div 
+        <div
           className="max-w-348 mx-auto shadow-[0px_4px_32px_0px_rgba(0,0,0,0.25)] rounded-[32px] md:rounded-[48px] lg:rounded-[56px] p-6 sm:p-10 md:p-14 text-center"
           style={{
-            background: 'linear-gradient(90deg, #ADCD61 0%, #FFFFFF 50%, #ADCD61 100%)',
-            boxShadow: 'inset 0px -4px 24px 0px rgba(255,255,255,0.5)'
+            background:
+              "linear-gradient(90deg, #ADCD61 0%, #FFFFFF 50%, #ADCD61 100%)",
+            boxShadow: "inset 0px -4px 24px 0px rgba(255,255,255,0.5)",
           }}
         >
           <div className="flex flex-col items-center gap-6 md:gap-10 lg:gap-12">
@@ -115,10 +121,14 @@ export default function Home() {
               Banyak kegiatan yang kami buat, spesial untuk Anda
             </h2>
             <p className="text-[#21272A] font-montserrat text-xs md:text-lg lg:text-xl font-medium leading-normal">
-              Rhoncus morbi et augue nec, in id ullamcorper at sit. Condimentum sit nunc in eros scelerisque sed. Commodo in viverra nunc, ullamcorper ut. Non, amet, aliquet scelerisque nullam sagittis, pulvinar. Fermentum scelerisque sit consectetur hac mi. Mollis leo eleifend ultricies purus iaculis.
+              Rhoncus morbi et augue nec, in id ullamcorper at sit. Condimentum
+              sit nunc in eros scelerisque sed. Commodo in viverra nunc,
+              ullamcorper ut. Non, amet, aliquet scelerisque nullam sagittis,
+              pulvinar. Fermentum scelerisque sit consectetur hac mi. Mollis leo
+              eleifend ultricies purus iaculis.
             </p>
             <div className="relative inline-block">
-               <Link
+              <Link
                 href="/timeline"
                 className="inline-flex items-center bg-[#FFC80B] text-[#353B00] font-montserrat text-sm md:text-base lg:text-lg font-bold pl-6 md:pl-10 pr-[3px] py-[3px] rounded-full shadow-[0px_4px_32px_0px_rgba(0,0,0,0.25)] hover:brightness-105 transition-all"
               >
@@ -139,10 +149,11 @@ export default function Home() {
               Program Ramadhan, Idul Adha, dan Idul Fitri
             </h2>
             <p className="text-[#21272A] font-montserrat text-xs md:text-lg lg:text-xl font-medium max-w-7xl mx-auto mb-8 md:mb-12 lg:mb-16 leading-normal">
-              Hidupkan Ramadhan, Idul Adha, dan Idul Fitri 1447 H bersama program-program kegiatan P3RI Salman.
+              Hidupkan Ramadhan, Idul Adha, dan Idul Fitri 1447 H bersama
+              program-program kegiatan P3RI Salman.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[24px] mb-10 md:mb-12 justify-items-center">
             {currentPrograms.map((program) => (
               <ProgramCard
@@ -160,39 +171,52 @@ export default function Home() {
               disabled={currentPage === 1}
               className="w-9 h-9 sm:w-11 sm:h-11 md:w-14 md:h-14 rounded-full bg-white text-[#8F9F00] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-all flex items-center justify-center shadow-md flex-shrink-0"
             >
-              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" strokeWidth={2.5} />
+              <ChevronLeft
+                className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
+                strokeWidth={2.5}
+              />
             </button>
-            
+
             <div className="flex items-center gap-1.5 md:gap-4">
-              {getPaginationGroup()[0] > 1 && (
-                <span className="text-[#21272A] font-montserrat text-xs md:text-xl px-1">...</span>
-              )}
-              
+              {getPaginationGroup().length > 0 &&
+                getPaginationGroup()[0]! > 1 && (
+                  <span className="text-[#21272A] font-montserrat text-xs md:text-xl px-1">
+                    ...
+                  </span>
+                )}
+
               {getPaginationGroup().map((page) => (
                 <button
                   key={page}
                   onClick={() => setCurrentPage(page)}
                   className={`w-9 h-9 sm:w-11 sm:h-11 md:w-14 md:h-14 rounded-full font-montserrat text-xs sm:text-sm md:text-xl font-semibold transition-all shadow-md ${
                     currentPage === page
-                      ? 'bg-[#FFC80B] text-[#353B00]'
-                      : 'bg-white text-[#21272A] hover:bg-gray-100'
+                      ? "bg-[#FFC80B] text-[#353B00]"
+                      : "bg-white text-[#21272A] hover:bg-gray-100"
                   }`}
                 >
                   {page}
                 </button>
               ))}
 
-              {getPaginationGroup()[getPaginationGroup().length - 1] < totalPages && (
-                <span className="text-[#21272A] font-montserrat text-xs md:text-xl px-1">...</span>
-              )}
+              {getPaginationGroup().length > 0 &&
+                getPaginationGroup()[getPaginationGroup().length - 1]! <
+                  totalPages && (
+                  <span className="text-[#21272A] font-montserrat text-xs md:text-xl px-1">
+                    ...
+                  </span>
+                )}
             </div>
-            
+
             <button
               onClick={handleNextPage}
               disabled={currentPage === totalPages}
               className="w-9 h-9 sm:w-11 sm:h-11 md:w-14 md:h-14 rounded-full bg-white text-[#8F9F00] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-all flex items-center justify-center shadow-md flex-shrink-0"
             >
-              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" strokeWidth={2.5} />
+              <ChevronRight
+                className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
+                strokeWidth={2.5}
+              />
             </button>
           </div>
         </div>
@@ -200,18 +224,25 @@ export default function Home() {
 
       <section className="bg-[#F7FFD8] px-6 pb-10 pt-8 md:pt-10 md:pb-14 md:px-12 lg:px-20 lg:pt-14 lg:pb-20">
         <div className="max-w-7xl mx-auto text-center">
-            <h2 className="text-[#21272A] font-forum text-4xl md:text-5xl font-normal leading-tight mb-6 md:mb-10 lg:mb-12">
-              Tahun Lalu di P3RI
-            </h2>
-            <p className="text-[#21272A] font-montserrat text-xs md:text-lg lg:text-xl font-medium leading-normal px-4">
-              Rhoncus morbi et augue nec, in id ullamcorper at sit. Condimentum sit nunc in eros scelerisque sed. Commodo in viverra nunc, ullamcorper ut. Non, amet, aliquet scelerisque nullam sagittis, pulvinar. Fermentum scelerisque sit consectetur hac mi. Mollis leo eleifend ultricies purus iaculis.
-            </p>
+          <h2 className="text-[#21272A] font-forum text-4xl md:text-5xl font-normal leading-tight mb-6 md:mb-10 lg:mb-12">
+            Tahun Lalu di P3RI
+          </h2>
+          <p className="text-[#21272A] font-montserrat text-xs md:text-lg lg:text-xl font-medium leading-normal px-4">
+            Rhoncus morbi et augue nec, in id ullamcorper at sit. Condimentum
+            sit nunc in eros scelerisque sed. Commodo in viverra nunc,
+            ullamcorper ut. Non, amet, aliquet scelerisque nullam sagittis,
+            pulvinar. Fermentum scelerisque sit consectetur hac mi. Mollis leo
+            eleifend ultricies purus iaculis.
+          </p>
         </div>
       </section>
 
       <section className="relative bg-[#F7FFD8] py-10 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 md:px-12 lg:px-20 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="relative w-full h-full" style={{ clipPath: 'url(#faq-mask)' }}>
+          <div
+            className="relative w-full h-full"
+            style={{ clipPath: "url(#faq-mask)" }}
+          >
             <Image
               src="/images/gallery-bg.png"
               alt="FAQ Background"
@@ -247,16 +278,14 @@ export default function Home() {
             <h2 className="text-[#21272A] font-forum text-4xl md:text-5xl lg:text-5xl font-normal">
               Sponsor
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 lg:gap-8">
-            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 lg:gap-8"></div>
           </div>
 
           <div className="text-center flex flex-col gap-8 md:gap-12 lg:gap-16">
             <h2 className="text-[#21272A] font-forum text-4xl md:text-5xl lg:text-5xl font-normal">
               Media Partner
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 lg:gap-8">
-            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 lg:gap-8"></div>
           </div>
         </div>
       </section>

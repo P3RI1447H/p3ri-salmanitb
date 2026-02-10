@@ -7,7 +7,11 @@ import Link from "next/link";
 import { MapPin, ArrowRight } from "lucide-react";
 import { PROGRAMS_DATA } from "../../../lib/constants";
 
-export default function ProgramDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default function ProgramDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { slug } = use(params);
   const program = PROGRAMS_DATA.find((p) => p.slug === slug);
@@ -33,7 +37,8 @@ export default function ProgramDetailPage({ params }: { params: Promise<{ slug: 
     setCurrentImageIndex(index);
   };
 
-  const getPrevIndex = () => (currentImageIndex - 1 + images.length) % images.length;
+  const getPrevIndex = () =>
+    (currentImageIndex - 1 + images.length) % images.length;
   const getNextIndex = () => (currentImageIndex + 1) % images.length;
 
   return (
@@ -44,22 +49,22 @@ export default function ProgramDetailPage({ params }: { params: Promise<{ slug: 
         </h1>
 
         <div className="relative w-full flex items-center justify-center gap-4 md:gap-10">
-          <div 
+          <div
             className="hidden md:block w-[20%] lg:w-72 aspect-[4/3] bg-white rounded-[20px] border border-neutral-300 overflow-hidden flex-shrink-0 cursor-pointer hover:opacity-80 transition-all duration-500"
             onClick={() => goToSlide(getPrevIndex())}
           >
-            <Image 
-              src={images[getPrevIndex()]} 
-              alt="prev" 
-              width={300} 
-              height={230} 
-              className="w-full h-full object-cover" 
+            <Image
+              src={images[getPrevIndex()] ?? "/images/empty-img.png"}
+              alt="prev"
+              width={300}
+              height={230}
+              className="w-full h-full object-cover opacity-50"
             />
           </div>
 
           <div className="w-full max-w-[90%] md:w-[50%] lg:w-[550px] aspect-video md:aspect-[4/3] bg-white rounded-[20px] border border-neutral-300 overflow-hidden relative shadow-lg">
             <Image
-              src={images[currentImageIndex]}
+              src={images[currentImageIndex] ?? "/images/empty-img.png"}
               alt="main"
               fill
               className="object-cover transition-all duration-500"
@@ -67,16 +72,16 @@ export default function ProgramDetailPage({ params }: { params: Promise<{ slug: 
             />
           </div>
 
-          <div 
+          <div
             className="hidden md:block w-[20%] lg:w-72 aspect-[4/3] bg-white rounded-[20px] border border-neutral-300 overflow-hidden flex-shrink-0 cursor-pointer hover:opacity-80 transition-all duration-500"
             onClick={() => goToSlide(getNextIndex())}
           >
-            <Image 
-              src={images[getNextIndex()]} 
-              alt="next" 
-              width={300} 
-              height={230} 
-              className="w-full h-full object-cover" 
+            <Image
+              src={images[getNextIndex()] ?? "/images/empty-img.png"}
+              alt="next"
+              width={300}
+              height={230}
+              className="w-full h-full object-cover opacity-50"
             />
           </div>
         </div>
@@ -102,9 +107,14 @@ export default function ProgramDetailPage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
-      <section id="detailtimeline" className="w-full px-6 md:px-20 pt-12 md:pt-20 flex flex-col items-center scroll-mt-20">
-        <h2 className="text-[#21272A] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-forum mb-12">Timeline</h2>
-        
+      <section
+        id="detailtimeline"
+        className="w-full px-6 md:px-20 pt-12 md:pt-20 flex flex-col items-center scroll-mt-20"
+      >
+        <h2 className="text-[#21272A] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-forum mb-12">
+          Timeline
+        </h2>
+
         <div className="w-fit mb-16">
           <div className="px-10 py-4 md:px-14 bg-[#4F5900] rounded-2xl shadow-md flex justify-center items-center gap-5">
             <MapPin size={32} className="text-white flex-shrink-0" />
@@ -118,47 +128,67 @@ export default function ProgramDetailPage({ params }: { params: Promise<{ slug: 
           {program.details.timeline.length === 1 ? (
             <div className="flex flex-col items-center gap-8">
               <div className="h-12 px-8 bg-gradient-to-r from-[#9C4299] to-[#7B1F78] rounded-full flex items-center justify-center">
-                <span className="text-white font-bold font-montserrat">{program.details.timeline[0].date}</span>
+                <span className="text-white font-bold font-montserrat">
+                  {program.details.timeline[0].date}
+                </span>
               </div>
               <div className="w-full max-w-md bg-white rounded-2xl p-8 shadow-xl text-center">
-                <h3 className="text-[#9C4299] text-xl font-bold mb-2 font-montserrat">{program.details.timeline[0].activity}</h3>
-                <p className="text-[#9C4299] font-semibold text-sm mb-4">{program.details.timeline[0].time}</p>
-                <p className="text-[#52525B] font-medium font-montserrat">{program.details.timeline[0].info}</p>
+                <h3 className="text-[#9C4299] text-xl font-bold mb-2 font-montserrat">
+                  {program.details.timeline[0].activity}
+                </h3>
+                <p className="text-[#9C4299] font-semibold text-sm mb-4">
+                  {program.details.timeline[0].time}
+                </p>
+                <p className="text-[#52525B] font-medium font-montserrat">
+                  {program.details.timeline[0].info}
+                </p>
               </div>
             </div>
           ) : (
             <>
-              <div className="absolute left-6 md:left-1/2 top-20 md:-translate-x-1/2 z-0 w-[2px] bg-[#DC2626]"
+              <div
+                className="absolute left-6 md:left-1/2 top-20 md:-translate-x-1/2 z-0 w-[2px] bg-[#DC2626]"
                 style={{
-                  bottom: '10rem'
+                  bottom: "10rem",
                 }}
               />
-              
+
               <div className="flex flex-col gap-20 relative z-10">
                 {program.details.timeline.map((item, index) => {
                   const isEven = index % 2 === 0;
-                  
+
                   return (
-                    <div key={index} className={`flex items-start md:items-center w-full flex-row md:${isEven ? 'flex-row' : 'flex-row-reverse'}`}>
-                      
+                    <div
+                      key={index}
+                      className={`flex items-start md:items-center w-full flex-row md:${isEven ? "flex-row" : "flex-row-reverse"}`}
+                    >
                       <div className="md:hidden flex flex-col items-center relative mr-8">
                         <div className="w-8 h-8 rounded-full bg-[#7B1F78] z-20 ring-8 ring-[#F7FFD8]" />
-                        <div 
+                        <div
                           className="absolute left-[calc(100%+8px)] top-1/2 h-[2px] w-10"
                           style={{
-                            backgroundImage: 'repeating-linear-gradient(to right, #9C4299 0, #9C4299 6px, transparent 6px, transparent 12px)',
+                            backgroundImage:
+                              "repeating-linear-gradient(to right, #9C4299 0, #9C4299 6px, transparent 6px, transparent 12px)",
                           }}
                         />
                       </div>
 
-                      <div className={`flex flex-col gap-4 w-full md:w-[42%] md:${isEven ? 'items-start' : 'items-end'}`}>
+                      <div
+                        className={`flex flex-col gap-4 w-full md:w-[42%] md:${isEven ? "items-start" : "items-end"}`}
+                      >
                         <div className="h-10 px-6 bg-gradient-to-r from-[#9C4299] to-[#7B1F78] rounded-full flex items-center w-fit shadow-sm">
-                          <span className="text-white text-sm font-bold font-montserrat">{item.date}</span>
+                          <span className="text-white text-sm font-bold font-montserrat">
+                            {item.date}
+                          </span>
                         </div>
-                        
+
                         <div className="bg-white rounded-2xl p-6 shadow-xl w-full border border-white/20">
-                          <h3 className="text-[#9C4299] text-lg md:text-xl font-bold font-montserrat">{item.activity}</h3>
-                          <p className="text-[#9C4299] font-semibold text-xs md:text-sm mb-3">{item.time}</p>
+                          <h3 className="text-[#9C4299] text-lg md:text-xl font-bold font-montserrat">
+                            {item.activity}
+                          </h3>
+                          <p className="text-[#9C4299] font-semibold text-xs md:text-sm mb-3">
+                            {item.time}
+                          </p>
                           <p className="text-[#52525B] text-xs md:text-sm font-medium leading-relaxed font-montserrat">
                             {item.info}
                           </p>
@@ -166,13 +196,14 @@ export default function ProgramDetailPage({ params }: { params: Promise<{ slug: 
                       </div>
 
                       <div className="hidden md:flex w-[16%] justify-center items-center relative">
-                        <div 
-                          className={`absolute top-1/2 h-[2px] w-16 ${isEven ? 'right-[calc(50%+16px)]' : 'left-[calc(50%+16px)]'}`}
+                        <div
+                          className={`absolute top-1/2 h-[2px] w-16 ${isEven ? "right-[calc(50%+16px)]" : "left-[calc(50%+16px)]"}`}
                           style={{
-                            backgroundImage: 'repeating-linear-gradient(to right, #9C4299 0, #9C4299 6px, transparent 6px, transparent 12px)',
+                            backgroundImage:
+                              "repeating-linear-gradient(to right, #9C4299 0, #9C4299 6px, transparent 6px, transparent 12px)",
                           }}
                         />
-                        
+
                         <div className="w-8 h-8 rounded-full bg-[#7B1F78] z-20 ring-8 ring-[#F7FFD8]" />
                       </div>
 
@@ -195,7 +226,7 @@ export default function ProgramDetailPage({ params }: { params: Promise<{ slug: 
               <div className="absolute left-[2px] top-[2px] group-hover:left-auto group-hover:right-[2px] w-12 h-12 bg-[#9C4299] group-hover:bg-[#91AE4C] rounded-full flex items-center justify-center shadow-lg transition-all duration-300">
                 <ArrowRight size={24} className="text-white" />
               </div>
-              
+
               <span className="text-[#353B00] group-hover:text-white text-lg md:text-xl font-semibold font-montserrat pl-12 group-hover:pl-0 group-hover:pr-12 transition-all duration-300">
                 Daftar Sekarang
               </span>
