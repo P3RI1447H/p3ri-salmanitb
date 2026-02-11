@@ -65,42 +65,45 @@ export default function Home() {
 
   return (
     <main className="bg-background-page">
-      <section className="relative w-full h-screen bg-hero-bg rounded-b-[32px] md:rounded-b-[64px] shadow-[0px_4px_32px_0px_rgba(0,0,0,0.25),inset_0px_-4px_24px_0px_rgba(255,255,255,0.5)] overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="relative w-full h-full lg:w-3/4">
+      <section className="relative w-full min-h-screen bg-background-page overflow-hidden flex flex-col lg:flex-row items-center justify-center gap-0 lg:gap-12 xl:gap-20">
+        {/* Image Side */}
+        <div className="relative w-full lg:w-1/2 h-[40vh] lg:h-screen flex items-center justify-center lg:justify-end p-6 pb-2 lg:p-0">
+          <div className="relative w-full h-full max-w-2xl lg:max-w-none">
             <Image
-              src="/images/hero-bg.png"
+              src="/images/image_placeholder.png"
               alt="Masjid Salman ITB"
               fill
-              className="object-cover"
+              className="object-contain object-center lg:object-right mix-blend-multiply"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent from-10% to-hero-bg to-75% lg:bg-[radial-gradient(150%_165%_at_-50%_50%,_transparent_64%,_var(--color-hero-bg)_70%)] xl:bg-[radial-gradient(165%_195%_at_-50%_50%,_transparent_64%,_var(--color-hero-bg)_70%)]" />
           </div>
         </div>
 
-        <div className="relative w-full mx-auto h-full pl-8 sm:pl-12 md:pl-16 lg:pl-20 pr-10 lg:pr-10 xl:pr-16 flex items-end lg:items-center justify-start lg:justify-end pb-12 md:pb-18">
-          <div className="w-150 flex flex-col gap-5 md:gap-6 lg:gap-8">
-            <h1 className="text-white font-forum text-[56px] lg:text-[68px] font-normal leading-none drop-shadow-md">
+        {/* Content Side */}
+        <div className="relative w-full lg:w-1/2 flex items-center justify-center lg:justify-start px-6 pt-2 pb-12 sm:p-12 md:p-16 lg:pl-0 h-auto lg:h-screen">
+          <div className="w-full max-w-xl flex flex-col gap-5 md:gap-6 lg:gap-8 text-left items-start z-10">
+            <h1 className="text-foreground font-forum text-[40px] md:text-[56px] lg:text-[68px] font-normal leading-none">
               Ramadhan dan Idul Adha bersama P3RI
             </h1>
-            <RamadhanCountdown />
-            <p className="text-white font-montserrat text-sm lg:text-lg font-medium leading-normal drop-shadow-sm">
+            <div className="w-full flex justify-start">
+              <RamadhanCountdown />
+            </div>
+            <p className="text-text-gray font-montserrat text-sm lg:text-lg font-medium leading-normal text-left">
               Sambut Ramadhan 1447 H dan rangkaian Idul Adha bersama
               program-program P3RI Masjid Salman ITB. Dari terawih berjamaah,
               berbagi buka, hingga festival Ramadhan — mari hidupkan semangat
               kebersamaan dan kebaikan.
             </p>
-            <div className="flex flex-row items-center justify-start gap-3 md:gap-4">
+            <div className="flex flex-row items-center justify-start gap-3 md:gap-4 w-full">
               <Link
                 href="/timeline"
-                className="bg-accent text-accent-foreground font-montserrat text-sm md:text-base lg:text-lg font-bold px-6 md:px-8 py-3 md:py-4 rounded-full shadow-[0px_2px_20px_0px_rgba(0,0,0,0.25)] hover:brightness-110 transition-all"
+                className="bg-primary text-primary-foreground font-montserrat text-sm md:text-base lg:text-lg font-bold px-6 md:px-8 py-3 md:py-4 rounded-full shadow-[0px_2px_20px_0px_rgba(0,0,0,0.1)] hover:brightness-110 transition-all"
               >
                 Lihat Jadwal
               </Link>
               <Link
                 href="/infak"
-                className="bg-secondary text-white font-montserrat text-sm md:text-base lg:text-lg font-bold px-6 md:px-8 py-3 md:py-4 rounded-full shadow-[0px_2px_20px_0px_rgba(0,0,0,0.25)] hover:brightness-110 transition-all"
+                className="bg-transparent border border-primary text-primary font-montserrat text-sm md:text-base lg:text-lg font-bold px-6 md:px-8 py-3 md:py-4 rounded-full hover:bg-primary/5 transition-all"
               >
                 Infak & Zakat
               </Link>
