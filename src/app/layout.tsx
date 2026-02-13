@@ -28,6 +28,12 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body className={`${montserrat.variable} ${forum.variable} font-montserrat antialiased`}>
+        <a
+          href="#main-content"
+          className="fixed left-4 top-4 z-[100] -translate-y-20 rounded-lg bg-primary px-4 py-2 font-montserrat text-sm font-semibold text-primary-foreground shadow-lg transition-transform focus:translate-y-0"
+        >
+          Langsung ke konten
+        </a>
         <Navbar />
         {children}
         <Footer />

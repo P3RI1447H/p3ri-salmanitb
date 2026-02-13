@@ -6,7 +6,14 @@ import { useState, useEffect } from "react";
 import ProgramCard from "../components/features/ProgramCard";
 import FAQAccordion from "../components/features/FAQBox";
 import { PROGRAMS_DATA } from "../lib/constants";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  Users,
+  UtensilsCrossed,
+  Heart,
+} from "lucide-react";
 import RamadhanCountdown from "../components/features/RamadhanCountdown";
 
 export default function Home() {
@@ -63,47 +70,68 @@ export default function Home() {
     return pages;
   };
 
+  const stats = [
+    {
+      icon: Users,
+      value: "Ribuan",
+      label: "Jamaah terlayani",
+    },
+    {
+      icon: UtensilsCrossed,
+      value: "1.500+",
+      label: "Porsi buka per hari",
+    },
+    {
+      icon: Heart,
+      value: "Puluhan",
+      label: "Panti asuhan disantunan",
+    },
+  ];
+
   return (
-    <main className="bg-background-page">
-      <section className="relative w-full min-h-screen bg-background-page overflow-hidden flex flex-col lg:flex-row items-center justify-center gap-0 lg:gap-12 xl:gap-20">
-        {/* Image Side */}
-        <div className="relative w-full lg:w-1/2 h-[40vh] lg:h-screen flex items-center justify-center lg:justify-end p-6 pb-2 lg:p-0">
-          <div className="relative w-full h-full max-w-2xl lg:max-w-none">
+    <main id="main-content" className="bg-background-page">
+      {/* Hero */}
+      <section
+        aria-labelledby="hero-heading"
+        className="relative flex w-full min-h-[calc(100vh-4rem)] flex-col items-center justify-center gap-0 overflow-hidden bg-background-page lg:flex-row lg:gap-12 xl:gap-20"
+      >
+        <div className="relative flex h-[40vh] w-full items-center justify-center p-6 pb-2 lg:h-screen lg:w-1/2 lg:justify-end lg:p-0">
+          <div className="relative h-full w-full max-w-2xl lg:max-w-none">
             <Image
               src="/images/image_placeholder.png"
-              alt="Masjid Salman ITB"
+              alt="Masjid Salman ITB saat kegiatan Ramadhan"
               fill
-              className="object-contain object-center lg:object-right mix-blend-multiply"
+              className="object-contain object-center mix-blend-multiply lg:object-right"
               priority
             />
           </div>
         </div>
 
-        {/* Content Side */}
-        <div className="relative w-full lg:w-1/2 flex items-center justify-center lg:justify-start px-6 pt-2 pb-12 sm:p-12 md:p-16 lg:pl-0 h-auto lg:h-screen">
-          <div className="w-full max-w-xl flex flex-col gap-5 md:gap-6 lg:gap-8 text-left items-start z-10">
-            <h1 className="text-foreground font-forum text-[40px] md:text-[56px] lg:text-[68px] font-normal leading-none">
+        <div className="relative flex h-auto w-full items-center justify-center px-6 pt-2 pb-12 sm:p-12 md:p-16 lg:h-screen lg:w-1/2 lg:justify-start lg:pl-0">
+          <div className="z-10 flex w-full max-w-xl flex-col items-start gap-5 text-left md:gap-6 lg:gap-8">
+            <h1
+              id="hero-heading"
+              className="font-forum text-[40px] font-normal leading-none text-foreground md:text-[56px] lg:text-[68px]"
+            >
               Ramadhan dan Idul Adha bersama P3RI
             </h1>
-            <div className="w-full flex justify-start">
-              <RamadhanCountdown />
-            </div>
-            <p className="text-text-gray font-montserrat text-sm lg:text-lg font-medium leading-normal text-left">
+            <RamadhanCountdown />
+            <p className="font-montserrat text-sm font-medium leading-relaxed text-text-gray lg:text-lg">
               Sambut Ramadhan 1447 H dan rangkaian Idul Adha bersama
               program-program P3RI Masjid Salman ITB. Dari terawih berjamaah,
               berbagi buka, hingga festival Ramadhan — mari hidupkan semangat
               kebersamaan dan kebaikan.
             </p>
-            <div className="flex flex-row items-center justify-start gap-3 md:gap-4 w-full">
+            <div className="flex flex-row items-center justify-start gap-3 md:gap-4">
               <Link
                 href="/timeline"
-                className="bg-primary text-primary-foreground font-montserrat text-sm md:text-base lg:text-lg font-bold px-6 md:px-8 py-3 md:py-4 rounded-full shadow-[0px_2px_20px_0px_rgba(0,0,0,0.1)] hover:brightness-110 transition-all"
+                className="rounded-full bg-primary px-6 py-3 font-montserrat text-sm font-bold text-primary-foreground shadow-sm transition-colors hover:bg-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:px-8 md:py-4 md:text-base lg:text-lg"
               >
                 Lihat Jadwal
               </Link>
               <Link
                 href="/infak"
-                className="bg-transparent border border-primary text-primary font-montserrat text-sm md:text-base lg:text-lg font-bold px-6 md:px-8 py-3 md:py-4 rounded-full hover:bg-primary/5 transition-all"
+                className="rounded-full border border-primary bg-transparent px-6 py-3 font-montserrat text-sm font-bold text-primary transition-colors hover:bg-primary/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:px-8 md:py-4 md:text-base lg:text-lg"
               >
                 Infak & Zakat
               </Link>
@@ -112,53 +140,53 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-background-page p-6 flex items-center justify-center">
-        <div
-          className="max-w-348 mx-auto shadow-[0px_4px_32px_0px_rgba(0,0,0,0.25)] rounded-[32px] md:rounded-[48px] lg:rounded-[56px] p-6 sm:p-10 md:p-14 text-center"
-          style={{
-            background:
-              "linear-gradient(90deg, #ADCD61 0%, #FFFFFF 50%, #ADCD61 100%)",
-            boxShadow: "inset 0px -4px 24px 0px rgba(255,255,255,0.5)",
-          }}
-        >
-          <div className="flex flex-col items-center gap-6 md:gap-10 lg:gap-12">
-            <h2 className="text-foreground font-forum text-4xl md:text-5xl lg:text-[56px] font-normal leading-tight">
-              Banyak kegiatan yang kami buat, spesial untuk Anda
-            </h2>
-            <p className="text-foreground font-montserrat text-xs md:text-lg lg:text-xl font-medium leading-normal">
-              Kami menyiapkan beragam program yang dirancang untuk memperkaya
-              pengalaman ibadah dan mempererat ukhuwah. Temukan kegiatan yang
-              sesuai untuk Anda, keluarga, maupun komunitas — dari kajian,
-              santunan, hingga festival seru sepanjang Ramadhan.
-            </p>
-            <div className="relative inline-block">
-              <Link
-                href="/timeline"
-                className="inline-flex items-center bg-accent text-accent-foreground font-montserrat text-sm md:text-base lg:text-lg font-bold pl-6 md:pl-10 pr-[3px] py-[3px] rounded-full shadow-[0px_4px_32px_0px_rgba(0,0,0,0.25)] hover:brightness-105 transition-all"
-              >
-                Jadwal Lengkap
-                <div className="ml-4 md:ml-6 w-[40px] h-[40px] md:w-[50px] md:h-[50px] text-white bg-brand-purple rounded-full flex items-center justify-center shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] hover:brightness-105 transition-all">
-                  <ArrowRight size={20} strokeWidth={2.5} />
-                </div>
-              </Link>
-            </div>
-          </div>
+      {/* CTA Banner */}
+      <section
+        aria-labelledby="cta-heading"
+        className="bg-background-page px-6 py-4"
+      >
+        <div className="mx-auto max-w-5xl rounded-3xl bg-primary px-8 py-10 text-center sm:px-12 md:rounded-[48px] md:px-16 md:py-14">
+          <h2
+            id="cta-heading"
+            className="font-forum text-3xl font-normal leading-tight text-primary-foreground md:text-4xl lg:text-5xl"
+          >
+            Banyak kegiatan yang kami buat, spesial untuk Anda
+          </h2>
+          <p className="mx-auto mt-4 max-w-3xl font-montserrat text-sm font-medium leading-relaxed text-primary-foreground/80 md:mt-6 md:text-base lg:text-lg">
+            Kami menyiapkan beragam program yang dirancang untuk memperkaya
+            pengalaman ibadah dan mempererat ukhuwah. Temukan kegiatan yang
+            sesuai untuk Anda, keluarga, maupun komunitas.
+          </p>
+          <Link
+            href="/timeline"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-montserrat text-sm font-bold text-accent-foreground transition-colors hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:mt-8 md:px-8 md:py-4 md:text-base"
+          >
+            Jadwal Lengkap
+            <ArrowRight size={18} strokeWidth={2.5} aria-hidden="true" />
+          </Link>
         </div>
       </section>
 
-      <section className="bg-background-page py-10 sm:py-14 md:py-16 lg:py-20 px-10 md:px-12 lg:px-20">
-        <div className="max-w-360 mx-auto">
-          <div className="text-center mb-8 md:mb-10 lg:mb-12">
-            <h2 className="text-foreground font-forum text-4xl md:text-5xl lg:text-6xl font-normal mb-6 md:mb-8 lg:mb-12 leading-tight">
+      {/* Programs */}
+      <section
+        aria-labelledby="programs-heading"
+        className="bg-background-page px-6 py-10 sm:py-14 md:px-12 md:py-16 lg:px-20 lg:py-20"
+      >
+        <div className="mx-auto max-w-[1440px]">
+          <div className="mb-8 text-center md:mb-10 lg:mb-12">
+            <h2
+              id="programs-heading"
+              className="mb-4 font-forum text-4xl font-normal leading-tight text-foreground md:mb-6 md:text-5xl lg:text-6xl"
+            >
               Program Ramadhan, Idul Adha, dan Idul Fitri
             </h2>
-            <p className="text-foreground font-montserrat text-xs md:text-lg lg:text-xl font-medium max-w-7xl mx-auto mb-8 md:mb-12 lg:mb-16 leading-normal">
+            <p className="mx-auto max-w-3xl font-montserrat text-sm font-medium text-text-gray md:text-base lg:text-lg">
               Hidupkan Ramadhan, Idul Adha, dan Idul Fitri 1447 H bersama
               program-program kegiatan P3RI Salman.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[24px] mb-10 md:mb-12 justify-items-center">
+          <div className="mb-10 grid grid-cols-1 justify-items-center gap-6 md:mb-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {currentPrograms.map((program) => (
               <ProgramCard
                 key={program.id}
@@ -169,22 +197,24 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="flex items-center justify-center gap-2 md:gap-4">
+          {/* Pagination */}
+          <nav aria-label="Navigasi halaman program" className="flex items-center justify-center gap-2 md:gap-4">
             <button
               onClick={handlePrevPage}
               disabled={currentPage === 1}
-              className="w-9 h-9 sm:w-11 sm:h-11 md:w-14 md:h-14 rounded-full bg-card text-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-all flex items-center justify-center shadow-md flex-shrink-0"
+              aria-label="Halaman sebelumnya"
+              className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-card text-foreground shadow-sm transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:h-12 md:w-12"
             >
-              <ChevronLeft
-                className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
-                strokeWidth={2.5}
-              />
+              <ChevronLeft className="h-5 w-5" strokeWidth={2.5} />
             </button>
 
-            <div className="flex items-center gap-1.5 md:gap-4">
+            <div className="flex items-center gap-1.5 md:gap-3">
               {getPaginationGroup().length > 0 &&
                 getPaginationGroup()[0]! > 1 && (
-                  <span className="text-foreground font-montserrat text-xs md:text-xl px-1">
+                  <span
+                    className="px-1 font-montserrat text-sm text-text-gray"
+                    aria-hidden="true"
+                  >
                     ...
                   </span>
                 )}
@@ -193,7 +223,9 @@ export default function Home() {
                 <button
                   key={page}
                   onClick={() => setCurrentPage(page)}
-                  className={`w-9 h-9 sm:w-11 sm:h-11 md:w-14 md:h-14 rounded-full font-montserrat text-xs sm:text-sm md:text-xl font-semibold transition-all shadow-md ${
+                  aria-label={`Halaman ${page}`}
+                  aria-current={currentPage === page ? "page" : undefined}
+                  className={`h-10 w-10 rounded-full font-montserrat text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:h-12 md:w-12 md:text-base ${
                     currentPage === page
                       ? "bg-accent text-accent-foreground"
                       : "bg-card text-foreground hover:bg-gray-100"
@@ -206,7 +238,10 @@ export default function Home() {
               {getPaginationGroup().length > 0 &&
                 getPaginationGroup()[getPaginationGroup().length - 1]! <
                   totalPages && (
-                  <span className="text-foreground font-montserrat text-xs md:text-xl px-1">
+                  <span
+                    className="px-1 font-montserrat text-sm text-text-gray"
+                    aria-hidden="true"
+                  >
                     ...
                   </span>
                 )}
@@ -215,40 +250,67 @@ export default function Home() {
             <button
               onClick={handleNextPage}
               disabled={currentPage === totalPages}
-              className="w-9 h-9 sm:w-11 sm:h-11 md:w-14 md:h-14 rounded-full bg-card text-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-all flex items-center justify-center shadow-md flex-shrink-0"
+              aria-label="Halaman berikutnya"
+              className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-card text-foreground shadow-sm transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:h-12 md:w-12"
             >
-              <ChevronRight
-                className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
-                strokeWidth={2.5}
-              />
+              <ChevronRight className="h-5 w-5" strokeWidth={2.5} />
             </button>
+          </nav>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section
+        aria-labelledby="stats-heading"
+        className="bg-background-section px-6 py-12 md:px-12 md:py-16 lg:px-20 lg:py-20"
+      >
+        <div className="mx-auto max-w-5xl text-center">
+          <h2
+            id="stats-heading"
+            className="mb-4 font-forum text-4xl font-normal leading-tight text-foreground md:mb-6 md:text-5xl"
+          >
+            Tahun Lalu di P3RI
+          </h2>
+          <p className="mx-auto mb-10 max-w-2xl font-montserrat text-sm font-medium leading-relaxed text-text-gray md:mb-14 md:text-base">
+            Semoga tahun ini lebih baik lagi!
+          </p>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 md:gap-8">
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="flex flex-col items-center gap-3 rounded-2xl bg-card p-6 md:gap-4 md:p-8"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 md:h-14 md:w-14">
+                  <stat.icon
+                    className="h-6 w-6 text-primary md:h-7 md:w-7"
+                    aria-hidden="true"
+                  />
+                </div>
+                <span className="font-forum text-3xl text-primary md:text-4xl">
+                  {stat.value}
+                </span>
+                <span className="font-montserrat text-sm font-medium text-text-gray md:text-base">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-background-page px-6 pb-10 pt-8 md:pt-10 md:pb-14 md:px-12 lg:px-20 lg:pt-14 lg:pb-20">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-foreground font-forum text-4xl md:text-5xl font-normal leading-tight mb-6 md:mb-10 lg:mb-12">
-            Tahun Lalu di P3RI
-          </h2>
-          <p className="text-foreground font-montserrat text-xs md:text-lg lg:text-xl font-medium leading-normal px-4">
-            Tahun lalu, P3RI Salman ITB berhasil melayani ribuan jamaah melalui
-            program terawih berjamaah, membagikan lebih dari 1.500 porsi makanan
-            berbuka setiap harinya, serta menyelenggarakan santunan ke panti
-            asuhan di Bandung Raya. Semoga tahun ini lebih baik lagi!
-          </p>
-        </div>
-      </section>
-
-      <section className="relative bg-background-page py-10 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 md:px-12 lg:px-20 overflow-hidden">
+      {/* FAQ */}
+      <section
+        aria-labelledby="faq-heading"
+        className="relative overflow-hidden bg-background-page px-4 py-10 sm:px-6 sm:py-14 md:px-12 md:py-16 lg:px-20 lg:py-20"
+      >
         <div className="absolute inset-0">
           <div
-            className="relative w-full h-full"
+            className="relative h-full w-full"
             style={{ clipPath: "url(#faq-mask)" }}
           >
             <Image
               src="/images/gallery-bg.png"
-              alt="FAQ Background"
+              alt=""
               fill
               className="object-cover"
             />
@@ -263,32 +325,15 @@ export default function Home() {
           </defs>
         </svg>
 
-        <div className="relative max-w-360 mx-auto z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-foreground font-forum text-4xl md:text-5xl font-normal text-center mb-8 md:mb-10 lg:mb-12">
-              FAQs
-            </h2>
-          </div>
-          <div className="p-6 max-w-225 mx-auto">
+        <div className="relative z-10 mx-auto max-w-[1440px]">
+          <h2
+            id="faq-heading"
+            className="mb-8 text-center font-forum text-4xl font-normal text-foreground md:mb-10 md:text-5xl lg:mb-12"
+          >
+            Pertanyaan Umum
+          </h2>
+          <div className="mx-auto max-w-3xl p-4 sm:p-6">
             <FAQAccordion />
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-background-section px-6 md:px-12 lg:px-20 py-10 sm:py-14 md:py-16 lg:py-20">
-        <div className="max-w-360 mx-auto flex flex-col gap-10 md:gap-14 lg:gap-16">
-          <div className="text-center flex flex-col gap-8 md:gap-12 lg:gap-16">
-            <h2 className="text-foreground font-forum text-4xl md:text-5xl lg:text-5xl font-normal">
-              Sponsor
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 lg:gap-8"></div>
-          </div>
-
-          <div className="text-center flex flex-col gap-8 md:gap-12 lg:gap-16">
-            <h2 className="text-foreground font-forum text-4xl md:text-5xl lg:text-5xl font-normal">
-              Media Partner
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 lg:gap-8"></div>
           </div>
         </div>
       </section>
