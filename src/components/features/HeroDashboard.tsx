@@ -9,9 +9,8 @@ import {
   Sun,
   Sunrise,
   Sunset,
-  CalendarDays,
 } from "lucide-react";
-import { cn, getAllCalendarEvents } from "@/lib/utils";
+import { getAllCalendarEvents } from "@/lib/utils";
 import { IMSAKIYAH_DATA } from "@/lib/constants";
 
 const RAMADHAN_START = new Date(2026, 1, 18); // Feb 18, 2026
@@ -125,28 +124,35 @@ function CountdownView() {
 
 // ── Ramadhan Dashboard (during Ramadhan) ──
 
-const PROGRAM_BORDER_COLORS: Record<string, string> = {
-  "tarhib-ramadan": "border-amber-500",
-  "p3ri-competition": "border-rose-500",
-  irama: "border-violet-500",
-  "semarak-ramadan": "border-cyan-500",
-  tarawih: "border-emerald-500",
-  itikaf: "border-blue-500",
-  "para-pejuang-alquran": "border-teal-500",
-  eid: "border-pink-500",
-  "ramadan-daycare": "border-orange-500",
-  "berbagi-buka": "border-lime-500",
-  "community-impact": "border-indigo-500",
-  "berbagi-sahur": "border-yellow-500",
-  "festival-adha": "border-red-500",
-  satisfy: "border-fuchsia-500",
-  qurban: "border-sky-500",
-};
+function parseTarawihInfo(info: string): {
+  imam: string | null;
+  penceramah: string | null;
+} {
+  let imam: string | null = null;
+  let penceramah: string | null = null;
+
+  // Handle "Imam & Penceramah: ..." format
+  const combined = info.match(/Imam\s*&\s*Penceramah:\s*(.+)/);
+  if (combined) {
+    const name = combined[1]!.trim();
+    return { imam: name, penceramah: name };
+  }
+
+  const imamMatch = info.match(/Imam:\s*(.+)/);
+  if (imamMatch) imam = imamMatch[1]!.trim();
+
+  const penceramahMatch = info.match(/Penceramah:\s*(.+)/);
+  if (penceramahMatch) penceramah = penceramahMatch[1]!.trim();
+
+  return { imam, penceramah };
+}
 
 function RamadhanDashboard({ ramadhanDay }: { ramadhanDay: number }) {
   const events = useMemo(() => getAllCalendarEvents(), []);
-  const todayKey = formatDateKey(new Date());
+  // TODO: revert this mock — using 1 Ramadhan date for preview
+  const todayKey = formatDateKey(new Date(2026, 1, 18));
   const todayEvents = events.get(todayKey) ?? [];
+  const tarawihEvent = todayEvents.find((e) => e.programSlug === "tarawih");
   const imsakiyah = IMSAKIYAH_DATA.find((e) => e.day === ramadhanDay);
 
   return (
@@ -219,63 +225,58 @@ function RamadhanDashboard({ ramadhanDay }: { ramadhanDay: number }) {
         </div>
       )}
 
-      {/* Today's Programs */}
-      <div className="border-primary/10 flex-1 overflow-hidden rounded-2xl border bg-white p-4 shadow-sm md:p-5">
+      {/* Tarawih Tonight */}
+      <Link
+        href="/program/tarawih"
+        className="border-primary/10 group block flex-1 overflow-hidden rounded-2xl border bg-white p-4 shadow-sm transition-all hover:shadow-md md:p-5"
+      >
         <div className="mb-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <CalendarDays size={16} className="text-primary" />
+            <Moon size={16} className="text-primary" />
             <p className="font-montserrat text-primary text-xs font-semibold tracking-wider uppercase">
-              Kegiatan Hari Ini
+              Tarawih Malam Ini
             </p>
           </div>
-          <Link
-            href="/timeline"
-            className="font-montserrat text-text-muted hover:text-primary text-xs font-semibold transition-colors"
-          >
-            Lihat Semua
-          </Link>
+          <ChevronRight
+            size={16}
+            className="text-text-muted/40 transition-transform group-hover:translate-x-0.5"
+          />
         </div>
 
-        {todayEvents.length === 0 ? (
-          <p className="font-montserrat text-text-muted py-4 text-center text-sm">
-            Tidak ada kegiatan terjadwal hari ini.
-          </p>
-        ) : (
-          <div className="space-y-2">
-            {todayEvents.slice(0, 5).map((event, i) => (
-              <Link
-                key={`${event.programSlug}-${i}`}
-                href={`/program/${event.programSlug}`}
-                className={cn(
-                  "group bg-background-page/50 hover:bg-background-page flex items-center gap-3 rounded-xl border-l-[3px] px-3 py-2.5 transition-colors",
-                  PROGRAM_BORDER_COLORS[event.programSlug] ?? "border-primary"
+        {tarawihEvent ? (
+          (() => {
+            const { imam, penceramah } = parseTarawihInfo(tarawihEvent.info);
+            return (
+              <div className="space-y-3">
+                {imam && (
+                  <div className="bg-background-page/70 rounded-xl px-3.5 py-3">
+                    <p className="font-montserrat text-text-muted text-[10px] font-semibold tracking-wider uppercase">
+                      Imam
+                    </p>
+                    <p className="font-montserrat text-text-main mt-0.5 text-sm font-bold md:text-base">
+                      {imam}
+                    </p>
+                  </div>
                 )}
-              >
-                <div className="min-w-0 flex-1">
-                  <p className="font-montserrat text-text-muted text-[10px] font-semibold tracking-wider uppercase">
-                    {event.programTitle}
-                  </p>
-                  <p className="font-montserrat text-text-main truncate text-sm font-bold">
-                    {event.activity}
-                  </p>
-                </div>
-                <ChevronRight
-                  size={16}
-                  className="text-text-muted/40 shrink-0 transition-transform group-hover:translate-x-0.5"
-                />
-              </Link>
-            ))}
-            {todayEvents.length > 5 && (
-              <Link
-                href="/timeline"
-                className="font-montserrat text-primary block text-center text-xs font-semibold hover:underline"
-              >
-                +{todayEvents.length - 5} kegiatan lainnya
-              </Link>
-            )}
-          </div>
+                {penceramah && (
+                  <div className="bg-background-page/70 rounded-xl px-3.5 py-3">
+                    <p className="font-montserrat text-text-muted text-[10px] font-semibold tracking-wider uppercase">
+                      Penceramah
+                    </p>
+                    <p className="font-montserrat text-text-main mt-0.5 text-sm font-bold md:text-base">
+                      {penceramah}
+                    </p>
+                  </div>
+                )}
+              </div>
+            );
+          })()
+        ) : (
+          <p className="font-montserrat text-text-muted py-4 text-center text-sm">
+            Belum ada jadwal tarawih untuk malam ini.
+          </p>
         )}
-      </div>
+      </Link>
     </div>
   );
 }
@@ -288,7 +289,8 @@ export default function HeroDashboard() {
 
   useEffect(() => {
     setMounted(true);
-    setRamadhanDay(getRamadhanDay(new Date()));
+    // TODO: revert this mock — using 1 Ramadhan date for preview
+    setRamadhanDay(getRamadhanDay(new Date(2026, 1, 18)));
   }, []);
 
   if (!mounted) {
