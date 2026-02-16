@@ -1,0 +1,308 @@
+"use client";
+
+import { useState, useEffect, useMemo } from "react";
+import Link from "next/link";
+import {
+  ChevronRight,
+  Clock,
+  Moon,
+  Sun,
+  Sunrise,
+  Sunset,
+  CalendarDays,
+} from "lucide-react";
+import { cn, getAllCalendarEvents } from "@/lib/utils";
+import { IMSAKIYAH_DATA } from "@/lib/constants";
+
+const RAMADHAN_START = new Date(2026, 1, 18); // Feb 18, 2026
+const RAMADHAN_END = new Date(2026, 2, 19); // Mar 19, 2026 (30 Ramadhan)
+
+function formatDateKey(date: Date): string {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
+function getRamadhanDay(now: Date): number | null {
+  const start = new Date(RAMADHAN_START);
+  start.setHours(0, 0, 0, 0);
+  const today = new Date(now);
+  today.setHours(0, 0, 0, 0);
+  const end = new Date(RAMADHAN_END);
+  end.setHours(23, 59, 59, 999);
+
+  if (today < start || today > end) return null;
+  const diff = Math.floor(
+    (today.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)
+  );
+  return diff + 1;
+}
+
+// ── Countdown (before Ramadhan) ──
+
+interface TimeLeft {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+const RAMADHAN_START_TS = new Date("2026-02-18T00:00:00+07:00").getTime();
+
+function getTimeLeft(): TimeLeft | null {
+  const diff = RAMADHAN_START_TS - Date.now();
+  if (diff <= 0) return null;
+  return {
+    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((diff / (1000 * 60)) % 60),
+    seconds: Math.floor((diff / 1000) % 60),
+  };
+}
+
+function CountdownUnit({ value, label }: { value: number; label: string }) {
+  return (
+    <div className="flex flex-col items-center gap-1.5">
+      <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/20 bg-white/10 shadow-lg backdrop-blur-md sm:h-20 sm:w-20 md:h-24 md:w-24">
+        <span className="font-forum text-3xl leading-none text-white sm:text-4xl md:text-5xl">
+          {String(value).padStart(2, "0")}
+        </span>
+      </div>
+      <span className="font-montserrat text-[10px] font-semibold tracking-wider text-white/70 uppercase md:text-xs">
+        {label}
+      </span>
+    </div>
+  );
+}
+
+function CountdownView() {
+  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    setTimeLeft(getTimeLeft());
+    const timer = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const tl = mounted ? timeLeft : { days: 0, hours: 0, minutes: 0, seconds: 0 };
+
+  return (
+    <div className="from-primary to-secondary flex h-full w-full flex-col items-center justify-center gap-6 rounded-3xl bg-gradient-to-br p-6 shadow-xl md:p-10">
+      <div className="relative text-center">
+        <Moon size={32} className="text-accent mx-auto mb-3" />
+        <p className="font-montserrat text-accent text-xs font-semibold tracking-widest uppercase md:text-sm">
+          Menuju Ramadhan 1447 H
+        </p>
+      </div>
+
+      {tl && (
+        <div className="relative flex gap-2 md:gap-3">
+          <CountdownUnit value={tl.days} label="Hari" />
+          <div className="flex items-center pb-6">
+            <span className="font-forum text-2xl text-white/60">:</span>
+          </div>
+          <CountdownUnit value={tl.hours} label="Jam" />
+          <div className="flex items-center pb-6">
+            <span className="font-forum text-2xl text-white/60">:</span>
+          </div>
+          <CountdownUnit value={tl.minutes} label="Menit" />
+          <div className="flex items-center pb-6">
+            <span className="font-forum text-2xl text-white/60">:</span>
+          </div>
+          <CountdownUnit value={tl.seconds} label="Detik" />
+        </div>
+      )}
+
+      <p className="font-montserrat relative text-center text-xs leading-relaxed text-white/60 md:text-sm">
+        18 Februari 2026
+      </p>
+    </div>
+  );
+}
+
+// ── Ramadhan Dashboard (during Ramadhan) ──
+
+const PROGRAM_BORDER_COLORS: Record<string, string> = {
+  "tarhib-ramadan": "border-amber-500",
+  "p3ri-competition": "border-rose-500",
+  irama: "border-violet-500",
+  "semarak-ramadan": "border-cyan-500",
+  tarawih: "border-emerald-500",
+  itikaf: "border-blue-500",
+  "para-pejuang-alquran": "border-teal-500",
+  eid: "border-pink-500",
+  "ramadan-daycare": "border-orange-500",
+  "berbagi-buka": "border-lime-500",
+  "community-impact": "border-indigo-500",
+  "berbagi-sahur": "border-yellow-500",
+  "festival-adha": "border-red-500",
+  satisfy: "border-fuchsia-500",
+  qurban: "border-sky-500",
+};
+
+function RamadhanDashboard({ ramadhanDay }: { ramadhanDay: number }) {
+  const events = useMemo(() => getAllCalendarEvents(), []);
+  const todayKey = formatDateKey(new Date());
+  const todayEvents = events.get(todayKey) ?? [];
+  const imsakiyah = IMSAKIYAH_DATA.find((e) => e.day === ramadhanDay);
+
+  return (
+    <div className="flex h-full w-full flex-col gap-4">
+      {/* Imsakiyah Card */}
+      {imsakiyah && (
+        <div className="from-primary to-secondary overflow-hidden rounded-2xl bg-gradient-to-br p-4 text-white shadow-xl md:p-5">
+          <div className="relative">
+            <div className="mb-3 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Clock size={16} className="text-accent" />
+                <p className="font-montserrat text-accent text-xs font-semibold tracking-wider uppercase">
+                  Imsakiyah Bandung
+                </p>
+              </div>
+              <p className="font-montserrat text-xs font-medium text-white/60">
+                {ramadhanDay} Ramadhan
+              </p>
+            </div>
+
+            {/* Imsak & Maghrib */}
+            <div className="mb-3 grid grid-cols-2 gap-3">
+              <div className="rounded-xl bg-white/10 px-3 py-3 text-center backdrop-blur-sm">
+                <div className="flex items-center justify-center gap-1.5">
+                  <Moon size={14} className="text-accent" />
+                  <p className="font-montserrat text-[10px] font-medium tracking-wider text-white/70 uppercase">
+                    Imsak
+                  </p>
+                </div>
+                <p className="font-montserrat mt-1 text-2xl font-bold text-white">
+                  {imsakiyah.imsak}
+                </p>
+              </div>
+              <div className="rounded-xl bg-white/10 px-3 py-3 text-center backdrop-blur-sm">
+                <div className="flex items-center justify-center gap-1.5">
+                  <Sunset size={14} className="text-accent" />
+                  <p className="font-montserrat text-[10px] font-medium tracking-wider text-white/70 uppercase">
+                    Maghrib
+                  </p>
+                </div>
+                <p className="font-montserrat mt-1 text-2xl font-bold text-white">
+                  {imsakiyah.maghrib}
+                </p>
+              </div>
+            </div>
+
+            {/* Other prayer times */}
+            <div className="grid grid-cols-5 gap-1.5">
+              {[
+                { label: "Subuh", time: imsakiyah.subuh, icon: Moon },
+                { label: "Terbit", time: imsakiyah.terbit, icon: Sunrise },
+                { label: "Dzuhur", time: imsakiyah.dzuhur, icon: Sun },
+                { label: "Ashar", time: imsakiyah.ashar, icon: Sun },
+                { label: "Isya", time: imsakiyah.isya, icon: Moon },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-lg bg-white/5 px-1 py-2 text-center"
+                >
+                  <p className="font-montserrat text-[9px] font-medium tracking-wider text-white/50 uppercase">
+                    {item.label}
+                  </p>
+                  <p className="font-montserrat mt-0.5 text-xs font-bold text-white/90">
+                    {item.time}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Today's Programs */}
+      <div className="border-primary/10 flex-1 overflow-hidden rounded-2xl border bg-white p-4 shadow-sm md:p-5">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <CalendarDays size={16} className="text-primary" />
+            <p className="font-montserrat text-primary text-xs font-semibold tracking-wider uppercase">
+              Kegiatan Hari Ini
+            </p>
+          </div>
+          <Link
+            href="/timeline"
+            className="font-montserrat text-text-muted hover:text-primary text-xs font-semibold transition-colors"
+          >
+            Lihat Semua
+          </Link>
+        </div>
+
+        {todayEvents.length === 0 ? (
+          <p className="font-montserrat text-text-muted py-4 text-center text-sm">
+            Tidak ada kegiatan terjadwal hari ini.
+          </p>
+        ) : (
+          <div className="space-y-2">
+            {todayEvents.slice(0, 5).map((event, i) => (
+              <Link
+                key={`${event.programSlug}-${i}`}
+                href={`/program/${event.programSlug}`}
+                className={cn(
+                  "group bg-background-page/50 hover:bg-background-page flex items-center gap-3 rounded-xl border-l-[3px] px-3 py-2.5 transition-colors",
+                  PROGRAM_BORDER_COLORS[event.programSlug] ?? "border-primary"
+                )}
+              >
+                <div className="min-w-0 flex-1">
+                  <p className="font-montserrat text-text-muted text-[10px] font-semibold tracking-wider uppercase">
+                    {event.programTitle}
+                  </p>
+                  <p className="font-montserrat text-text-main truncate text-sm font-bold">
+                    {event.activity}
+                  </p>
+                </div>
+                <ChevronRight
+                  size={16}
+                  className="text-text-muted/40 shrink-0 transition-transform group-hover:translate-x-0.5"
+                />
+              </Link>
+            ))}
+            {todayEvents.length > 5 && (
+              <Link
+                href="/timeline"
+                className="font-montserrat text-primary block text-center text-xs font-semibold hover:underline"
+              >
+                +{todayEvents.length - 5} kegiatan lainnya
+              </Link>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ── Main Export ──
+
+export default function HeroDashboard() {
+  const [mounted, setMounted] = useState(false);
+  const [ramadhanDay, setRamadhanDay] = useState<number | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+    setRamadhanDay(getRamadhanDay(new Date()));
+  }, []);
+
+  if (!mounted) {
+    // SSR/hydration placeholder
+    return (
+      <div className="from-primary to-secondary flex h-full w-full items-center justify-center rounded-3xl bg-gradient-to-br p-10">
+        <Moon size={48} className="text-accent animate-pulse" />
+      </div>
+    );
+  }
+
+  if (ramadhanDay !== null) {
+    return <RamadhanDashboard ramadhanDay={ramadhanDay} />;
+  }
+
+  return <CountdownView />;
+}
