@@ -27,11 +27,11 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-0 z-50">
-      <nav className="bg-primary w-full h-16 md:h-20 flex items-center shadow-md">
-        <div className="w-full flex items-center justify-between px-4 sm:px-8 md:px-12 lg:px-20 h-full gap-6 md:gap-[48px]">
+      <nav className="bg-primary flex h-16 w-full items-center border-b border-white/10 md:h-20">
+        <div className="flex h-full w-full items-center justify-between gap-6 px-4 sm:px-8 md:gap-[48px] md:px-12 lg:px-20">
           <Link
             href="/"
-            className="h-full py-2 md:py-4 flex items-center"
+            className="flex h-full items-center py-2 md:py-4"
             aria-label="Home"
           >
             <Image
@@ -45,20 +45,20 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Menu */}
-          <ul className="hidden md:flex flex-1 p-1 bg-secondary rounded-3xl justify-end items-center gap-4 list-none m-0">
+          <ul className="bg-secondary m-0 hidden flex-1 list-none items-center justify-end gap-4 rounded-3xl p-1 md:flex">
             {menuItems.map((item) => (
               <li key={item.name}>
                 <Link
                   href={item.href}
                   className={cn(
-                    "px-4 py-3 rounded-3xl flex justify-start items-center gap-3 transition-colors",
+                    "flex items-center justify-start gap-3 rounded-3xl px-4 py-3 transition-colors",
                     isActive(item.href)
                       ? "bg-accent text-accent-foreground"
-                      : "text-white hover:text-accent",
+                      : "hover:text-accent text-white"
                   )}
                   aria-current={isActive(item.href) ? "page" : undefined}
                 >
-                  <span className="text-base font-semibold font-montserrat leading-6 whitespace-nowrap">
+                  <span className="font-montserrat text-base leading-6 font-semibold whitespace-nowrap">
                     <span className="hidden lg:inline">{item.name}</span>
                     <span className="lg:hidden">{item.shortName}</span>
                   </span>
@@ -70,7 +70,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden text-white p-2 hover:bg-secondary/80 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
+            className="hover:bg-secondary/80 focus:ring-accent rounded p-2 text-white transition-colors focus:ring-2 focus:outline-none md:hidden"
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
@@ -84,39 +84,44 @@ const Navbar = () => {
       {isOpen && (
         <div
           id="mobile-menu"
-          className="md:hidden fixed inset-0 bg-primary z-40 overflow-y-auto"
+          className="bg-primary fixed inset-0 z-40 overflow-y-auto md:hidden"
         >
-          <div className="flex items-center justify-between px-6 h-16 border-b border-secondary">
-            <Link href="/" onClick={closeMenu} aria-label="Home">
+          <div className="flex h-16 items-center justify-between border-b border-white/10 px-4 sm:px-8">
+            <Link
+              href="/"
+              onClick={closeMenu}
+              className="flex h-full items-center py-2"
+              aria-label="Home"
+            >
               <Image
                 src="/images/logo-white.svg"
                 alt="Logo P3RI"
-                width={48}
-                height={48}
-                className="object-contain"
+                width={60}
+                height={60}
+                className="h-full w-auto object-contain"
               />
             </Link>
 
             <button
               onClick={closeMenu}
-              className="text-white p-2 hover:bg-secondary rounded transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
+              className="hover:bg-secondary focus:ring-accent rounded p-2 text-white transition-colors focus:ring-2 focus:outline-none"
               aria-label="Close menu"
             >
               <X size={24} />
             </button>
           </div>
 
-          <ul className="flex flex-col px-6 pt-4 list-none m-0">
+          <ul className="m-0 flex list-none flex-col px-4 pt-4 sm:px-8">
             {menuItems.map((item) => (
               <li key={item.name}>
                 <Link
                   href={item.href}
                   onClick={closeMenu}
                   className={cn(
-                    "block py-4 text-base font-semibold font-montserrat border-b border-secondary transition-colors",
+                    "font-montserrat block border-b border-white/10 py-4 text-base font-semibold transition-colors",
                     isActive(item.href)
                       ? "text-text-highlight"
-                      : "text-white hover:text-accent",
+                      : "hover:text-accent text-white"
                   )}
                   aria-current={isActive(item.href) ? "page" : undefined}
                 >
