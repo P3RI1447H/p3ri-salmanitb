@@ -2,9 +2,9 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { ChevronRight, MapPin, Moon, Sun } from "lucide-react";
+import { ChevronRight, Clock, MapPin, Moon, Sun, Sunrise, Sunset } from "lucide-react";
 import { cn, getAllCalendarEvents, type CalendarEvent } from "@/lib/utils";
-import { PROGRAMS_DATA } from "@/lib/constants";
+import { PROGRAMS_DATA, IMSAKIYAH_DATA } from "@/lib/constants";
 
 const DAY_NAMES = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"];
 
@@ -345,6 +345,73 @@ export default function CalendarView() {
               {selectedHijri.gregorianDate.getFullYear()})
             </span>
           </h3>
+
+          {/* Imsakiyah Schedule (Ramadhan only) */}
+          {activePeriod === "ramadhan" && (() => {
+            const imsakiyah = IMSAKIYAH_DATA.find(
+              (e) => e.day === selectedHijri.hijriDay,
+            );
+            if (!imsakiyah) return null;
+            return (
+              <div className="mb-4 overflow-hidden rounded-xl bg-gradient-to-br from-primary to-secondary p-4 text-white shadow-sm">
+                <div className="mb-3 flex items-center gap-2">
+                  <Clock size={16} className="text-accent" />
+                  <p className="font-montserrat text-xs font-semibold tracking-wider uppercase text-accent">
+                    Jadwal Imsakiyah — Bandung
+                  </p>
+                </div>
+
+                {/* Imsak & Maghrib highlighted */}
+                <div className="mb-3 grid grid-cols-2 gap-3">
+                  <div className="rounded-lg bg-white/10 px-3 py-2.5 text-center backdrop-blur-sm">
+                    <div className="flex items-center justify-center gap-1.5">
+                      <Moon size={14} className="text-accent" />
+                      <p className="font-montserrat text-[10px] font-medium tracking-wider uppercase text-white/70">
+                        Imsak
+                      </p>
+                    </div>
+                    <p className="font-montserrat mt-0.5 text-xl font-bold text-white">
+                      {imsakiyah.imsak}
+                    </p>
+                  </div>
+                  <div className="rounded-lg bg-white/10 px-3 py-2.5 text-center backdrop-blur-sm">
+                    <div className="flex items-center justify-center gap-1.5">
+                      <Sunset size={14} className="text-accent" />
+                      <p className="font-montserrat text-[10px] font-medium tracking-wider uppercase text-white/70">
+                        Maghrib
+                      </p>
+                    </div>
+                    <p className="font-montserrat mt-0.5 text-xl font-bold text-white">
+                      {imsakiyah.maghrib}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Other times */}
+                <div className="grid grid-cols-5 gap-1.5">
+                  {[
+                    { label: "Subuh", time: imsakiyah.subuh, icon: Moon },
+                    { label: "Terbit", time: imsakiyah.terbit, icon: Sunrise },
+                    { label: "Dzuhur", time: imsakiyah.dzuhur, icon: Sun },
+                    { label: "Ashar", time: imsakiyah.ashar, icon: Sun },
+                    { label: "Isya", time: imsakiyah.isya, icon: Moon },
+                  ].map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-md bg-white/5 px-1.5 py-2 text-center"
+                    >
+                      <p className="font-montserrat text-[9px] font-medium tracking-wider text-white/60 uppercase">
+                        {item.label}
+                      </p>
+                      <p className="font-montserrat mt-0.5 text-xs font-bold text-white/90">
+                        {item.time}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
 
           {selectedEvents.length === 0 ? (
             <p className="font-montserrat text-sm text-text-muted">

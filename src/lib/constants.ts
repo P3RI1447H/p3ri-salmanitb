@@ -669,6 +669,52 @@ export const PROGRAMS_DATA = [
   },
 ];
 
+// Jadwal Imsakiyah Ramadhan 1447 H — Kota Bandung
+// Sumber: Kemenag RI (perkiraan berdasarkan koordinat Bandung)
+export interface ImsakiyahEntry {
+  day: number; // Ramadhan day (1-30)
+  imsak: string;
+  subuh: string;
+  terbit: string;
+  dzuhur: string;
+  ashar: string;
+  maghrib: string;
+  isya: string;
+}
+
+export const IMSAKIYAH_DATA: ImsakiyahEntry[] = [
+  { day: 1, imsak: "04:17", subuh: "04:27", terbit: "05:46", dzuhur: "11:57", ashar: "15:14", maghrib: "18:07", isya: "19:17" },
+  { day: 2, imsak: "04:17", subuh: "04:27", terbit: "05:46", dzuhur: "11:57", ashar: "15:14", maghrib: "18:07", isya: "19:17" },
+  { day: 3, imsak: "04:18", subuh: "04:28", terbit: "05:46", dzuhur: "11:57", ashar: "15:14", maghrib: "18:07", isya: "19:16" },
+  { day: 4, imsak: "04:18", subuh: "04:28", terbit: "05:46", dzuhur: "11:57", ashar: "15:13", maghrib: "18:06", isya: "19:16" },
+  { day: 5, imsak: "04:18", subuh: "04:28", terbit: "05:46", dzuhur: "11:57", ashar: "15:13", maghrib: "18:06", isya: "19:16" },
+  { day: 6, imsak: "04:19", subuh: "04:29", terbit: "05:46", dzuhur: "11:56", ashar: "15:13", maghrib: "18:06", isya: "19:15" },
+  { day: 7, imsak: "04:19", subuh: "04:29", terbit: "05:46", dzuhur: "11:56", ashar: "15:12", maghrib: "18:05", isya: "19:15" },
+  { day: 8, imsak: "04:19", subuh: "04:29", terbit: "05:46", dzuhur: "11:56", ashar: "15:12", maghrib: "18:05", isya: "19:14" },
+  { day: 9, imsak: "04:20", subuh: "04:30", terbit: "05:46", dzuhur: "11:56", ashar: "15:12", maghrib: "18:04", isya: "19:14" },
+  { day: 10, imsak: "04:20", subuh: "04:30", terbit: "05:46", dzuhur: "11:55", ashar: "15:11", maghrib: "18:04", isya: "19:13" },
+  { day: 11, imsak: "04:20", subuh: "04:30", terbit: "05:47", dzuhur: "11:55", ashar: "15:11", maghrib: "18:03", isya: "19:13" },
+  { day: 12, imsak: "04:21", subuh: "04:31", terbit: "05:47", dzuhur: "11:55", ashar: "15:10", maghrib: "18:02", isya: "19:12" },
+  { day: 13, imsak: "04:21", subuh: "04:31", terbit: "05:47", dzuhur: "11:54", ashar: "15:10", maghrib: "18:01", isya: "19:11" },
+  { day: 14, imsak: "04:21", subuh: "04:31", terbit: "05:47", dzuhur: "11:54", ashar: "15:09", maghrib: "18:01", isya: "19:10" },
+  { day: 15, imsak: "04:22", subuh: "04:32", terbit: "05:47", dzuhur: "11:54", ashar: "15:09", maghrib: "18:00", isya: "19:10" },
+  { day: 16, imsak: "04:22", subuh: "04:32", terbit: "05:47", dzuhur: "11:53", ashar: "15:08", maghrib: "17:59", isya: "19:09" },
+  { day: 17, imsak: "04:22", subuh: "04:32", terbit: "05:47", dzuhur: "11:53", ashar: "15:08", maghrib: "17:58", isya: "19:08" },
+  { day: 18, imsak: "04:23", subuh: "04:33", terbit: "05:47", dzuhur: "11:52", ashar: "15:07", maghrib: "17:57", isya: "19:07" },
+  { day: 19, imsak: "04:23", subuh: "04:33", terbit: "05:47", dzuhur: "11:52", ashar: "15:07", maghrib: "17:57", isya: "19:07" },
+  { day: 20, imsak: "04:23", subuh: "04:33", terbit: "05:47", dzuhur: "11:52", ashar: "15:06", maghrib: "17:56", isya: "19:06" },
+  { day: 21, imsak: "04:24", subuh: "04:34", terbit: "05:47", dzuhur: "11:51", ashar: "15:06", maghrib: "17:55", isya: "19:05" },
+  { day: 22, imsak: "04:24", subuh: "04:34", terbit: "05:47", dzuhur: "11:51", ashar: "15:05", maghrib: "17:54", isya: "19:04" },
+  { day: 23, imsak: "04:24", subuh: "04:34", terbit: "05:47", dzuhur: "11:51", ashar: "15:05", maghrib: "17:53", isya: "19:03" },
+  { day: 24, imsak: "04:25", subuh: "04:35", terbit: "05:47", dzuhur: "11:50", ashar: "15:04", maghrib: "17:52", isya: "19:02" },
+  { day: 25, imsak: "04:25", subuh: "04:35", terbit: "05:47", dzuhur: "11:50", ashar: "15:04", maghrib: "17:51", isya: "19:01" },
+  { day: 26, imsak: "04:25", subuh: "04:35", terbit: "05:47", dzuhur: "11:49", ashar: "15:03", maghrib: "17:51", isya: "19:01" },
+  { day: 27, imsak: "04:25", subuh: "04:35", terbit: "05:47", dzuhur: "11:49", ashar: "15:03", maghrib: "17:50", isya: "18:59" },
+  { day: 28, imsak: "04:26", subuh: "04:36", terbit: "05:47", dzuhur: "11:49", ashar: "15:02", maghrib: "17:49", isya: "18:59" },
+  { day: 29, imsak: "04:26", subuh: "04:36", terbit: "05:47", dzuhur: "11:48", ashar: "15:01", maghrib: "17:48", isya: "18:58" },
+  { day: 30, imsak: "04:26", subuh: "04:36", terbit: "05:47", dzuhur: "11:48", ashar: "15:01", maghrib: "17:47", isya: "18:57" },
+];
+
 export const DONATION_ITEMS = [
   {
     id: "sponsor",
