@@ -8,11 +8,6 @@ export const PROGRAMS_DATA = [
     summary:
       "Kegiatan menyambut bulan Ramadan dengan komunitas #KitaSiapRamadhan, lomba-lomba, dan ditutup tabligh akbar.",
     registration_url: "#",
-    images: [
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-    ],
     details: {
       description:
         "Kegiatan untuk menyambut bulan Ramadan yang terdiri dari komunitas #KitaSiapRamadhan yang berfokus pada persiapan ruhiyah menjelang bulan Ramadan, lomba-lomba (pre-event) dan ditutup dengan tabligh akbar (main event).",
@@ -21,25 +16,25 @@ export const PROGRAMS_DATA = [
           date: "24 Januari 2026",
           time: "",
           activity: "Opening Komunitas KitaSiapRamadhan + Insightful Talk #1",
-          info: "Bersama Ustadz Zulkarnain, S.Th.I",
+          info: "Bersama Ustadz Zulkarnain, S.Th.I | Online Zoom Meeting | Tema: Menghidupkan Ruh Ramadhan: Tazkiyatun Nafs sebagai Jalan Perbaikan Akhlak menuju Perbaikan Ummat",
         },
         {
           date: "29 Januari 2026",
           time: "",
           activity: "Insightful Talk #2",
-          info: "Bersama Ustadz Shohib Khoiri, Lc., M.A.",
+          info: "Bersama Ustadz Shohib Khoiri, Lc., M.A. | Online Zoom Meeting & Live Streaming Youtube | Tema: Menata hati, menyempurnakan ibadah: Tazkiyatun Nafs sebagai Kunci Ramadhan yang Lebih Hidup",
         },
         {
           date: "7 Februari 2026",
           time: "",
           activity: "Insightful Talk #3",
-          info: "Bersama Kang Jundi Abdullah, S.Si.",
+          info: "Bersama Kang Jundi Abdullah, S.Si. | Online Zoom Meeting | Tema: Ramadhan: Untold Story (kisah, makna, dan pelajaran Ramadhan yang jarang disadari)",
         },
         {
           date: "15 Februari 2026",
           time: "",
           activity: "Tabligh Akbar + Medical Check Up",
-          info: "Bersama Ustadz Abu Amr",
+          info: "Bersama Ustadz Abu Amr | Masjid Salman ITB | Kolaborasi: Qur'an Best & Rumah Bersalin Cuma-Cuma (RBC) | Tema: Satu Surat, Sejuta Dampak — Menyempurnakan Bacaan Al-Fatihah menuju Ramadhan yang Bermakna",
         },
       ],
     },
@@ -53,11 +48,6 @@ export const PROGRAMS_DATA = [
     summary:
       "Kegiatan syi'ar kompetisi dengan kegiatan yang beragam dalam lingkup umur yang beragam.",
     registration_url: "#",
-    images: [
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-    ],
     details: {
       description:
         "Kegiatan syi'ar kompetisi dengan kegiatan yang beragam dalam lingkup umur yang beragam.",
@@ -81,20 +71,22 @@ export const PROGRAMS_DATA = [
     id: 3,
     slug: "irama",
     title: "IRAMA",
-    date_display: "Bulan Ramadan",
+    date_display: "19 Februari - 8 Maret 2026",
     location: "Masjid Salman ITB",
     summary:
       "Kajian dan talkshow bertema pengembangan diri yang menghadirkan tokoh nasional untuk menginspirasi mahasiswa dan masyarakat.",
     registration_url: "#",
-    images: [
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-    ],
     details: {
       description:
-        "Kajian dan talkshow yang dibawakan dengan tema-tema tentang pengembangan diri ataupun tema yang mendorong semangat beramal di bulan Ramadhan. IRAMA menghadirkan tokoh nasional dengan tujuan untuk menginspirasi dan memberi semangat dalam berkarya kepada mahasiswa dan masyarakat secara umum.",
-      timeline: [],
+        "Kajian dan talkshow yang dibawakan dengan tema-tema tentang pengembangan diri ataupun tema yang mendorong semangat beramal di bulan Ramadhan. IRAMA menghadirkan tokoh nasional dengan tujuan untuk menginspirasi dan memberi semangat dalam berkarya kepada mahasiswa dan masyarakat secara umum. Inspirasi Ramadhan dilaksanakan selama 20 hari pertama Ramadhan — IRAMA 1447 H.",
+      timeline: [
+        {
+          date: "19 Februari - 8 Maret 2026",
+          time: "",
+          activity: "Inspirasi Ramadhan (20 Hari Pertama Ramadhan)",
+          info: "IRAMA 1447 H",
+        },
+      ],
     },
   },
   {
@@ -106,11 +98,6 @@ export const PROGRAMS_DATA = [
     summary:
       "UTBK Camp dengan workshop, talkshow, dan belajar bersama untuk siswa SMA dan Gap Year di bulan Ramadan.",
     registration_url: "#",
-    images: [
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-    ],
     details: {
       description:
         "Kegiatan menyemarakkan Ramadan dalam bentuk UTBK Camp yang terdiri dari workshop komunitas, talkshow menarik, dan kegiatan belajar bersama yang dilakukan pada bulan Ramadan. Semarak Ramadan menyambut seluruh siswa/i SMA dan Gap year untuk meramaikan Masjid Salman ITB dengan menuntut ilmu bersama di bulan yang mulia.",
@@ -145,11 +132,6 @@ export const PROGRAMS_DATA = [
     summary:
       "Shalat tarawih berjamaah dengan imam dan qori berkualitas disertai khutbah dari para tokoh.",
     registration_url: "#",
-    images: [
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-    ],
     details: {
       description:
         "Kegiatan rutin pada malam hari di bulan Ramadan bagi para jamaah Masjid Salman ITB dengan mengundang jajaran imam dan qori berkualitas disertai dengan khutbah dari para tokoh untuk meningkatkan kualitas rohani para jamaah.",
@@ -341,20 +323,82 @@ export const PROGRAMS_DATA = [
     id: 6,
     slug: "itikaf",
     title: "I'tikaf",
-    date_display: "10 Hari Terakhir Ramadan",
+    date_display: "9 - 19 Maret 2026",
     location: "Masjid Salman ITB",
     summary:
       "Program memaksimalkan ibadah di sepuluh hari terakhir Ramadan dengan fasilitas lengkap dan suasana kondusif.",
-    registration_url: "#",
-    images: [
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-    ],
+    registration_url: "https://s.id/ITIKAFSALMANITB",
     details: {
       description:
-        "Program yang memfasilitasi jamaah Masjid Salman ITB dalam memaksimalkan ibadah di sepuluh hari terakhir bulan Ramadhan dengan fasilitas berupa suasana ibadah yang aman, nyaman dan kondusif, konsumsi sahur dan berbuka puasa, rangkaian kajian Islam, shalat Qiyamul Lail yang dipimpin oleh imam berkualitas, serta pelayanan yang ramah.",
-      timeline: [],
+        "Program yang memfasilitasi jamaah Masjid Salman ITB dalam memaksimalkan ibadah di sepuluh hari terakhir bulan Ramadhan dengan fasilitas berupa suasana ibadah yang aman, nyaman dan kondusif, konsumsi sahur dan berbuka puasa, rangkaian kajian Islam, shalat Qiyamul Lail yang dipimpin oleh imam berkualitas, serta pelayanan yang ramah. Fasilitas meliputi Qiyamullail, pembagian sahur dan makanan berbuka, penitipan barang, peminjaman alat tidur, laundry, keamanan barang jamaah, kuliah subuh, tilawah bersama, dan Al-Ma'tsurot Pagi Bersama. HTM: Rp25.000/Malam.",
+      timeline: [
+        {
+          date: "9 Maret 2026",
+          time: "",
+          activity: "Hari ke-1 I'tikaf",
+          info: "Kuliah Subuh oleh Syaikh Khanova",
+        },
+        {
+          date: "10 Maret 2026",
+          time: "",
+          activity: "Hari ke-2 I'tikaf",
+          info: "Kuliah Subuh oleh Syaikh Khanova",
+        },
+        {
+          date: "11 Maret 2026",
+          time: "",
+          activity: "Hari ke-3 I'tikaf",
+          info: "Kuliah Subuh oleh Syaikh Khanova",
+        },
+        {
+          date: "12 Maret 2026",
+          time: "",
+          activity: "Hari ke-4 I'tikaf",
+          info: "Kuliah Subuh oleh Syaikh Khanova",
+        },
+        {
+          date: "13 Maret 2026",
+          time: "",
+          activity: "Hari ke-5 I'tikaf",
+          info: "Kuliah Subuh oleh Syaikh Khanova",
+        },
+        {
+          date: "14 Maret 2026",
+          time: "",
+          activity: "Hari ke-6 I'tikaf",
+          info: "Kuliah Subuh oleh Syaikh Khanova",
+        },
+        {
+          date: "15 Maret 2026",
+          time: "",
+          activity: "Hari ke-7 I'tikaf",
+          info: "Kuliah Subuh oleh Syaikh Khanova",
+        },
+        {
+          date: "16 Maret 2026",
+          time: "",
+          activity: "Hari ke-8 I'tikaf",
+          info: "Kuliah Subuh oleh Syaikh Khanova",
+        },
+        {
+          date: "17 Maret 2026",
+          time: "",
+          activity: "Hari ke-9 I'tikaf",
+          info: "Kuliah Subuh oleh Syaikh Khanova",
+        },
+        {
+          date: "18 Maret 2026",
+          time: "",
+          activity: "Hari ke-10 I'tikaf",
+          info: "Kuliah Subuh oleh Syaikh Khanova",
+        },
+        {
+          date: "19 Maret 2026",
+          time: "",
+          activity: "Hari ke-11 I'tikaf (Hari Terakhir)",
+          info: "Kuliah Subuh oleh Syaikh Khanova",
+        },
+      ],
     },
   },
   {
@@ -366,11 +410,6 @@ export const PROGRAMS_DATA = [
     summary:
       "Pelatihan seputar Al-Quran berupa Khataman, Tahsin, Tahfidz, dan Qur'an of the Day selama Ramadan.",
     registration_url: "#",
-    images: [
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-    ],
     details: {
       description:
         "Program yang memfasilitasi jamaah untuk mendapat pelatihan/dauroh seputar Alquran berupa program Khataman, Tahsin, Tahfidz, dan Qur'an of the Day yang dilaksanakan secara daring selama bulan Ramadan dan beberapa hari secara luring bersama ustadz yang tepercaya.",
@@ -386,11 +425,6 @@ export const PROGRAMS_DATA = [
     summary:
       "Penyediaan fasilitas ibadah Shalat Idulfitri dan Iduladha yang aman, nyaman, dan kondusif.",
     registration_url: "#",
-    images: [
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-    ],
     details: {
       description:
         "Program penyediaan fasilitas yang aman, nyaman, dan kondusif untuk ibadah Shalat Idulfitri dan Iduladha bagi jamaah Masjid Salman dan sekitarnya dalam rangka menyemarakkan hari kemenangan setelah melalui bulan Ramadan dan menyambut hari raya Qurban.",
@@ -402,15 +436,10 @@ export const PROGRAMS_DATA = [
     slug: "ramadan-daycare",
     title: "Ramadan Daycare",
     date_display: "10 Hari Pertama & 10 Hari Terakhir Ramadan",
-    location: "Masjid Salman ITB",
+    location: "Ruang PSUD Lt.2, Masjid Salman ITB",
     summary:
       "Program pengasuhan anak jamaah dengan pematerian kisah dan nilai-nilai islami yang edukatif.",
     registration_url: "#",
-    images: [
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-    ],
     details: {
       description:
         "Program pengasuhan anak-anak jamaah Masjid Salman ITB pada 10 hari pertama dan 10 hari terakhir di bulan Ramadan. Selain layanan pengasuhan yang menyenangkan, adik asuh Ramadan Daycare akan dibekali dengan pematerian kisah-kisah, nilai-nilai dan prinsip-prinsip islami yang tentunya disampaikan dengan cara yang edukatif.",
@@ -419,31 +448,31 @@ export const PROGRAMS_DATA = [
           date: "6 Februari - 15 Februari 2026",
           time: "",
           activity: "Pendaftaran adik secara online",
-          info: "",
+          info: "Media sosial, online",
         },
         {
           date: "15 Februari - 17 Februari 2026",
           time: "",
           activity: "Pensuasanaan grup orang tua",
-          info: "",
+          info: "Melalui Group WhatsApp",
         },
         {
           date: "18 Februari - 27 Februari 2026",
           time: "",
           activity: "Pelaksanaan kegiatan 10 hari pertama",
-          info: "",
+          info: "Ruang PSUD Lt.2",
         },
         {
           date: "10 Maret - 19 Maret 2026",
           time: "",
           activity: "Pelaksanaan kegiatan 10 hari terakhir",
-          info: "",
+          info: "Ruang PSUD Lt.2",
         },
         {
           date: "19 Maret 2026",
           time: "",
           activity: "Penutupan",
-          info: "",
+          info: "Ruang PSUD Lt.2",
         },
       ],
     },
@@ -457,11 +486,6 @@ export const PROGRAMS_DATA = [
     summary:
       "Berbagi buka puasa dan takjil selama 30 hari untuk jamaah Masjid Salman ITB dengan menu halalan thoyyiban.",
     registration_url: "#",
-    images: [
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-    ],
     details: {
       description:
         "Kegiatan berbagi buka puasa dan takjil selama 30 hari di bulan Ramadan yang ditujukan untuk jamaah yang datang ke Masjid Salman ITB. Jamaah disuguhi menu yang prima dan terjamin halalan thoyyiban.",
@@ -477,11 +501,6 @@ export const PROGRAMS_DATA = [
     summary:
       "Penggalangan donasi Salman Charity untuk kegiatan pengabdian masyarakat selama Ramadan dan Iduladha.",
     registration_url: "#",
-    images: [
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-    ],
     details: {
       description:
         "Penggalangan donasi Salman Charity yang menampung banyak kebaikan untuk disalurkan di kegiatan pengabdian masyarakat yang dilakukan di beberapa tempat selama Ramadan dan Iduladha.",
@@ -497,15 +516,155 @@ export const PROGRAMS_DATA = [
     summary:
       "Berbagi sahur untuk jamaah masjid dengan dukungan penerimaan dan penyaluran donasi dari jamaah.",
     registration_url: "#",
-    images: [
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-      "/images/empty-img.png",
-    ],
     details: {
       description:
         "Kegiatan Berbagi Sahur yang ditujukan untuk jamaah masjid baik di Masjid Salman maupun di luar Masjid Salman. Kegiatan ini mendukung penerimaan dan penyaluran donasi dari jamaah.",
-      timeline: [],
+      timeline: [
+        {
+          date: "18 Februari 2026",
+          time: "",
+          activity: "Berbagi Sahur di Salman",
+          info: "Masjid Salman ITB",
+        },
+        {
+          date: "19 Februari 2026",
+          time: "",
+          activity: "Berbagi Sahur di Salman",
+          info: "Masjid Salman ITB",
+        },
+        {
+          date: "21 Februari 2026",
+          time: "",
+          activity: "Berbagi Sahur di Luar Salman",
+          info: "Panti Asuhan - PYI Yatim & Zakat Cab. Cikutra",
+        },
+        {
+          date: "24 Februari 2026",
+          time: "",
+          activity: "Berbagi Sahur di Salman",
+          info: "Masjid Salman ITB",
+        },
+        {
+          date: "25 Februari 2026",
+          time: "",
+          activity: "Berbagi Sahur di Salman",
+          info: "Masjid Salman ITB",
+        },
+        {
+          date: "27 Februari 2026",
+          time: "",
+          activity: "Berbagi Sahur di Luar Salman",
+          info: "Panti Asuhan - PYI Yatim & Zakat Cab. Cikutra",
+        },
+        {
+          date: "2 Maret 2026",
+          time: "",
+          activity: "Berbagi Sahur di Salman",
+          info: "Masjid Salman ITB",
+        },
+        {
+          date: "3 Maret 2026",
+          time: "",
+          activity: "Berbagi Sahur di Salman",
+          info: "Masjid Salman ITB",
+        },
+        {
+          date: "4 Maret 2026",
+          time: "",
+          activity: "Berbagi Sahur di Luar Salman",
+          info: "Panti Asuhan - PYI Yatim & Zakat Cab. Cikutra",
+        },
+        {
+          date: "6 Maret 2026",
+          time: "",
+          activity: "Berbagi Sahur di Salman",
+          info: "Masjid Salman ITB",
+        },
+        {
+          date: "7 Maret 2026",
+          time: "",
+          activity: "Berbagi Sahur di Salman",
+          info: "Masjid Salman ITB",
+        },
+        {
+          date: "8 Maret 2026",
+          time: "",
+          activity: "Berbagi Sahur di Luar Salman",
+          info: "Panti Asuhan - PYI Yatim & Zakat Cab. Cikutra",
+        },
+      ],
+    },
+  },
+  {
+    id: 13,
+    slug: "festival-adha",
+    title: "Festival Adha",
+    date_display: "Coming Soon",
+    location: "Masjid Salman ITB",
+    summary:
+      "Festival yang menyemarakkan Iduladha dengan perlombaan, booth UMKM, dan hiburan yang family friendly.",
+    registration_url: "#",
+    details: {
+      description:
+        "Festival Adha adalah kegiatan festival yang menyemarakkan Iduladha. Festival ini diselenggarakan pada akhir pekan setelah Iduladha yang akan diwarnai dengan perlombaan, booth dan stand UMKM, serta hiburan yang menarik. Suasana Festival Adha dibuat se-family friendly mungkin sehingga menciptakan suasana yang hangat di tengah hari raya Qurban.",
+      timeline: [
+        {
+          date: "Coming Soon",
+          time: "",
+          activity: "Festival Adha",
+          info: "",
+        },
+      ],
+    },
+  },
+  {
+    id: 14,
+    slug: "satisfy",
+    title: "Satisfy (Sate Gratis is For You)",
+    date_display: "31 Mei 2026 (Perkiraan)",
+    location: "Lapangan Futsal Masjid Salman ITB",
+    summary:
+      "Berbagi sate gratis ribuan tusuk di Festival Adha Salman ITB, lengkap dengan lontong dan gulai.",
+    registration_url: "#",
+    details: {
+      description:
+        "Satisfy atau Sate Gratis is For You adalah kegiatan berbagi sate gratis di Festival Adha Salman ITB yang diselenggarakan oleh P3RI Salman ITB pada akhir pekan setelah Iduladha. Setiap tahunnya, Satisfy membagikan sate gratis sebanyak ribuan tusuk sate. Selain itu, terdapat tambahan menu lain seperti lontong dan gulai.",
+      timeline: [
+        {
+          date: "31 Mei 2026 (Perkiraan)",
+          time: "",
+          activity: "Berbagi sate, lontong, dan gulai gratis",
+          info: "Lapangan Futsal Masjid Salman ITB",
+        },
+      ],
+    },
+  },
+  {
+    id: 15,
+    slug: "qurban",
+    title: "Qurban",
+    date_display: "Mei 2026",
+    location: "Masjid Salman ITB",
+    summary:
+      "Penyelenggaraan Qurban di Masjid Salman ITB mulai dari pelatihan Juru Sembelih Halal hingga pendistribusian.",
+    registration_url: "#",
+    details: {
+      description:
+        "Penyelenggaraan Qurban di Masjid Salman ITB merupakan hasil kolaborasi banyak pihak antara RAS, Wakaf, YPM Salman ITB, dan P3RI. Penyelenggaraan Qurban dimulai dari pelatihan Juru Sembelih Halal (Juleha), lalu penyembelihan, pengulitan, pencacahan, dan pendistribusian. Setiap tahunnya, Masjid Salman ITB menerima banyak sekali hewan qurban untuk diqurbankan pada momen Iduladha.",
+      timeline: [
+        {
+          date: "Mei 2026",
+          time: "",
+          activity: "Sekolah Juleha (Juru Sembelih Halal)",
+          info: "Masjid Salman ITB",
+        },
+        {
+          date: "27 Mei 2026",
+          time: "",
+          activity: "Idul Adha — Penyembelihan & Pendistribusian Qurban",
+          info: "Masjid Salman ITB",
+        },
+      ],
     },
   },
 ];

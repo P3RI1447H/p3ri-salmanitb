@@ -1,14 +1,11 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   MapPin,
   Calendar,
   ArrowRight,
   ChevronLeft,
-  ChevronRight,
   Sparkles,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -27,7 +24,6 @@ interface Program {
   summary: string;
   date_display: string;
   location: string;
-  images: string[];
   registration_url: string;
   details: {
     description: string;
@@ -36,45 +32,6 @@ interface Program {
 }
 
 export default function ProgramDetailClient({ program }: { program: Program }) {
-  const images =
-    program.images.length > 0 ? program.images : ["/images/empty-img.png"];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
-
-  // Auto-advance carousel
-  useEffect(() => {
-    if (isPaused || images.length <= 1) return;
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [isPaused, images.length]);
-
-  const goTo = useCallback(
-    (index: number) => {
-      setCurrentIndex(
-        ((index % images.length) + images.length) % images.length
-      );
-    },
-    [images.length]
-  );
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0]?.clientX ?? 0;
-  };
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0]?.clientX ?? 0;
-  };
-  const handleTouchEnd = () => {
-    const diff = touchStartX.current - touchEndX.current;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) goTo(currentIndex + 1);
-      else goTo(currentIndex - 1);
-    }
-  };
 
   return (
     <>
@@ -155,76 +112,6 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
             <p className="font-montserrat max-w-2xl text-sm leading-relaxed font-medium text-white/70 md:text-base">
               {program.summary}
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Image Carousel ─── */}
-      <section className="px-6 pt-4 pb-8 md:px-12 md:pt-8 md:pb-12 lg:px-20">
-        <div className="mx-auto max-w-4xl">
-          <div
-            className="group bg-card relative overflow-hidden rounded-2xl shadow-xl md:rounded-3xl"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-            role="region"
-            aria-label="Galeri gambar program"
-            aria-roledescription="carousel"
-          >
-            {/* Main image */}
-            <div className="relative aspect-video w-full md:aspect-[16/9]">
-              <Image
-                src={images[currentIndex] ?? "/images/empty-img.png"}
-                alt={`${program.title} — gambar ${currentIndex + 1} dari ${images.length}`}
-                fill
-                className="object-cover transition-opacity duration-500"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 896px"
-                priority={currentIndex === 0}
-                key={currentIndex}
-              />
-            </div>
-
-            {/* Arrow buttons (desktop) */}
-            {images.length > 1 && (
-              <>
-                <button
-                  onClick={() => goTo(currentIndex - 1)}
-                  className="absolute top-1/2 left-3 z-10 hidden -translate-y-1/2 rounded-full bg-white/80 p-2 shadow-lg backdrop-blur-sm transition-all hover:bg-white md:block"
-                  aria-label="Gambar sebelumnya"
-                >
-                  <ChevronLeft size={24} className="text-foreground" />
-                </button>
-                <button
-                  onClick={() => goTo(currentIndex + 1)}
-                  className="absolute top-1/2 right-3 z-10 hidden -translate-y-1/2 rounded-full bg-white/80 p-2 shadow-lg backdrop-blur-sm transition-all hover:bg-white md:block"
-                  aria-label="Gambar berikutnya"
-                >
-                  <ChevronRight size={24} className="text-foreground" />
-                </button>
-              </>
-            )}
-
-            {/* Dot indicators */}
-            {images.length > 1 && (
-              <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2">
-                {images.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => goTo(i)}
-                    className={cn(
-                      "h-2.5 rounded-full transition-all duration-300",
-                      i === currentIndex
-                        ? "w-8 bg-white shadow-lg"
-                        : "w-2.5 bg-white/50 hover:bg-white/70"
-                    )}
-                    aria-label={`Gambar ${i + 1}`}
-                    aria-current={i === currentIndex ? "true" : undefined}
-                  />
-                ))}
-              </div>
-            )}
           </div>
         </div>
       </section>

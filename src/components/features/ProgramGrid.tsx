@@ -11,7 +11,6 @@ interface Program {
   summary: string;
   date_display: string;
   location: string;
-  images: string[];
 }
 
 /**
@@ -131,7 +130,6 @@ export function ProgramResults({
                     summary={program.summary}
                     dateDisplay={program.date_display}
                     location={program.location}
-                    image={program.images[0]}
                   />
                 </div>
               ))}

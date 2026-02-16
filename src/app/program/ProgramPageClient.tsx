@@ -14,7 +14,6 @@ interface Program {
   summary: string;
   date_display: string;
   location: string;
-  images: string[];
 }
 
 /**

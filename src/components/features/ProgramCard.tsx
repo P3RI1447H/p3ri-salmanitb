@@ -1,12 +1,10 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, Calendar, MapPin } from "lucide-react";
 
 interface ProgramCardProps {
   slug: string;
   title: string;
   summary: string;
-  image?: string;
   dateDisplay?: string;
   location?: string;
 }
@@ -15,7 +13,6 @@ const ProgramCard = ({
   slug,
   title,
   summary,
-  image,
   dateDisplay,
   location,
 }: ProgramCardProps) => {
@@ -26,19 +23,6 @@ const ProgramCard = ({
       aria-label={`Lihat detail program ${title}`}
     >
       <article className="relative bg-card rounded-2xl md:rounded-3xl shadow-lg border-2 border-white hover:border-brand-purple/40 hover:shadow-2xl transition-all duration-300 flex flex-col h-full overflow-hidden">
-        {/* Image Section */}
-        <div className="relative w-full h-48 sm:h-44 md:h-52 overflow-hidden">
-          <Image
-            src={image || "/images/empty-img.png"}
-            alt={title}
-            fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-          {/* Gradient overlay on hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-        </div>
-
         {/* Content Section */}
         <div className="flex flex-col flex-1 p-5 md:p-6">
           {/* Meta info */}

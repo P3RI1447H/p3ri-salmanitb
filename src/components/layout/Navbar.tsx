@@ -1,51 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X, LogOut } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/Button";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState<{ name: string } | null>(null);
   const pathname = usePathname();
-  const router = useRouter();
-
-  useEffect(() => {
-    const checkAuth = () => {
-      const token = localStorage.getItem("token");
-      const profileStr = localStorage.getItem("profile");
-      if (token && profileStr) {
-        try {
-          const profile = JSON.parse(profileStr);
-          setUser(profile);
-        } catch (e) {
-          console.error("Failed to parse profile", e);
-          setUser(null);
-        }
-      } else {
-        setUser(null);
-      }
-    };
-
-    checkAuth();
-
-    // Listen for storage events (login/logout from other tabs or same tab)
-    window.addEventListener("storage", checkAuth);
-    return () => window.removeEventListener("storage", checkAuth);
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    localStorage.removeItem("profile");
-    setUser(null);
-    window.dispatchEvent(new Event("storage"));
-    router.push("/auth");
-  };
 
   const menuItems = [
     { name: "Program", href: "/program", shortName: "Program" },
@@ -101,36 +65,6 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
-            <li>
-              {user ? (
-                <div className="flex items-center gap-4 px-4">
-                  <span
-                    className="text-white font-montserrat font-semibold truncate max-w-[200px]"
-                    title={user.name}
-                  >
-                    {user.name.split(" ").slice(0, 2).join(" ")}
-                  </span>
-                  <Button
-                    variant="destructive"
-                    size="icon"
-                    className="rounded-full w-8 h-8 md:w-9 md:h-9"
-                    onClick={handleLogout}
-                    title="Keluar"
-                  >
-                    <LogOut size={18} />
-                  </Button>
-                </div>
-              ) : (
-                <Link href="/auth">
-                  <Button
-                    variant="default"
-                    className="rounded-3xl px-6 font-semibold font-montserrat"
-                  >
-                    Masuk
-                  </Button>
-                </Link>
-              )}
-            </li>
           </ul>
 
           {/* Mobile Menu Button */}
@@ -190,33 +124,6 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
-            <li>
-              {user ? (
-                <div className="flex flex-col gap-4 py-4 border-b border-secondary">
-                  <span className="text-white font-montserrat font-semibold">
-                    Halo, {user.name}
-                  </span>
-                  <Button
-                    variant="destructive"
-                    className="w-full rounded-3xl font-semibold font-montserrat"
-                    onClick={() => {
-                      handleLogout();
-                      closeMenu();
-                    }}
-                  >
-                    Keluar
-                  </Button>
-                </div>
-              ) : (
-                <Link
-                  href="/auth"
-                  onClick={closeMenu}
-                  className="block py-4 text-base font-semibold font-montserrat text-white hover:text-accent transition-colors"
-                >
-                  Masuk
-                </Link>
-              )}
-            </li>
           </ul>
         </div>
       )}
