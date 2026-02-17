@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-const RAMADAN_START = new Date("2026-02-18T00:00:00+07:00").getTime();
+const RAMADAN_START = new Date("2026-02-18T18:00:00+07:00").getTime();
 
 interface TimeLeft {
   days: number;
@@ -27,13 +27,13 @@ function getTimeLeft(): TimeLeft | null {
 
 function CountdownUnit({ value, label }: { value: number; label: string }) {
   return (
-    <div className="flex flex-col items-center gap-1 md:gap-2">
-      <div className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl border border-primary/20 bg-white/50 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.05)] backdrop-blur-md sm:h-16 sm:w-16 md:h-20 md:w-20 md:rounded-2xl lg:h-24 lg:w-24">
-        <span className="font-forum text-3xl leading-none text-primary sm:text-4xl md:text-5xl lg:text-6xl">
+    <div className="flex flex-col items-center gap-1.5 md:gap-2">
+      <div className="bg-primary/5 flex h-14 w-14 items-center justify-center rounded-xl sm:h-16 sm:w-16 md:h-20 md:w-20 md:rounded-2xl lg:h-24 lg:w-24">
+        <span className="font-forum text-primary text-3xl leading-none tabular-nums sm:text-4xl md:text-5xl lg:text-6xl">
           {String(value).padStart(2, "0")}
         </span>
       </div>
-      <span className="font-montserrat text-[10px] font-semibold uppercase tracking-wider text-primary/80 md:text-xs drop-shadow-sm">
+      <span className="font-montserrat text-primary/60 text-[10px] font-medium uppercase tracking-widest md:text-xs">
         {label}
       </span>
     </div>
@@ -81,25 +81,25 @@ export default function RamadhanCountdown() {
 
   return (
     <div className="flex flex-col items-start gap-2 md:gap-3">
-      <p className="font-montserrat text-xs font-semibold uppercase tracking-widest text-primary md:text-sm drop-shadow-sm">
+      <p className="font-montserrat text-primary text-xs font-semibold uppercase tracking-widest md:text-sm">
         Menuju Ramadhan 1447 H
       </p>
-      <div className="flex gap-2 md:gap-3 lg:gap-4">
+      <div className="flex items-start gap-2 md:gap-3 lg:gap-4">
         <CountdownUnit value={timeLeft.days} label="Hari" />
-        <div className="flex items-center pt-0 pb-5 md:pb-6">
-          <span className="font-forum text-2xl text-primary/80 md:text-3xl drop-shadow-sm">
+        <div className="flex h-14 items-center sm:h-16 md:h-20 lg:h-24">
+          <span className="font-forum text-primary/25 text-xl md:text-2xl">
             :
           </span>
         </div>
         <CountdownUnit value={timeLeft.hours} label="Jam" />
-        <div className="flex items-center pt-0 pb-5 md:pb-6">
-          <span className="font-forum text-2xl text-primary/80 md:text-3xl drop-shadow-sm">
+        <div className="flex h-14 items-center sm:h-16 md:h-20 lg:h-24">
+          <span className="font-forum text-primary/25 text-xl md:text-2xl">
             :
           </span>
         </div>
         <CountdownUnit value={timeLeft.minutes} label="Menit" />
-        <div className="flex items-center pt-0 pb-5 md:pb-6">
-          <span className="font-forum text-2xl text-primary/80 md:text-3xl drop-shadow-sm">
+        <div className="flex h-14 items-center sm:h-16 md:h-20 lg:h-24">
+          <span className="font-forum text-primary/25 text-xl md:text-2xl">
             :
           </span>
         </div>

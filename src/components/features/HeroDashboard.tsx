@@ -13,7 +13,8 @@ import {
 import { getAllCalendarEvents } from "@/lib/utils";
 import { IMSAKIYAH_DATA } from "@/lib/constants";
 
-const RAMADHAN_START = new Date(2026, 1, 18); // Feb 18, 2026
+// Ramadhan starts at Maghrib (18:00 WIB) on Feb 18, 2026
+const RAMADHAN_START_MAGHRIB = new Date("2026-02-18T18:00:00+07:00").getTime();
 const RAMADHAN_END = new Date(2026, 2, 19); // Mar 19, 2026 (30 Ramadhan)
 
 function formatDateKey(date: Date): string {
@@ -24,16 +25,19 @@ function formatDateKey(date: Date): string {
 }
 
 function getRamadhanDay(now: Date): number | null {
-  const start = new Date(RAMADHAN_START);
+  if (now.getTime() < RAMADHAN_START_MAGHRIB) return null;
+
+  const end = new Date(RAMADHAN_END);
+  end.setHours(23, 59, 59, 999);
+  if (now > end) return null;
+
+  // Day 1 starts at maghrib Feb 18 — use calendar date Feb 18 as base
+  const start = new Date(2026, 1, 18);
   start.setHours(0, 0, 0, 0);
   const today = new Date(now);
   today.setHours(0, 0, 0, 0);
-  const end = new Date(RAMADHAN_END);
-  end.setHours(23, 59, 59, 999);
-
-  if (today < start || today > end) return null;
   const diff = Math.floor(
-    (today.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)
+    (today.getTime() - start.getTime()) / (1000 * 60 * 60 * 24),
   );
   return diff + 1;
 }
@@ -47,10 +51,8 @@ interface TimeLeft {
   seconds: number;
 }
 
-const RAMADHAN_START_TS = new Date("2026-02-18T00:00:00+07:00").getTime();
-
 function getTimeLeft(): TimeLeft | null {
-  const diff = RAMADHAN_START_TS - Date.now();
+  const diff = RAMADHAN_START_MAGHRIB - Date.now();
   if (diff <= 0) return null;
   return {
     days: Math.floor(diff / (1000 * 60 * 60 * 24)),
@@ -62,13 +64,13 @@ function getTimeLeft(): TimeLeft | null {
 
 function CountdownUnit({ value, label }: { value: number; label: string }) {
   return (
-    <div className="flex flex-col items-center gap-1.5">
-      <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/20 bg-white/10 shadow-lg backdrop-blur-md sm:h-20 sm:w-20 md:h-24 md:w-24">
-        <span className="font-forum text-3xl leading-none text-white sm:text-4xl md:text-5xl">
+    <div className="flex flex-col items-center gap-2">
+      <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-white/10 sm:h-20 sm:w-20 md:h-24 md:w-24 md:rounded-2xl">
+        <span className="font-forum text-4xl leading-none tabular-nums text-white sm:text-5xl md:text-6xl">
           {String(value).padStart(2, "0")}
         </span>
       </div>
-      <span className="font-montserrat text-[10px] font-semibold tracking-wider text-white/70 uppercase md:text-xs">
+      <span className="font-montserrat text-[10px] font-medium tracking-widest text-white/60 uppercase md:text-xs">
         {label}
       </span>
     </div>
@@ -89,34 +91,34 @@ function CountdownView() {
   const tl = mounted ? timeLeft : { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
   return (
-    <div className="from-primary to-secondary flex h-full w-full flex-col items-center justify-center gap-6 rounded-3xl bg-gradient-to-br p-6 shadow-xl md:p-10">
-      <div className="relative text-center">
-        <Moon size={32} className="text-accent mx-auto mb-3" />
+    <div className="bg-primary flex h-full w-full flex-col items-center justify-center gap-6 rounded-2xl p-6 md:gap-8 md:rounded-3xl md:p-10">
+      <div className="text-center">
+        <Moon size={28} className="text-accent mx-auto mb-2" />
         <p className="font-montserrat text-accent text-xs font-semibold tracking-widest uppercase md:text-sm">
           Menuju Ramadhan 1447 H
         </p>
       </div>
 
       {tl && (
-        <div className="relative flex gap-2 md:gap-3">
+        <div className="flex items-start gap-3 md:gap-4">
           <CountdownUnit value={tl.days} label="Hari" />
-          <div className="flex items-center pb-6">
-            <span className="font-forum text-2xl text-white/60">:</span>
+          <div className="flex h-16 items-center sm:h-20 md:h-24">
+            <span className="font-forum text-xl text-white/30 md:text-2xl">:</span>
           </div>
           <CountdownUnit value={tl.hours} label="Jam" />
-          <div className="flex items-center pb-6">
-            <span className="font-forum text-2xl text-white/60">:</span>
+          <div className="flex h-16 items-center sm:h-20 md:h-24">
+            <span className="font-forum text-xl text-white/30 md:text-2xl">:</span>
           </div>
           <CountdownUnit value={tl.minutes} label="Menit" />
-          <div className="flex items-center pb-6">
-            <span className="font-forum text-2xl text-white/60">:</span>
+          <div className="flex h-16 items-center sm:h-20 md:h-24">
+            <span className="font-forum text-xl text-white/30 md:text-2xl">:</span>
           </div>
           <CountdownUnit value={tl.seconds} label="Detik" />
         </div>
       )}
 
-      <p className="font-montserrat relative text-center text-xs leading-relaxed text-white/60 md:text-sm">
-        18 Februari 2026
+      <p className="font-montserrat text-xs text-white/40 md:text-sm">
+        18 Februari 2026 &middot; 18:00 WIB
       </p>
     </div>
   );
@@ -149,8 +151,7 @@ function parseTarawihInfo(info: string): {
 
 function RamadhanDashboard({ ramadhanDay }: { ramadhanDay: number }) {
   const events = useMemo(() => getAllCalendarEvents(), []);
-  // TODO: revert this mock — using 1 Ramadhan date for preview
-  const todayKey = formatDateKey(new Date(2026, 1, 18));
+  const todayKey = formatDateKey(new Date());
   const todayEvents = events.get(todayKey) ?? [];
   const tarawihEvent = todayEvents.find((e) => e.programSlug === "tarawih");
   const imsakiyah = IMSAKIYAH_DATA.find((e) => e.day === ramadhanDay);
@@ -289,8 +290,7 @@ export default function HeroDashboard() {
 
   useEffect(() => {
     setMounted(true);
-    // TODO: revert this mock — using 1 Ramadhan date for preview
-    setRamadhanDay(getRamadhanDay(new Date(2026, 1, 18)));
+    setRamadhanDay(getRamadhanDay(new Date()));
   }, []);
 
   if (!mounted) {
