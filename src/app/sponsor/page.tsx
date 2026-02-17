@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Placeholder from "@/components/ui/Placeholder";
 import { Handshake } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Sponsor & Partner",
+  description:
+    "Informasi sponsorship dan partnership untuk kegiatan Ramadhan 1447 H P3RI Masjid Salman ITB.",
+};
 
 export default function SponsorPage() {
   return (

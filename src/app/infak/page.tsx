@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import DonationCard from "../../components/features/DonationCard";
+
+export const metadata: Metadata = {
+  title: "Infak & Donasi",
+  description:
+    "Salurkan infak dan donasi Anda untuk mendukung program Ramadhan P3RI Masjid Salman ITB. Pembayaran mudah via QRIS.",
+};
 
 const donationCards = [
   {

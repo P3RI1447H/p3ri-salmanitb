@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { Sparkles } from "lucide-react";
 import CalendarView from "@/components/features/CalendarView";
+
+export const metadata: Metadata = {
+  title: "Jadwal Kegiatan Ramadhan 1447 H",
+  description:
+    "Lihat seluruh jadwal kegiatan Ramadhan dan Idul Adha 1447 H di Masjid Salman ITB dalam satu kalender terpadu.",
+};
 
 export default function TimelinePage() {
   return (

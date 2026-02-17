@@ -10,13 +10,21 @@ export default function Footer() {
 
   const footerLinks = [
     { name: "Beranda", href: "/" },
-    { name: "Kontak", href: "/kontak" },
-    { name: "Bantuan", href: "/bantuan" },
+    { name: "Program", href: "/program" },
+    { name: "Jadwal", href: "/timeline" },
   ];
 
   const socialLinks = [
-    { name: "YouTube", href: "#", icon: <Youtube size={24} /> },
-    { name: "Instagram", href: "#", icon: <Instagram size={24} /> },
+    {
+      name: "YouTube",
+      href: "https://www.youtube.com/@SalmanITB",
+      icon: <Youtube size={24} />,
+    },
+    {
+      name: "Instagram",
+      href: "https://www.instagram.com/salmanitb",
+      icon: <Instagram size={24} />,
+    },
   ];
 
   const isActive = (href: string) => pathname === href;

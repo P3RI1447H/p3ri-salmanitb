@@ -16,6 +16,9 @@ export default function LivePage() {
       {/* Main Content */}
       <section className="px-4 py-6 pt-8 sm:px-8 md:px-12 md:py-10 md:pt-12 lg:px-20">
         <div className="mx-auto max-w-7xl">
+          <h1 className="mb-6 font-forum text-3xl text-foreground md:text-4xl lg:text-5xl">
+            Live Streaming
+          </h1>
           <LivePageClient channelUrl={channelUrl} />
         </div>
       </section>
