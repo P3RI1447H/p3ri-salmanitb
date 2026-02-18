@@ -16,7 +16,7 @@ export const PROGRAMS_DATA = [
           date: "19 Februari 2026",
           time: "16:00 – 17:50",
           activity: "Inspirasi Ramadhan — Hari ke-1",
-          info: "Pembicara: Ust. Hadian Akbar (Vice CEO Pertamina)\nTopik: Generasi Cinta Al-Qur'an: Kepemimpinan Gen Z dan Disabilitas dalam Membangun Peradaban",
+          info: "Pembicara: Ust. Hadian Akbar\nTopik: Generasi Cinta Al-Qur'an: Kepemimpinan Gen Z dan Disabilitas dalam Membangun Peradaban",
         },
         {
           date: "20 Februari 2026",
