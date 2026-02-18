@@ -7,6 +7,7 @@ import {
   ArrowRight,
   ChevronLeft,
   Sparkles,
+  Clock,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -29,6 +30,78 @@ interface Program {
     description: string;
     timeline: TimelineItem[];
   };
+}
+
+function IramaTimelineCard({ item }: { item: TimelineItem }) {
+  const lines = item.info.split("\n");
+  const pembicara = lines
+    .find((l) => l.startsWith("Pembicara:"))
+    ?.replace("Pembicara:", "")
+    .trim();
+  const topik = lines
+    .find((l) => l.startsWith("Topik:"))
+    ?.replace("Topik:", "")
+    .trim();
+  const isPlaceholder =
+    !pembicara ||
+    pembicara.includes("Segera diumumkan") ||
+    !topik ||
+    topik.includes("Segera diumumkan");
+
+  return (
+    <div className="w-full overflow-hidden rounded-2xl border border-violet-100 bg-gradient-to-br from-violet-50 to-white shadow-lg">
+      <div className="flex items-center justify-between border-b border-violet-100 bg-violet-500/5 px-6 py-3">
+        <h3 className="font-montserrat text-brand-purple text-lg font-bold md:text-xl">
+          {item.activity}
+        </h3>
+        {isPlaceholder && (
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-violet-100 px-2.5 py-1">
+            <Clock size={11} className="text-violet-500" />
+            <span className="font-montserrat text-[10px] font-semibold tracking-wider text-violet-600 uppercase">
+              Segera Hadir
+            </span>
+          </div>
+        )}
+      </div>
+      <div className="space-y-3 px-6 py-5">
+        <div className="flex items-start gap-3">
+          <span className="font-montserrat min-w-[72px] text-xs font-semibold text-text-gray/70">
+            Pembicara
+          </span>
+          <span
+            className={cn(
+              "font-montserrat text-xs",
+              isPlaceholder
+                ? "italic text-text-gray/50"
+                : "font-medium text-text-gray",
+            )}
+          >
+            {isPlaceholder ? "Akan segera diumumkan" : pembicara}
+          </span>
+        </div>
+        <div className="flex items-start gap-3">
+          <span className="font-montserrat min-w-[72px] text-xs font-semibold text-text-gray/70">
+            Topik
+          </span>
+          <span
+            className={cn(
+              "font-montserrat text-xs",
+              isPlaceholder
+                ? "italic text-text-gray/50"
+                : "font-medium text-text-gray",
+            )}
+          >
+            {isPlaceholder ? "Akan segera diumumkan" : topik}
+          </span>
+        </div>
+        {isPlaceholder && (
+          <p className="font-montserrat border-t border-violet-100 pt-3 text-[11px] leading-relaxed text-text-gray/40">
+            Pantau terus informasi terbaru dari kami.
+          </p>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default function ProgramDetailClient({ program }: { program: Program }) {
@@ -221,19 +294,23 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
                           </div>
 
                           {/* Card */}
-                          <div className="border-border bg-card w-full rounded-2xl border p-6 shadow-lg">
-                            <h3 className="font-montserrat text-brand-purple text-lg font-bold md:text-xl">
-                              {item.activity}
-                            </h3>
-                            {item.time && (
-                              <p className="font-montserrat text-brand-purple/70 mb-3 text-xs font-semibold md:text-sm">
-                                {item.time}
+                          {program.slug === "irama" ? (
+                            <IramaTimelineCard item={item} />
+                          ) : (
+                            <div className="border-border bg-card w-full rounded-2xl border p-6 shadow-lg">
+                              <h3 className="font-montserrat text-brand-purple text-lg font-bold md:text-xl">
+                                {item.activity}
+                              </h3>
+                              {item.time && (
+                                <p className="font-montserrat text-brand-purple/70 mb-3 text-xs font-semibold md:text-sm">
+                                  {item.time}
+                                </p>
+                              )}
+                              <p className="font-montserrat text-text-gray text-xs leading-relaxed font-medium whitespace-pre-line md:text-sm">
+                                {item.info}
                               </p>
-                            )}
-                            <p className="font-montserrat text-text-gray text-xs leading-relaxed font-medium whitespace-pre-line md:text-sm">
-                              {item.info}
-                            </p>
-                          </div>
+                            </div>
+                          )}
                         </div>
 
                         {/* Center dot (desktop) */}
