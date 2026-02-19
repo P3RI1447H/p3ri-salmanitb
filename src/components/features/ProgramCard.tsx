@@ -19,10 +19,10 @@ const ProgramCard = ({
   return (
     <Link
       href={`/program/${slug}`}
-      className="group block h-full focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2 rounded-2xl md:rounded-3xl"
+      className="group block h-full focus:outline-none focus:ring-2 focus:ring-[#FFE84C] focus:ring-offset-2 rounded-2xl md:rounded-3xl"
       aria-label={`Lihat detail program ${title}`}
     >
-      <article className="relative bg-card rounded-2xl md:rounded-3xl shadow-lg border-2 border-white hover:border-brand-purple/40 hover:shadow-2xl transition-all duration-300 flex flex-col h-full overflow-hidden">
+      <article className="relative bg-card rounded-2xl md:rounded-3xl shadow-lg border-2 border-white hover:border-[#4F5900] hover:shadow-2xl transition-all duration-300 flex flex-col h-full overflow-hidden">
         {/* Content Section */}
         <div className="flex flex-col flex-1 p-5 md:p-6">
           {/* Meta info */}
@@ -56,7 +56,7 @@ const ProgramCard = ({
           )}
 
           {/* Title */}
-          <h3 className="text-card-foreground font-forum text-xl sm:text-2xl md:text-2xl mb-2 line-clamp-2 group-hover:text-brand-purple transition-colors duration-300">
+          <h3 className="text-card-foreground font-forum text-xl sm:text-2xl md:text-2xl mb-2 line-clamp-2 group-hover:text-[#4F5900] transition-colors duration-300">
             {title}
           </h3>
 
@@ -69,7 +69,7 @@ const ProgramCard = ({
           <div className="flex-1 min-h-4" />
 
           {/* CTA */}
-          <div className="flex items-center gap-2 text-text-muted group-hover:text-brand-purple font-montserrat text-sm font-semibold transition-all duration-300 mt-4 pt-4 border-t border-border">
+          <div className="flex items-center gap-2 text-text-muted group-hover:text-[#4F5900] font-montserrat text-sm font-semibold transition-all duration-300 mt-4 pt-4 border-t border-border">
             <span>Lihat Selengkapnya</span>
             <ArrowRight
               size={16}
