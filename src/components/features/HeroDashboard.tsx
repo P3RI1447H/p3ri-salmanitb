@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
   ChevronRight,
   Clock,
+  Mic2,
   Moon,
   Sun,
   Sunrise,
@@ -149,11 +150,24 @@ function parseTarawihInfo(info: string): {
   return { imam, penceramah };
 }
 
+function parseIramaInfo(info: string): {
+  pembicara: string | null;
+  topik: string | null;
+} {
+  const lines = info.split("\n");
+  const pLine = lines.find((l) => l.startsWith("Pembicara:"));
+  const tLine = lines.find((l) => l.startsWith("Topik:"));
+  const pembicara = pLine ? pLine.replace("Pembicara:", "").trim() : null;
+  const topik = tLine ? tLine.replace("Topik:", "").trim() : null;
+  return { pembicara, topik };
+}
+
 function RamadhanDashboard({ ramadhanDay }: { ramadhanDay: number }) {
   const events = useMemo(() => getAllCalendarEvents(), []);
   const todayKey = formatDateKey(new Date());
   const todayEvents = events.get(todayKey) ?? [];
   const tarawihEvent = todayEvents.find((e) => e.programSlug === "tarawih");
+  const iramaEvent = todayEvents.find((e) => e.programSlug === "irama");
   const imsakiyah = IMSAKIYAH_DATA.find((e) => e.day === ramadhanDay);
 
   return (
@@ -229,7 +243,7 @@ function RamadhanDashboard({ ramadhanDay }: { ramadhanDay: number }) {
       {/* Tarawih Tonight */}
       <Link
         href="/program/tarawih"
-        className="border-primary/10 group block flex-1 overflow-hidden rounded-2xl border bg-white p-4 shadow-sm transition-all hover:shadow-md md:p-5"
+        className="border-primary/10 group block overflow-hidden rounded-2xl border bg-white p-4 shadow-sm transition-all hover:shadow-md md:p-5"
       >
         <div className="mb-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -278,6 +292,60 @@ function RamadhanDashboard({ ramadhanDay }: { ramadhanDay: number }) {
           </p>
         )}
       </Link>
+
+      {/* IRAMA Today */}
+      {iramaEvent && (() => {
+        const { pembicara, topik } = parseIramaInfo(iramaEvent.info);
+        const isPlaceholder = !pembicara || pembicara.includes("Segera diumumkan");
+        return (
+          <Link
+            href="/program/irama"
+            className="border-primary/10 group block overflow-hidden rounded-2xl border bg-white p-4 shadow-sm transition-all hover:shadow-md md:p-5"
+          >
+            <div className="mb-3 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Mic2 size={16} className="text-primary" />
+                <p className="font-montserrat text-primary text-xs font-semibold tracking-wider uppercase">
+                  IRAMA Hari Ini
+                </p>
+              </div>
+              <ChevronRight
+                size={16}
+                className="text-text-muted/40 transition-transform group-hover:translate-x-0.5"
+              />
+            </div>
+
+            {isPlaceholder ? (
+              <p className="font-montserrat text-text-muted py-2 text-center text-sm italic">
+                Pembicara & topik akan segera diumumkan.
+              </p>
+            ) : (
+              <div className="space-y-3">
+                {pembicara && (
+                  <div className="bg-background-page/70 rounded-xl px-3.5 py-3">
+                    <p className="font-montserrat text-text-muted text-[10px] font-semibold tracking-wider uppercase">
+                      Pembicara
+                    </p>
+                    <p className="font-montserrat text-text-main mt-0.5 text-sm font-bold md:text-base">
+                      {pembicara}
+                    </p>
+                  </div>
+                )}
+                {topik && (
+                  <div className="bg-background-page/70 rounded-xl px-3.5 py-3">
+                    <p className="font-montserrat text-text-muted text-[10px] font-semibold tracking-wider uppercase">
+                      Topik
+                    </p>
+                    <p className="font-montserrat text-text-main mt-0.5 text-sm font-bold md:text-base">
+                      {topik}
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
+          </Link>
+        );
+      })()}
     </div>
   );
 }

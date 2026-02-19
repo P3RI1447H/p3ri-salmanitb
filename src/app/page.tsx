@@ -92,16 +92,16 @@ export default function Home() {
       {/* Hero */}
       <section
         aria-labelledby="hero-heading"
-        className="bg-background-page relative flex min-h-[calc(100vh-4rem)] w-full flex-col items-center justify-center gap-0 overflow-hidden lg:flex-row lg:gap-12 xl:gap-20"
+        className="bg-background-page relative flex w-full flex-col items-center justify-center gap-0 overflow-hidden pt-6 pb-10 sm:pt-8 sm:pb-12 lg:min-h-[calc(100vh-4rem)] lg:flex-row lg:gap-12 lg:py-0 xl:gap-20"
       >
-        <div className="relative flex w-full items-center justify-center p-6 pb-2 lg:h-screen lg:w-1/2 lg:justify-end lg:p-8 xl:p-12">
+        <div className="relative flex w-full items-center justify-center px-6 pb-2 pt-4 sm:px-8 sm:pt-6 lg:h-screen lg:w-1/2 lg:justify-end lg:p-8 xl:p-12">
           <div className="w-full max-w-lg">
             <HeroDashboard />
           </div>
         </div>
 
-        <div className="relative flex h-auto w-full items-center justify-center px-6 pt-2 pb-12 sm:p-12 md:p-16 lg:h-screen lg:w-1/2 lg:justify-start lg:pl-0">
-          <div className="z-10 flex w-full max-w-xl flex-col items-start gap-5 text-left md:gap-6 lg:gap-8">
+        <div className="relative flex h-auto w-full items-center justify-center px-6 pt-2 pb-8 sm:px-8 sm:pb-10 lg:h-screen lg:w-1/2 lg:justify-start lg:pl-0">
+          <div className="z-10 flex w-full max-w-xl flex-col items-start gap-4 text-left sm:gap-5 lg:gap-8">
             <h1
               id="hero-heading"
               className="font-forum text-foreground text-[40px] leading-none font-normal md:text-[56px] lg:text-[68px]"
