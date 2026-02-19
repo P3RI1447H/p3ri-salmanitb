@@ -49,15 +49,15 @@ function IramaTimelineCard({ item }: { item: TimelineItem }) {
     topik.includes("Segera diumumkan");
 
   return (
-    <div className="w-full overflow-hidden rounded-2xl border border-violet-100 bg-gradient-to-br from-violet-50 to-white shadow-lg">
-      <div className="flex items-center justify-between border-b border-violet-100 bg-violet-500/5 px-6 py-3">
+    <div className="bg-card w-full overflow-hidden rounded-2xl border border-border shadow-lg">
+      <div className="flex items-center justify-between border-b border-border bg-muted/30 px-6 py-3">
         <h3 className="font-montserrat text-brand-purple text-lg font-bold md:text-xl">
           {item.activity}
         </h3>
         {isPlaceholder && (
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-violet-100 px-2.5 py-1">
-            <Clock size={11} className="text-violet-500" />
-            <span className="font-montserrat text-[10px] font-semibold tracking-wider text-violet-600 uppercase">
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1">
+            <Clock size={11} className="text-primary" />
+            <span className="font-montserrat text-[10px] font-semibold tracking-wider text-primary uppercase">
               Segera Hadir
             </span>
           </div>
@@ -95,7 +95,7 @@ function IramaTimelineCard({ item }: { item: TimelineItem }) {
           </span>
         </div>
         {isPlaceholder && (
-          <p className="font-montserrat border-t border-violet-100 pt-3 text-[11px] leading-relaxed text-text-gray/40">
+          <p className="font-montserrat border-t border-border pt-3 text-[11px] leading-relaxed text-text-gray/40">
             Pantau terus informasi terbaru dari kami.
           </p>
         )}
