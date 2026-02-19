@@ -276,12 +276,6 @@ export default function Home() {
             className="relative h-full w-full"
             style={{ clipPath: "url(#faq-mask)" }}
           >
-            <Image
-              src="/images/gallery-bg.png"
-              alt=""
-              fill
-              className="object-cover"
-            />
           </div>
         </div>
 
