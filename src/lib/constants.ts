@@ -1142,6 +1142,24 @@ export const GALLERY_IMAGES = [
   { id: 5, src: "/images/empty-img.png", alt: "Gallery Image 5" },
 ];
 
+export const SPONSORS_DATA = [
+  { id: 1, name: "Sponsor 1", logo: "/images/empty-img.png" },
+  { id: 2, name: "Sponsor 2", logo: "/images/empty-img.png" },
+  { id: 3, name: "Sponsor 3", logo: "/images/empty-img.png" },
+  { id: 4, name: "Sponsor 4", logo: "/images/empty-img.png" },
+  { id: 5, name: "Sponsor 5", logo: "/images/empty-img.png" },
+  { id: 6, name: "Sponsor 6", logo: "/images/empty-img.png" },
+];
+
+export const MITRA_INFORMASI_DATA = [
+  { id: 1, name: "Mitra Info 1", logo: "/images/empty-img.png" },
+  { id: 2, name: "Mitra Info 2", logo: "/images/empty-img.png" },
+  { id: 3, name: "Mitra Info 3", logo: "/images/empty-img.png" },
+  { id: 4, name: "Mitra Info 4", logo: "/images/empty-img.png" },
+  { id: 5, name: "Mitra Info 5", logo: "/images/empty-img.png" },
+  { id: 6, name: "Mitra Info 6", logo: "/images/empty-img.png" },
+];
+
 export const FAQ_DATA = [
   {
     id: 1,
