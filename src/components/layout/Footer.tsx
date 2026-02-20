@@ -3,7 +3,8 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { Instagram, Youtube } from "lucide-react";
+import { Instagram, Youtube} from "lucide-react";
+import whatsappIcon from "@/assets/whatsapp-icon.svg";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -25,6 +26,19 @@ export default function Footer() {
       href: "https://www.instagram.com/salmanitb",
       icon: <Instagram size={24} />,
     },
+    {
+      name: "Whatsapp",
+      href: "https://whatsapp.com/channel/0029VbBQARfCMY0GJ1Wh2M2S",
+      icon: (
+        <Image
+          src = {whatsappIcon}
+          alt="Whatsapp"
+          width={24}
+          height={24}
+          className="invert brightness-0"
+        />
+      )
+    },
   ];
 
   const isActive = (href: string) => pathname === href;
@@ -38,7 +52,7 @@ export default function Footer() {
           backgroundPosition: "center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          backgroundColor: "var(--color-primary)",
+          backgroundColor: "rgba(0,0,0,0.50)",
           backgroundBlendMode: "soft-light",
         }}
       />

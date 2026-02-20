@@ -51,7 +51,7 @@ function IramaTimelineCard({ item }: { item: TimelineItem }) {
   return (
     <div className="bg-card w-full overflow-hidden rounded-2xl border border-border shadow-lg">
       <div className="flex items-center justify-between border-b border-border bg-muted/30 px-6 py-3">
-        <h3 className="font-montserrat text-brand-purple text-lg font-bold md:text-xl">
+        <h3 className="font-montserrat text-primary text-lg font-bold md:text-xl">
           {item.activity}
         </h3>
         {isPlaceholder && (
@@ -114,7 +114,7 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
         <div className="pointer-events-none absolute inset-0">
           <div className="bg-hero-bg/20 absolute -top-20 -right-20 h-80 w-80 rounded-full blur-3xl" />
           <div className="bg-accent/10 absolute -bottom-32 -left-20 h-96 w-96 rounded-full blur-3xl" />
-          <div className="bg-brand-purple/10 absolute top-1/3 right-1/4 h-40 w-40 rounded-full blur-2xl" />
+          <div className="bg-primary/10 absolute top-1/3 right-1/4 h-40 w-40 rounded-full blur-2xl" />
         </div>
 
         {/* Dot pattern */}
@@ -232,17 +232,17 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
             {program.details.timeline.length === 1 ? (
               /* Single item — centered */
               <div className="flex flex-col items-center gap-6">
-                <div className="from-brand-purple to-brand-purple-dark rounded-full bg-gradient-to-r px-8 py-3 shadow-md">
+                <div className="from-[#91AE4C] to-[#4C782B] rounded-full bg-gradient-to-r px-8 py-3 shadow-md">
                   <span className="font-montserrat text-sm font-bold text-white">
                     {program.details.timeline[0]!.date}
                   </span>
                 </div>
                 <div className="border-border bg-card w-full max-w-md rounded-2xl border p-8 text-center shadow-lg">
-                  <h3 className="font-montserrat text-brand-purple mb-2 text-xl font-bold">
+                  <h3 className="font-montserrat text-primary mb-2 text-xl font-bold">
                     {program.details.timeline[0]!.activity}
                   </h3>
                   {program.details.timeline[0]!.time && (
-                    <p className="font-montserrat text-brand-purple/70 mb-4 text-sm font-semibold">
+                    <p className="font-montserrat text-primary/70 mb-4 text-sm font-semibold">
                       {program.details.timeline[0]!.time}
                     </p>
                   )}
@@ -255,9 +255,9 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
               /* Multiple items — alternating timeline */
               <div className="relative">
                 {/* Center line (desktop) */}
-                <div className="bg-brand-purple/20 absolute top-0 left-6 hidden h-full w-0.5 md:left-1/2 md:block md:-translate-x-1/2" />
+                <div className="bg-primary/20 absolute top-0 left-6 hidden h-full w-0.5 md:left-1/2 md:block md:-translate-x-1/2" />
                 {/* Left line (mobile) */}
-                <div className="bg-brand-purple/20 absolute top-0 left-6 h-full w-0.5 md:hidden" />
+                <div className="bg-primary/20 absolute top-0 left-6 h-full w-0.5 md:hidden" />
 
                 <div className="flex flex-col gap-12 md:gap-16">
                   {program.details.timeline.map((item, index) => {
@@ -276,7 +276,7 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
                       >
                         {/* Mobile dot */}
                         <div className="relative mr-6 flex flex-col items-center md:hidden">
-                          <div className="bg-brand-purple ring-background-page z-20 h-4 w-4 rounded-full ring-4" />
+                          <div className="bg-primary ring-background-page z-20 h-4 w-4 rounded-full ring-4" />
                         </div>
 
                         {/* Content side */}
@@ -287,7 +287,7 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
                           )}
                         >
                           {/* Date badge */}
-                          <div className="from-brand-purple to-brand-purple-dark w-fit rounded-full bg-gradient-to-r px-6 py-2 shadow-sm">
+                          <div className="from-[#91AE4C] to-[#4C782B] w-fit rounded-full bg-gradient-to-r px-6 py-2 shadow-sm">
                             <span className="font-montserrat text-xs font-bold text-white sm:text-sm">
                               {item.date}
                             </span>
@@ -298,11 +298,11 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
                             <IramaTimelineCard item={item} />
                           ) : (
                             <div className="border-border bg-card w-full rounded-2xl border p-6 shadow-lg">
-                              <h3 className="font-montserrat text-brand-purple text-lg font-bold md:text-xl">
+                              <h3 className="font-montserrat text-primary text-lg font-bold md:text-xl">
                                 {item.activity}
                               </h3>
                               {item.time && (
-                                <p className="font-montserrat text-brand-purple/70 mb-3 text-xs font-semibold md:text-sm">
+                                <p className="font-montserrat text-primary/70 mb-3 text-xs font-semibold md:text-sm">
                                   {item.time}
                                 </p>
                               )}
@@ -325,10 +325,10 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
                             )}
                             style={{
                               backgroundImage:
-                                "repeating-linear-gradient(to right, var(--color-brand-purple) 0, var(--color-brand-purple) 6px, transparent 6px, transparent 12px)",
+                                "repeating-linear-gradient(to right, var(--color-primary) 0, var(--color-primary) 6px, transparent 6px, transparent 12px)",
                             }}
                           />
-                          <div className="bg-brand-purple-dark ring-background-page z-20 h-5 w-5 rounded-full ring-4" />
+                          <div className="bg-primary ring-background-page z-20 h-5 w-5 rounded-full ring-4" />
                         </div>
 
                         {/* Spacer for opposite side (desktop) */}
@@ -353,7 +353,7 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
             className="group bg-accent font-montserrat text-accent-foreground inline-flex items-center gap-3 rounded-full px-8 py-4 text-base font-bold shadow-lg transition-all duration-300 hover:shadow-xl hover:brightness-105 md:px-10 md:py-5 md:text-lg"
           >
             Daftar Sekarang
-            <div className="bg-brand-purple flex h-10 w-10 items-center justify-center rounded-full text-white shadow-md transition-transform duration-300 group-hover:translate-x-1 md:h-12 md:w-12">
+            <div className="bg-primary flex h-10 w-10 items-center justify-center rounded-full text-white shadow-md transition-transform duration-300 group-hover:translate-x-1 md:h-12 md:w-12">
               <ArrowRight size={20} strokeWidth={2.5} />
             </div>
           </Link>
