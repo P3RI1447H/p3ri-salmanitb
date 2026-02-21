@@ -1,10 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import ProgramCard from "../components/features/ProgramCard";
 import FAQAccordion from "../components/features/FAQBox";
+import RamadhanInfoSection from "../components/features/RamadhanInfoSection";
+import HeroCarousel from "../components/features/HeroCarousel";
 import { PROGRAMS_DATA } from "../lib/constants";
 import {
   ChevronLeft,
@@ -14,6 +15,7 @@ import {
   Heart,
 } from "lucide-react";
 import HeroDashboard from "../components/features/HeroDashboard";
+
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -89,48 +91,59 @@ export default function Home() {
 
   return (
     <main id="main-content" className="bg-background-page">
-      {/* Hero */}
+      {/* Hero Section */}
       <section
         aria-labelledby="hero-heading"
-        className="bg-background-page relative flex w-full flex-col items-center justify-center gap-0 overflow-hidden pt-6 pb-10 sm:pt-8 sm:pb-12 lg:min-h-[calc(100vh-4rem)] lg:flex-row lg:gap-12 lg:py-0 xl:gap-20"
+        className="relative min-h-[560px] w-full overflow-hidden md:min-h-[640px] lg:min-h-[90vh]"
       >
-        <div className="relative flex w-full items-center justify-center px-6 pb-2 pt-4 sm:px-8 sm:pt-6 lg:h-screen lg:w-1/2 lg:justify-end lg:p-8 xl:p-12">
-          <div className="w-full max-w-lg">
+        {/* Carousel Background */}
+        <HeroCarousel />
+
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/80 via-black/45 to-black/25" />
+
+        {/* Content — centered vertically & horizontally */}
+        <div className="relative z-10 flex h-full min-h-[560px] flex-col items-center justify-center px-6 text-center sm:px-8 md:min-h-[640px] lg:min-h-[90vh]">
+          {/* Ramadhan badge / countdown */}
+          <div className="mb-6 md:mb-8">
             <HeroDashboard />
           </div>
-        </div>
 
-        <div className="relative flex h-auto w-full items-center justify-center px-6 pt-2 pb-8 sm:px-8 sm:pb-10 lg:h-screen lg:w-1/2 lg:justify-start lg:pl-0">
-          <div className="z-10 flex w-full max-w-xl flex-col items-start gap-4 text-left sm:gap-5 lg:gap-8">
-            <h1
-              id="hero-heading"
-              className="font-forum text-foreground text-[40px] leading-none font-normal md:text-[56px] lg:text-[68px]"
+          <h1
+            id="hero-heading"
+            className="font-forum max-w-4xl text-[42px] leading-[1.08] font-normal text-white drop-shadow-lg sm:text-[48px] md:text-[60px] lg:text-[76px]"
+          >
+            Ramadhan dan Idul Adha
+            <br />
+            bersama P3RI
+          </h1>
+
+          <p className="font-montserrat mx-auto mt-5 max-w-2xl text-sm leading-relaxed font-medium text-white/85 drop-shadow-md md:mt-6 md:text-base lg:text-lg">
+            Sambut Ramadhan 1447 H dan rangkaian Idul Adha bersama
+            program-program P3RI Masjid Salman ITB. Dari terawih berjamaah,
+            berbagi buka, hingga festival Ramadhan — mari hidupkan semangat
+            kebersamaan dan kebaikan.
+          </p>
+
+          <div className="mt-7 flex flex-row items-center justify-center gap-3 md:mt-9 md:gap-4">
+            <Link
+              href="/timeline"
+              className="bg-accent font-montserrat text-accent-foreground hover:bg-accent-hover focus-visible:outline-accent rounded-full px-7 py-3.5 text-sm font-bold shadow-lg transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 md:px-9 md:py-4 md:text-base lg:text-lg"
             >
-              Ramadhan dan Idul Adha bersama P3RI
-            </h1>
-            <p className="font-montserrat text-text-gray text-sm leading-relaxed font-medium lg:text-lg">
-              Sambut Ramadhan 1447 H dan rangkaian Idul Adha bersama
-              program-program P3RI Masjid Salman ITB. Dari terawih berjamaah,
-              berbagi buka, hingga festival Ramadhan — mari hidupkan semangat
-              kebersamaan dan kebaikan.
-            </p>
-            <div className="flex flex-row items-center justify-start gap-3 md:gap-4">
-              <Link
-                href="/timeline"
-                className="bg-primary font-montserrat text-primary-foreground hover:bg-secondary focus-visible:outline-primary rounded-full px-6 py-3 text-sm font-bold shadow-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 md:px-8 md:py-4 md:text-base lg:text-lg"
-              >
-                Lihat Jadwal
-              </Link>
-              <Link
-                href="/infak"
-                className="border-primary font-montserrat text-primary hover:bg-primary/10 focus-visible:outline-primary rounded-full border bg-transparent px-6 py-3 text-sm font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 md:px-8 md:py-4 md:text-base lg:text-lg"
-              >
-                Infak & Zakat
-              </Link>
-            </div>
+              Lihat Jadwal
+            </Link>
+            <Link
+              href="/infak"
+              className="border-white/50 font-montserrat text-white hover:bg-white/10 focus-visible:outline-white rounded-full border bg-white/5 px-7 py-3.5 text-sm font-bold backdrop-blur-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 md:px-9 md:py-4 md:text-base lg:text-lg"
+            >
+              Infak &amp; Zakat
+            </Link>
           </div>
         </div>
       </section>
+
+      {/* Ramadhan Info Cards (Imsakiyah, Tarawih, IRAMA) */}
+      <RamadhanInfoSection />
 
       {/* Programs */}
       <section
@@ -193,11 +206,10 @@ export default function Home() {
                   onClick={() => setCurrentPage(page)}
                   aria-label={`Halaman ${page}`}
                   aria-current={currentPage === page ? "page" : undefined}
-                  className={`font-montserrat focus-visible:outline-primary h-10 w-10 rounded-full text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 md:h-12 md:w-12 md:text-base ${
-                    currentPage === page
-                      ? "bg-accent text-accent-foreground"
-                      : "bg-card text-foreground hover:bg-gray-100"
-                  }`}
+                  className={`font-montserrat focus-visible:outline-primary h-10 w-10 rounded-full text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 md:h-12 md:w-12 md:text-base ${currentPage === page
+                    ? "bg-accent text-accent-foreground"
+                    : "bg-card text-foreground hover:bg-gray-100"
+                    }`}
                 >
                   {page}
                 </button>
@@ -205,7 +217,7 @@ export default function Home() {
 
               {getPaginationGroup().length > 0 &&
                 getPaginationGroup()[getPaginationGroup().length - 1]! <
-                  totalPages && (
+                totalPages && (
                   <span
                     className="font-montserrat text-text-gray px-1 text-sm"
                     aria-hidden="true"
