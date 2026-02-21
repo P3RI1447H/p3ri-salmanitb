@@ -1,0 +1,87 @@
+import Link from "next/link";
+import { ArrowRight, Calendar, MapPin } from "lucide-react";
+
+interface ProgramCardProps {
+  slug: string;
+  title: string;
+  summary: string;
+  dateDisplay?: string;
+  location?: string;
+}
+
+const ProgramCard = ({
+  slug,
+  title,
+  summary,
+  dateDisplay,
+  location,
+}: ProgramCardProps) => {
+  return (
+    <Link
+      href={`/program/${slug}`}
+      className="group block h-full focus:outline-none focus:ring-2 focus:ring-[#FFE84C] focus:ring-offset-2 rounded-2xl md:rounded-3xl"
+      aria-label={`Lihat detail program ${title}`}
+    >
+      <article className="relative bg-card rounded-2xl md:rounded-3xl shadow-lg border-2 border-white hover:border-[#4F5900] hover:shadow-2xl transition-all duration-300 flex flex-col h-full overflow-hidden">
+        {/* Content Section */}
+        <div className="flex flex-col flex-1 p-5 md:p-6">
+          {/* Meta info */}
+          {(dateDisplay || location) && (
+            <div className="mb-3 flex flex-col gap-1.5">
+              {dateDisplay && (
+                <div className="flex items-center gap-2 text-text-muted">
+                  <Calendar
+                    size={14}
+                    className="flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span className="font-montserrat text-xs font-semibold leading-tight">
+                    {dateDisplay}
+                  </span>
+                </div>
+              )}
+              {location && (
+                <div className="flex items-center gap-2 text-text-muted">
+                  <MapPin
+                    size={14}
+                    className="flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span className="font-montserrat text-xs font-medium leading-tight">
+                    {location}
+                  </span>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Title */}
+          <h3 className="text-card-foreground font-forum text-xl sm:text-2xl md:text-2xl mb-2 line-clamp-2 group-hover:text-[#4F5900] transition-colors duration-300">
+            {title}
+          </h3>
+
+          {/* Summary */}
+          <p className="text-text-gray font-montserrat text-sm font-medium line-clamp-3 leading-relaxed">
+            {summary}
+          </p>
+
+          {/* Spacer */}
+          <div className="flex-1 min-h-4" />
+
+          {/* CTA */}
+          <div className="flex items-center gap-2 text-text-muted group-hover:text-[#4F5900] font-montserrat text-sm font-semibold transition-all duration-300 mt-4 pt-4 border-t border-border">
+            <span>Lihat Selengkapnya</span>
+            <ArrowRight
+              size={16}
+              strokeWidth={2.5}
+              className="transition-transform duration-300 group-hover:translate-x-1"
+              aria-hidden="true"
+            />
+          </div>
+        </div>
+      </article>
+    </Link>
+  );
+};
+
+export default ProgramCard;

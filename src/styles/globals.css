@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #4f5900;
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #353b00;
+  --color-secondary-foreground: #ffffff;
+
+  --color-accent: #ffc80b;
+  --color-accent-foreground: #353b00;
+
+  --color-background-page: #f7ffd8;
+  --color-background-section: #ededbc;
+
+  --color-text-main: #21272a;
+  --color-text-muted: #5D6800;
+  --color-text-highlight: #ADCD61;
+  
+  --color-brand-purple: #9C4299;
+  --color-brand-purple-dark: #7B1F78;
+  --color-hero-bg: #7A9440;
+  --color-status-warning: #FFD640;
+  
+  --color-text-gray: #52525B;
+  
+  --color-background: #FFFFFF;
+  --color-foreground: #21272A;
+  
+  --color-card: #FFFFFF;
+  --color-card-foreground: #21272A;
+  
+  --color-popover: #FFFFFF;
+  --color-popover-foreground: #21272A;
+  
+  --color-border: #e4e4e7;
+  
+  --color-muted: #f4f4f5;
+  --color-muted-foreground: #5D6800; /* Matching text-muted */
+  
+  --color-accent-hover: #FFB800;
+  --color-brand-purple-hover: #8014A6;
+
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #fafafa;
+
+  --color-input: #e4e4e7;
+  --color-ring: #4f5900;
+
+  --font-montserrat: var(--font-montserrat);
+  --font-forum: var(--font-forum);
+
+  --radius-lg: 0.5rem;
+  --radius-md: calc(0.5rem - 2px);
+  --radius-sm: calc(0.5rem - 4px);
+
+  --animate-fadeInUp: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Utilities if needed, matching shadcn/ui conventions where possible */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --primary: 142 86% 28%;
+  --primary-foreground: 356 29% 95%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 142 86% 28%;
+  --radius: 0.5rem;
+}
