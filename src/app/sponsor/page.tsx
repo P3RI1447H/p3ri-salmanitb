@@ -17,7 +17,7 @@ export default function SponsorPage() {
       <section
         aria-labelledby="sponsor-hero-heading"
         className="relative min-h-[340px] w-full overflow-hidden md:min-h-[400px]"
-        style={{ backgroundColor: "var(--color-hero-bg)" }}
+        style={{ backgroundColor: "var(--color-secondary)" }}
       >
         {/* Background texture */}
         <div
@@ -27,7 +27,7 @@ export default function SponsorPage() {
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            opacity: 0.35,
+            opacity: 0.45,
           }}
         />
 
@@ -47,21 +47,20 @@ export default function SponsorPage() {
         <div className="relative z-10 flex h-full min-h-[340px] flex-col justify-center px-8 py-14 md:min-h-[400px] md:px-16 lg:max-w-[60%] lg:px-20 xl:px-24">
           <h1
             id="sponsor-hero-heading"
-            className="font-forum mb-5 text-[36px] leading-tight font-normal text-foreground md:text-[48px] lg:text-[56px]"
+            className="font-forum mb-5 text-[36px] leading-tight text-white font-normal text-foreground md:text-[48px] lg:text-[56px]"
           >
             Nyalakan Semangat Kebaikan bersama P3RI
           </h1>
-          <p className="font-montserrat mb-8 max-w-xl text-sm font-medium leading-relaxed text-foreground/80 md:text-base">
+          <p className="font-montserrat mb-8 max-w-xl text-sm font-medium leading-relaxed text-white text-foreground/80 md:text-base">
             P3RI 144X H menargetkan lebih dari{" "}
-            <span className="font-bold text-accent-foreground underline decoration-accent decoration-2 underline-offset-2">
-              120.000
-            </span>{" "}
+            <span className="font-bold text-accent-foreground underline text-white decoration-accent decoration-2 underline-offset-2">
+              120.000</span>{" "}
             penerima manfaat kepada semua kalangan masyarakat. Mari jadi bagian
             nyala lentera inspirasi dengan menjadi sponsor kami.
           </p>
           <Link
             href="mailto:p3ri@salmanitb.com"
-            className="inline-flex w-fit items-center rounded-full bg-secondary px-7 py-3.5 font-montserrat text-sm font-bold text-white shadow-md transition-colors duration-200 hover:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:text-base"
+            className="bg-accent hover:bg-accent-hover inline-flex w-fit items-center rounded-full px-7 py-3.5 font-montserrat text-sm font-bold text-white shadow-md transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:text-base"
           >
             Hubungi Kami
           </Link>
@@ -82,11 +81,7 @@ export default function SponsorPage() {
       {/* ── Tahun Lalu di P3RI ── */}
       <section
         aria-labelledby="tahun-lalu-heading"
-        className="relative w-full overflow-hidden"
-        style={{
-          background:
-            "linear-gradient(135deg, #1a1a0e 0%, #2d3d10 40%, #7A9440 100%)",
-        }}
+        className="from-primary to-secondary bg-gradient-to-br relative w-full overflow-hidden"
       >
         <div className="mx-auto flex max-w-[1440px] flex-col items-center gap-10 px-8 py-16 md:flex-row md:gap-16 md:px-16 md:py-20 lg:px-20">
           {/* Teks kiri */}
