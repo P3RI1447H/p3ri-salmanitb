@@ -16,6 +16,7 @@ interface TimelineItem {
   time: string;
   activity: string;
   info: string;
+  photo?: string;
 }
 
 interface Program {
@@ -28,6 +29,10 @@ interface Program {
   registration_url: string;
   details: {
     description: string;
+    gallery?: {
+      images: string[];
+      folder_url?: string;
+    };
     timeline: TimelineItem[];
   };
 }
@@ -63,49 +68,63 @@ function IramaTimelineCard({ item }: { item: TimelineItem }) {
           </div>
         )}
       </div>
-      <div className="space-y-3 px-6 py-5">
-        <div className="flex items-start gap-3">
-          <span className="font-montserrat min-w-[72px] text-xs font-semibold text-text-gray/70">
-            Pembicara
-          </span>
-          <span
-            className={cn(
-              "font-montserrat text-xs",
-              isPlaceholder
-                ? "italic text-text-gray/50"
-                : "font-medium text-text-gray",
-            )}
-          >
-            {isPlaceholder ? "Akan segera diumumkan" : pembicara}
-          </span>
-        </div>
-        <div className="flex items-start gap-3">
-          <span className="font-montserrat min-w-[72px] text-xs font-semibold text-text-gray/70">
-            Topik
-          </span>
-          <span
-            className={cn(
-              "font-montserrat text-xs",
-              isPlaceholder
-                ? "italic text-text-gray/50"
-                : "font-medium text-text-gray",
-            )}
-          >
-            {isPlaceholder ? "Akan segera diumumkan" : topik}
-          </span>
-        </div>
-        {isPlaceholder && (
-          <p className="font-montserrat border-t border-border pt-3 text-[11px] leading-relaxed text-text-gray/40">
-            Pantau terus informasi terbaru dari kami.
-          </p>
+
+      <div className="flex items-center gap-4 px-6 py-5">
+        {/* Kolom foto */}
+        {item.photo && !isPlaceholder && (
+          <div className="flex-shrink-0">
+            <img
+              src={item.photo}
+              alt={pembicara ?? "Pembicara"}
+              className="h-16 w-16 rounded-full object-cover ring-2 ring-primary/20"
+            />
+          </div>
         )}
+
+        {/* Kolom teks */}
+        <div className="flex flex-col gap-2 min-w-0">
+          <div className="flex items-start gap-2">
+            <span className="font-montserrat min-w-[60px] text-xs font-semibold text-text-gray/70 flex-shrink-0">
+              Pembicara
+            </span>
+            <span
+              className={cn(
+                "font-montserrat text-xs",
+                isPlaceholder
+                  ? "italic text-text-gray/50"
+                  : "font-medium text-text-gray",
+              )}
+            >
+              {isPlaceholder ? "Akan segera diumumkan" : pembicara}
+            </span>
+          </div>
+          <div className="flex items-start gap-2">
+            <span className="font-montserrat min-w-[60px] text-xs font-semibold text-text-gray/70 flex-shrink-0">
+              Topik
+            </span>
+            <span
+              className={cn(
+                "font-montserrat text-xs pl-1.5",
+                isPlaceholder
+                  ? "italic text-text-gray/50"
+                  : "font-medium text-text-gray",
+              )}
+            >
+              {isPlaceholder ? "Akan segera diumumkan" : topik}
+            </span>
+          </div>
+          {isPlaceholder && (
+            <p className="font-montserrat border-t border-border pt-2 text-[11px] leading-relaxed text-text-gray/40">
+              Pantau terus informasi terbaru dari kami.
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
 }
 
 export default function ProgramDetailClient({ program }: { program: Program }) {
-
   return (
     <>
       {/* ─── Hero Section ─── */}
@@ -161,21 +180,13 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
             <div className="font-montserrat mb-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium text-white/80 md:text-base">
               {program.date_display && (
                 <div className="flex items-center gap-2">
-                  <Calendar
-                    size={16}
-                    className="flex-shrink-0"
-                    aria-hidden="true"
-                  />
+                  <Calendar size={16} className="flex-shrink-0" aria-hidden="true" />
                   <span>{program.date_display}</span>
                 </div>
               )}
               {program.location && (
                 <div className="flex items-center gap-2">
-                  <MapPin
-                    size={16}
-                    className="flex-shrink-0"
-                    aria-hidden="true"
-                  />
+                  <MapPin size={16} className="flex-shrink-0" aria-hidden="true" />
                   <span>{program.location}</span>
                 </div>
               )}
@@ -185,6 +196,40 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
             <p className="font-montserrat max-w-2xl text-sm leading-relaxed font-medium text-white/70 md:text-base">
               {program.summary}
             </p>
+
+            {/* Gallery */}
+            {program.details.gallery && program.details.gallery.images.length > 0 && (
+              <div className="mt-10 w-full max-w-sm lg:max-w-xl">
+                <div className="grid grid-cols-3 gap-4 sm:gap-7">
+                  {program.details.gallery.images.slice(0, 3).map((src, i) => (
+                    <div
+                      key={i}
+                      className="aspect-square overflow-hidden rounded-xl border border-white/10 sm:rounded-2xl"
+                    >
+                      <img
+                        src={src}
+                        alt={`Dokumentasi ${program.title} ${i + 1}`}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-10 flex justify-center">
+                  <a
+                    href={program.details.gallery.folder_url ? program.details.gallery.folder_url : "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group font-montserrat relative inline-flex items-center rounded-full bg-accent py-2.5 pl-6 pr-12 text-sm font-bold text-accent-foreground shadow-lg transition-all duration-300 hover:shadow-xl hover:brightness-105"
+                  >
+                    Dokumentasi Lainnya
+                    <div className="bg-primary absolute right-[3px] flex h-[calc(100%-6px)] aspect-square items-center justify-center rounded-full text-white shadow-md transition-transform duration-300">
+                      <ArrowRight size={13} strokeWidth={2.5} />
+                    </div>
+                  </a>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -217,11 +262,7 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
             {/* Location badge */}
             <div className="mb-12 flex justify-center md:mb-16">
               <div className="bg-primary inline-flex items-center gap-3 rounded-2xl px-8 py-4 shadow-md">
-                <MapPin
-                  size={24}
-                  className="flex-shrink-0 text-white"
-                  aria-hidden="true"
-                />
+                <MapPin size={24} className="flex-shrink-0 text-white" aria-hidden="true" />
                 <span className="font-montserrat text-accent text-sm font-semibold sm:text-base md:text-lg">
                   {program.location}
                 </span>
@@ -230,7 +271,6 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
 
             {/* Timeline items */}
             {program.details.timeline.length === 1 ? (
-              /* Single item — centered */
               <div className="flex flex-col items-center gap-6">
                 <div className="from-[#91AE4C] to-[#4C782B] rounded-full bg-gradient-to-r px-8 py-3 shadow-md">
                   <span className="font-montserrat text-sm font-bold text-white">
@@ -252,7 +292,6 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
                 </div>
               </div>
             ) : (
-              /* Multiple items — alternating timeline */
               <div className="relative">
                 {/* Center line (desktop) */}
                 <div className="bg-primary/20 absolute top-0 left-6 hidden h-full w-0.5 md:left-1/2 md:block md:-translate-x-1/2" />
@@ -268,10 +307,8 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
                         key={index}
                         className={cn(
                           "flex w-full items-start",
-                          /* Mobile: always left-aligned */
                           "flex-row",
-                          /* Desktop: alternate sides */
-                          isEven ? "md:flex-row" : "md:flex-row-reverse"
+                          isEven ? "md:flex-row" : "md:flex-row-reverse",
                         )}
                       >
                         {/* Mobile dot */}
@@ -283,7 +320,7 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
                         <div
                           className={cn(
                             "flex w-full flex-col gap-3 md:w-[42%]",
-                            isEven ? "md:items-start" : "md:items-end"
+                            isEven ? "md:items-start" : "md:items-end",
                           )}
                         >
                           {/* Date badge */}
@@ -298,30 +335,42 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
                             <IramaTimelineCard item={item} />
                           ) : (
                             <div className="border-border bg-card w-full rounded-2xl border p-6 shadow-lg">
-                              <h3 className="font-montserrat text-primary text-lg font-bold md:text-xl">
+                              <h3 className="font-montserrat text-primary text-lg font-bold md:text-xl mb-4">
                                 {item.activity}
                               </h3>
-                              {item.time && (
-                                <p className="font-montserrat text-primary/70 mb-3 text-xs font-semibold md:text-sm">
-                                  {item.time}
-                                </p>
-                              )}
-                              <p className="font-montserrat text-text-gray text-xs leading-relaxed font-medium whitespace-pre-line md:text-sm">
-                                {item.info}
-                              </p>
+                              <div className="flex items-center gap-4">
+                                {item.photo && (
+                                  <div className="flex-shrink-0">
+                                    <img
+                                      src={item.photo}
+                                      alt="Imam"
+                                      className="h-16 w-16 rounded-full object-cover ring-2 ring-primary/20"
+                                    />
+                                  </div>
+                                )}
+                                <div className="min-w-0">
+                                  {item.time && (
+                                    <p className="font-montserrat text-primary/70 mb-2 text-xs font-semibold md:text-sm">
+                                      {item.time}
+                                    </p>
+                                  )}
+                                  <p className="font-montserrat text-text-gray text-xs leading-relaxed font-medium whitespace-pre-line md:text-sm">
+                                    {item.info}
+                                  </p>
+                                </div>
+                              </div>
                             </div>
                           )}
                         </div>
 
                         {/* Center dot (desktop) */}
                         <div className="relative hidden items-center justify-center md:flex md:w-[16%]">
-                          {/* Dashed connector line */}
                           <div
                             className={cn(
                               "absolute top-1/2 h-0.5 w-12",
                               isEven
                                 ? "right-[calc(50%+14px)]"
-                                : "left-[calc(50%+14px)]"
+                                : "left-[calc(50%+14px)]",
                             )}
                             style={{
                               backgroundImage:
