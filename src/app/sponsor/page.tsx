@@ -54,8 +54,7 @@ export default function SponsorPage() {
           <p className="font-montserrat mb-8 max-w-xl text-sm font-medium leading-relaxed text-white text-foreground/80 md:text-base">
             P3RI 144X H menargetkan lebih dari{" "}
             <span className="font-bold text-accent-foreground underline text-white decoration-accent decoration-2 underline-offset-2">
-              120.000
-            </span>{" "}
+              120.000</span>{" "}
             penerima manfaat kepada semua kalangan masyarakat. Mari jadi bagian
             nyala lentera inspirasi dengan menjadi sponsor kami.
           </p>

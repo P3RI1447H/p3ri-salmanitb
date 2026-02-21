@@ -11,7 +11,11 @@ function LogoGrid({
       {items.map((item) => (
         <div
           key={item.id}
+<<<<<<< HEAD
           className="flex h-20 w-28 items-center justify-center rounded-2xl bg-white p-3 backdrop-blur-sm transition-transform duration-200 hover:scale-105 md:h-24 md:w-36"
+=======
+          className="flex h-20 w-28 items-center justify-center rounded-2xl bg-white/15 p-3 backdrop-blur-sm transition-transform duration-200 hover:scale-105 md:h-24 md:w-36"
+>>>>>>> origin/main
         >
           <Image
             src={item.logo}
