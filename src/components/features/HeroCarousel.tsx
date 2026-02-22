@@ -33,7 +33,6 @@ export default function HeroCarousel() {
             if (index === current || isTransitioning) return;
             setIsTransitioning(true);
             setCurrent(index);
-            // allow transition to settle
             setTimeout(() => setIsTransitioning(false), 700);
         },
         [current, isTransitioning],
@@ -48,7 +47,17 @@ export default function HeroCarousel() {
     }, []);
 
     return (
-        <>
+        <div
+            className="relative h-full w-full overflow-hidden"
+            style={{
+                WebkitMaskImage:
+                    "linear-gradient(to right, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%), linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%)",
+                maskImage:
+                    "linear-gradient(to right, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%), linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%)",
+                WebkitMaskComposite: "destination-in",
+                maskComposite: "intersect",
+            }}
+        >
             {/* Images */}
             {HERO_IMAGES.map((img, i) => (
                 <Image
@@ -57,26 +66,26 @@ export default function HeroCarousel() {
                     alt={img.alt}
                     fill
                     priority={i === 0}
-                    sizes="100vw"
+                    sizes="(max-width: 768px) 100vw, 55vw"
                     className={`object-cover object-center transition-opacity duration-700 ease-in-out ${i === current ? "opacity-100" : "opacity-0"
                         }`}
                 />
             ))}
 
             {/* Indicator dots */}
-            <div className="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
+            <div className="absolute bottom-6 left-1/4 z-20 flex items-center gap-2">
                 {HERO_IMAGES.map((_, i) => (
                     <button
                         key={i}
                         onClick={() => goTo(i)}
                         aria-label={`Foto ${i + 1}`}
                         className={`h-2 rounded-full transition-all duration-300 ${i === current
-                                ? "w-6 bg-white"
-                                : "w-2 bg-white/40 hover:bg-white/60"
+                            ? "w-6 bg-white"
+                            : "w-2 bg-white/40 hover:bg-white/60"
                             }`}
                     />
                 ))}
             </div>
-        </>
+        </div>
     );
 }

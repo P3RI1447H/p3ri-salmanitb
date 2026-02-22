@@ -94,50 +94,61 @@ export default function Home() {
       {/* Hero Section */}
       <section
         aria-labelledby="hero-heading"
-        className="relative min-h-[560px] w-full overflow-hidden md:min-h-[640px] lg:min-h-[90vh]"
+        className="relative z-10 w-full overflow-hidden"
+        style={{
+          backgroundImage: "url('/images/section-2.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          borderBottomLeftRadius: "60px",
+          borderBottomRightRadius: "60px",
+          boxShadow: "0 10px 30px -10px rgba(0,0,0,0.2)",
+        }}
       >
-        {/* Carousel Background */}
-        <HeroCarousel />
+        {/* Image — absolute, bleeds to left edge on md+ */}
+        <div className="relative h-[280px] w-full sm:h-[340px] md:absolute md:inset-y-0 md:left-0 md:h-full md:w-[55%]">
+          <HeroCarousel />
+        </div>
 
-        {/* Dark gradient overlay */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/80 via-black/45 to-black/25" />
+        {/* Content container */}
+        <div className="relative z-20 mx-auto max-w-[1200px] px-6 py-10 md:flex md:min-h-[520px] md:items-center md:justify-end md:px-12 md:py-20 lg:min-h-[580px] lg:px-20 lg:py-24">
+          {/* Text — right side on md+ */}
+          <div className="flex w-full flex-col items-start text-left md:w-[48%] md:pl-4 lg:w-[45%]">
+            {/* Ramadhan badge / countdown */}
+            <div className="mb-6 md:mb-8">
+              <HeroDashboard />
+            </div>
 
-        {/* Content — centered vertically & horizontally */}
-        <div className="relative z-10 flex h-full min-h-[560px] flex-col items-center justify-center px-6 text-center sm:px-8 md:min-h-[640px] lg:min-h-[90vh]">
-          {/* Ramadhan badge / countdown */}
-          <div className="mb-6 md:mb-8">
-            <HeroDashboard />
-          </div>
-
-          <h1
-            id="hero-heading"
-            className="font-forum max-w-4xl text-[42px] leading-[1.08] font-normal text-white drop-shadow-lg sm:text-[48px] md:text-[60px] lg:text-[76px]"
-          >
-            Ramadhan dan Idul Adha
-            <br />
-            bersama P3RI
-          </h1>
-
-          <p className="font-montserrat mx-auto mt-5 max-w-2xl text-sm leading-relaxed font-medium text-white/85 drop-shadow-md md:mt-6 md:text-base lg:text-lg">
-            Sambut Ramadhan 1447 H dan rangkaian Idul Adha bersama
-            program-program P3RI Masjid Salman ITB. Dari terawih berjamaah,
-            berbagi buka, hingga festival Ramadhan — mari hidupkan semangat
-            kebersamaan dan kebaikan.
-          </p>
-
-          <div className="mt-7 flex flex-row items-center justify-center gap-3 md:mt-9 md:gap-4">
-            <Link
-              href="/timeline"
-              className="bg-accent font-montserrat text-accent-foreground hover:bg-accent-hover focus-visible:outline-accent rounded-full px-7 py-3.5 text-sm font-bold shadow-lg transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 md:px-9 md:py-4 md:text-base lg:text-lg"
+            <h1
+              id="hero-heading"
+              className="font-forum max-w-xl text-[36px] leading-[1.1] font-normal text-white drop-shadow-lg sm:text-[42px] md:text-[52px] lg:text-[64px]"
             >
-              Lihat Jadwal
-            </Link>
-            <Link
-              href="/infak"
-              className="border-white/50 font-montserrat text-white hover:bg-white/10 focus-visible:outline-white rounded-full border bg-white/5 px-7 py-3.5 text-sm font-bold backdrop-blur-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 md:px-9 md:py-4 md:text-base lg:text-lg"
-            >
-              Infak &amp; Zakat
-            </Link>
+              Ramadhan dan Idul Adha
+              <br />
+              bersama P3RI
+            </h1>
+
+            <p className="font-montserrat mt-5 max-w-lg text-sm leading-relaxed font-medium text-white/90 drop-shadow-md md:mt-6 md:text-base lg:text-lg">
+              Sambut Ramadhan 1447 H dan rangkaian Idul Adha bersama
+              program-program P3RI Masjid Salman ITB. Dari terawih berjamaah,
+              berbagi buka, hingga festival Ramadhan — mari hidupkan semangat
+              kebersamaan dan kebaikan.
+            </p>
+
+            <div className="mt-7 flex flex-row items-center gap-3 md:mt-9 md:gap-4">
+              <Link
+                href="/timeline"
+                className="bg-accent font-montserrat text-accent-foreground hover:bg-accent-hover focus-visible:outline-accent rounded-full px-7 py-3.5 text-sm font-bold shadow-lg transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 md:px-9 md:py-4 md:text-base lg:text-lg"
+              >
+                Lihat Jadwal
+              </Link>
+              <Link
+                href="/infak"
+                className="border-white/60 font-montserrat text-white hover:bg-white/15 focus-visible:outline-white rounded-full border bg-white/10 px-7 py-3.5 text-sm font-bold shadow-lg backdrop-blur-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 md:px-9 md:py-4 md:text-base lg:text-lg"
+              >
+                Infak &amp; Zakat
+              </Link>
+            </div>
           </div>
         </div>
       </section>

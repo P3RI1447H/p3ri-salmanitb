@@ -284,7 +284,7 @@ export default function RamadhanInfoSection() {
 
     if (!mounted) {
         return (
-            <section className="bg-background-section px-6 py-10 md:px-12 md:py-14 lg:px-20 lg:py-16">
+            <section className="bg-background-section relative z-[5] -mt-[60px] px-6 pt-[80px] pb-10 md:px-12 md:pb-14 lg:px-20 lg:pb-16">
                 <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                     {[1, 2, 3].map((i) => (
                         <div key={i} className="h-48 animate-pulse rounded-2xl bg-primary/10" />
@@ -300,7 +300,7 @@ export default function RamadhanInfoSection() {
     return (
         <section
             aria-labelledby="ramadhan-info-heading"
-            className="bg-background-section px-6 py-10 md:px-12 md:py-14 lg:px-20 lg:py-16"
+            className="bg-background-section relative z-[5] -mt-[60px] px-6 pt-[80px] pb-10 md:px-12 md:pb-14 lg:px-20 lg:pb-16"
         >
             <div className="mx-auto max-w-[1440px]">
                 <h2
