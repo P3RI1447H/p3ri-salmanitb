@@ -94,14 +94,12 @@ export default function Home() {
       {/* Hero Section */}
       <section
         aria-labelledby="hero-heading"
-        className="relative z-10 w-full overflow-hidden"
+        className="relative z-10 w-full overflow-hidden rounded-b-[20px] md:rounded-b-[40px]"
         style={{
           backgroundImage: "url('/images/section-2.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          borderBottomLeftRadius: "60px",
-          borderBottomRightRadius: "60px",
           boxShadow: "0 10px 30px -10px rgba(0,0,0,0.2)",
         }}
       >

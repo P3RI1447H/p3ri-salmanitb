@@ -52,7 +52,7 @@ export default function SponsorPage() {
             Nyalakan Semangat Kebaikan bersama P3RI
           </h1>
           <p className="font-montserrat mb-8 max-w-xl text-sm font-medium leading-relaxed text-white text-foreground/80 md:text-base">
-            P3RI 144X H menargetkan lebih dari{" "}
+            P3RI 1447 H menargetkan lebih dari{" "}
             <span className="font-bold text-accent-foreground underline text-white decoration-accent decoration-2 underline-offset-2">
               120.000</span>{" "}
             penerima manfaat kepada semua kalangan masyarakat. Mari jadi bagian
@@ -93,12 +93,10 @@ export default function SponsorPage() {
               Tahun Lalu di P3RI
             </h2>
             <p className="font-montserrat text-sm font-medium leading-relaxed text-white/70 md:text-base">
-              Pada tahun lalu,{" "}
-              <span className="font-semibold text-accent">puluhan ribu</span>{" "}
-              paket berbuka, kurban, sembako, dan bantuan lainnya telah
-              disalurkan melalui P3RI 1443 H. Tahun ini, kami mengundang Anda
-              untuk bergabung dan menjadi bagian dari semangat berbagi yang
-              terus kami kobarkan.
+              <span className="font-bold text-accent">Puluhan ribu</span>{" "}
+              kebahagiaan telah tersalurkan lewat P3RI tahun lalu, dari paket
+              berbuka hingga hewan kurban. Tahun ini, mari bergerak bersama
+              lagi. Jadilah bagian dari semangat berbagi yang tak pernah padam.
             </p>
           </div>
 
@@ -106,7 +104,7 @@ export default function SponsorPage() {
           <div className="w-full md:w-1/2">
             <div className="overflow-hidden rounded-2xl bg-white/10 shadow-2xl">
               <Image
-                src="/images/empty-img.png"
+                src="/images/tahun-lalu-p3ri.jpg"
                 alt="Dokumentasi kegiatan P3RI tahun lalu"
                 width={700}
                 height={420}

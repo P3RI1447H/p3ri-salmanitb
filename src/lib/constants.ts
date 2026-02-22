@@ -864,21 +864,22 @@ export const GALLERY_IMAGES = [
 ];
 
 export const SPONSORS_DATA = [
-  { id: 1, name: "Sponsor 1", logo: "/images/empty-img.png" },
-  { id: 2, name: "Sponsor 2", logo: "/images/empty-img.png" },
-  { id: 3, name: "Sponsor 3", logo: "/images/empty-img.png" },
-  { id: 4, name: "Sponsor 4", logo: "/images/empty-img.png" },
-  { id: 5, name: "Sponsor 5", logo: "/images/empty-img.png" },
-  { id: 6, name: "Sponsor 6", logo: "/images/empty-img.png" },
+  { id: 1, name: "Kahf", logo: "/images/sponsors/kahf.png" },
+  { id: 2, name: "Paragon Corp", logo: "/images/sponsors/paragon-corp.png" },
+  { id: 3, name: "alQosbah", logo: "/images/sponsors/alqosbah.png" },
+  { id: 4, name: "Ammar Kids", logo: "/images/sponsors/ammar-kids.jpg" },
+  { id: 5, name: "InJourney Airports", logo: "/images/sponsors/injourney-airports.png" },
+  { id: 6, name: "Pegadaian", logo: "/images/sponsors/pegadaian.jpg" },
+  { id: 7, name: "Syaamil", logo: "/images/sponsors/syaamil.png" },
+  { id: 8, name: "PaninDubai Syariah Bank", logo: "/images/sponsors/panindubai-syariah.jpg" },
 ];
 
 export const MITRA_INFORMASI_DATA = [
-  { id: 1, name: "Mitra Info 1", logo: "/images/empty-img.png" },
-  { id: 2, name: "Mitra Info 2", logo: "/images/empty-img.png" },
-  { id: 3, name: "Mitra Info 3", logo: "/images/empty-img.png" },
-  { id: 4, name: "Mitra Info 4", logo: "/images/empty-img.png" },
-  { id: 5, name: "Mitra Info 5", logo: "/images/empty-img.png" },
-  { id: 6, name: "Mitra Info 6", logo: "/images/empty-img.png" },
+  { id: 1, name: "Le Minerale", logo: "/images/mitra/le-minerale.png" },
+  { id: 2, name: "Teh Pucuk Harum", logo: "/images/mitra/teh-pucuk-harum.png" },
+  { id: 3, name: "Nipis Madu", logo: "/images/mitra/nipis-madu.jpg" },
+  { id: 4, name: "Pocari Sweat", logo: "/images/mitra/pocari-sweat.png" },
+  { id: 5, name: "TGM99", logo: "/images/mitra/tgm99.png" },
 ];
 
 export const FAQ_DATA = [

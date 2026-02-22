@@ -12,21 +12,21 @@ const donationCards = [
     title: "Wakaf Salman",
     summary:
       "Wakaf merupakan amalan dengan harta yang jariyah (abadi), diberikan kepada umat sehingga bermanfaat untuk masyarakat luas dan dalam rangka mendekatkan diri pada Allah SWT.",
-    image_url: "/images/empty-img.png",
+    image_url: "/images/wakaf-salman.png",
     link: "https://www.wakafsalman.or.id/",
   },
   {
     title: "Salurkan Zakatmu di Rumah Amal",
     summary:
       "Harta kita tidak sepenuhnya milik kita, ada zakat yang harus kita salurkan. Mudah bayar zakat, sangat dekat.",
-    image_url: "/images/empty-img.png",
+    image_url: "/images/rumah-amal-salman.png",
     link: "https://www.rumahamal.org/donasi",
   },
   {
     title: "Berbagi Bersama Kitabisa",
     summary:
       "Situs donasi dan menggalang dana (fundraising) untuk inisiatif, campaign dan program sosial. Mari bergotong royong membangun Indonesia!",
-    image_url: "/images/empty-img.png",
+    image_url: "/images/rumah-amal-salman.png",
     link: "https://www.rumahamal.org/donasi",
   },
 ];
