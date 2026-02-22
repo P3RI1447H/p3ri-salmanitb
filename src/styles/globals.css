@@ -91,3 +91,22 @@
   --ring: 142 86% 28%;
   --radius: 0.5rem;
 }
+
+/* Hero image mask – responsive fade direction */
+.hero-image-mask {
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+
+@media (min-width: 768px) {
+  .hero-image-mask {
+    -webkit-mask-image:
+      linear-gradient(to right, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%),
+      linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%);
+    mask-image:
+      linear-gradient(to right, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%),
+      linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%);
+    -webkit-mask-composite: destination-in;
+    mask-composite: intersect;
+  }
+}

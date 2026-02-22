@@ -48,15 +48,7 @@ export default function HeroCarousel() {
 
     return (
         <div
-            className="relative h-full w-full overflow-hidden"
-            style={{
-                WebkitMaskImage:
-                    "linear-gradient(to right, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%), linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%)",
-                maskImage:
-                    "linear-gradient(to right, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%), linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%)",
-                WebkitMaskComposite: "destination-in",
-                maskComposite: "intersect",
-            }}
+            className="hero-image-mask relative h-full w-full overflow-hidden"
         >
             {/* Images */}
             {HERO_IMAGES.map((img, i) => (
