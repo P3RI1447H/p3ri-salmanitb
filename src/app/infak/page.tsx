@@ -4,7 +4,21 @@ import DonationCard from "../../components/features/DonationCard";
 export const metadata: Metadata = {
   title: "Infak & Donasi",
   description:
-    "Salurkan infak dan donasi Anda untuk mendukung program Ramadhan P3RI Masjid Salman ITB. Pembayaran mudah via QRIS.",
+    "Salurkan infak dan donasi Anda untuk mendukung program Ramadhan P3RI Masjid Salman ITB 1447 H. Pembayaran mudah via QRIS.",
+  alternates: {
+    canonical: "/infak",
+  },
+  openGraph: {
+    title: "Infak & Donasi — P3RI Salman ITB",
+    description:
+      "Salurkan infak dan donasi Anda untuk mendukung program Ramadhan P3RI Masjid Salman ITB 1447 H. Pembayaran mudah via QRIS.",
+    url: "/infak",
+  },
+  twitter: {
+    title: "Infak & Donasi — P3RI Salman ITB",
+    description:
+      "Salurkan infak dan donasi Anda untuk mendukung program Ramadhan P3RI Masjid Salman ITB 1447 H. Pembayaran mudah via QRIS.",
+  },
 };
 
 const donationCards = [
@@ -27,7 +41,7 @@ const donationCards = [
     summary:
       "Situs donasi dan menggalang dana (fundraising) untuk inisiatif, campaign dan program sosial. Mari bergotong royong membangun Indonesia!",
     image_url: "/images/rumah-amal-salman.png",
-    link: "https://www.rumahamal.org/donasi",
+    link: "https://kitabisa.com",
   },
 ];
 

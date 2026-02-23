@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: "P3RI Salman ITB",
     images: [
       {
-        url: "/images/og-image.png",
+        url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "P3RI Salman ITB — Program Ramadhan & Idul Adha",
@@ -43,6 +43,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    title: "P3RI Salman ITB — Program Ramadhan & Idul Adha Masjid Salman ITB",
+    description:
+      "Website resmi P3RI Masjid Salman ITB. Informasi program Ramadhan, Idul Fitri, dan Idul Adha 1447 H — jadwal kegiatan, live streaming, dan donasi.",
+    images: ["/images/og-image.jpg"],
   },
 };
 

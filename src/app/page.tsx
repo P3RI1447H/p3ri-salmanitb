@@ -6,7 +6,7 @@ import ProgramCard from "../components/features/ProgramCard";
 import FAQAccordion from "../components/features/FAQBox";
 import RamadhanInfoSection from "../components/features/RamadhanInfoSection";
 import HeroCarousel from "../components/features/HeroCarousel";
-import { PROGRAMS_DATA } from "../lib/constants";
+import { PROGRAMS_DATA, FAQ_DATA } from "../lib/constants";
 import {
   ChevronLeft,
   ChevronRight,
@@ -15,6 +15,7 @@ import {
   Heart,
 } from "lucide-react";
 import HeroDashboard from "../components/features/HeroDashboard";
+import JsonLd from "../components/JsonLd";
 
 
 export default function Home() {
@@ -91,6 +92,20 @@ export default function Home() {
 
   return (
     <main id="main-content" className="bg-background-page">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: FAQ_DATA.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: item.answer,
+            },
+          })),
+        }}
+      />
       {/* Hero Section */}
       <section
         aria-labelledby="hero-heading"

@@ -6,6 +6,20 @@ export const metadata: Metadata = {
   title: "Jadwal Kegiatan Ramadhan 1447 H",
   description:
     "Lihat seluruh jadwal kegiatan Ramadhan dan Idul Adha 1447 H di Masjid Salman ITB dalam satu kalender terpadu.",
+  alternates: {
+    canonical: "/timeline",
+  },
+  openGraph: {
+    title: "Jadwal Kegiatan Ramadhan 1447 H — P3RI Salman ITB",
+    description:
+      "Lihat seluruh jadwal kegiatan Ramadhan dan Idul Adha 1447 H di Masjid Salman ITB dalam satu kalender terpadu.",
+    url: "/timeline",
+  },
+  twitter: {
+    title: "Jadwal Kegiatan Ramadhan 1447 H — P3RI Salman ITB",
+    description:
+      "Lihat seluruh jadwal kegiatan Ramadhan dan Idul Adha 1447 H di Masjid Salman ITB dalam satu kalender terpadu.",
+  },
 };
 
 export default function TimelinePage() {

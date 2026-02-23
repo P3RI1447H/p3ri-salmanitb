@@ -3,9 +3,23 @@ import { getChannelUrl } from "@/lib/youtube";
 import LivePageClient from "@/components/features/LivePageClient";
 
 export const metadata: Metadata = {
-  title: "Live Stream — P3RI Salman ITB",
+  title: "Live Streaming",
   description:
-    "Saksikan siaran langsung kegiatan P3RI Masjid Salman ITB. Tarawih, kajian, dan kegiatan Ramadhan lainnya.",
+    "Saksikan siaran langsung kegiatan P3RI Masjid Salman ITB. Tarawih, kajian, dan kegiatan Ramadhan 1447 H lainnya.",
+  alternates: {
+    canonical: "/live",
+  },
+  openGraph: {
+    title: "Live Streaming — P3RI Salman ITB",
+    description:
+      "Saksikan siaran langsung kegiatan P3RI Masjid Salman ITB. Tarawih, kajian, dan kegiatan Ramadhan 1447 H lainnya.",
+    url: "/live",
+  },
+  twitter: {
+    title: "Live Streaming — P3RI Salman ITB",
+    description:
+      "Saksikan siaran langsung kegiatan P3RI Masjid Salman ITB. Tarawih, kajian, dan kegiatan Ramadhan 1447 H lainnya.",
+  },
 };
 
 export default function LivePage() {

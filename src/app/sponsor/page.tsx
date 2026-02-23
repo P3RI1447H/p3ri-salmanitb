@@ -7,6 +7,20 @@ export const metadata: Metadata = {
   title: "Sponsor & Partner",
   description:
     "Jadilah bagian dari nyala lentera inspirasi P3RI. Sponsori kegiatan Ramadhan & Idul Adha 1447 H Masjid Salman ITB dan jangkau lebih dari 120.000 penerima manfaat.",
+  alternates: {
+    canonical: "/sponsor",
+  },
+  openGraph: {
+    title: "Sponsor & Partner — P3RI Salman ITB",
+    description:
+      "Jadilah bagian dari nyala lentera inspirasi P3RI. Sponsori kegiatan Ramadhan & Idul Adha 1447 H Masjid Salman ITB dan jangkau lebih dari 120.000 penerima manfaat.",
+    url: "/sponsor",
+  },
+  twitter: {
+    title: "Sponsor & Partner — P3RI Salman ITB",
+    description:
+      "Jadilah bagian dari nyala lentera inspirasi P3RI. Sponsori kegiatan Ramadhan & Idul Adha 1447 H Masjid Salman ITB.",
+  },
 };
 
 export default function SponsorPage() {
