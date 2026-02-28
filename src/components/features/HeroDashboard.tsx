@@ -78,9 +78,9 @@ export default function HeroDashboard() {
   // During Ramadhan: show a simple badge
   if (ramadhanDay !== null) {
     return (
-      <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 backdrop-blur-md">
-        <Moon size={16} className="text-accent" />
-        <span className="font-montserrat text-accent text-xs font-semibold tracking-wider uppercase md:text-sm">
+      <div className="inline-flex items-center gap-2 rounded-full border border-white/90 bg-white/10 px-5 py-2.5 backdrop-blur-md">
+        <Moon size={16} className="text-white" />
+        <span className="font-montserrat text-white text-xs font-semibold tracking-wider uppercase md:text-sm">
           {ramadhanDay} Ramadhan 1447 H
         </span>
       </div>

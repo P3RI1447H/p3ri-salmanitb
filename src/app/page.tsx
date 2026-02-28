@@ -111,7 +111,7 @@ export default function Home() {
         aria-labelledby="hero-heading"
         className="relative z-10 w-full overflow-hidden rounded-b-[20px] md:rounded-b-[40px]"
         style={{
-          backgroundImage: "url('/images/section-2.png')",
+          backgroundImage: "linear-gradient(rgba(239, 239, 239, 0.1), rgba(239, 239, 239, 0.1)), url('/images/section-2.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -134,14 +134,14 @@ export default function Home() {
 
             <h1
               id="hero-heading"
-              className="font-forum max-w-xl text-[36px] leading-[1.1] font-normal text-white drop-shadow-lg sm:text-[42px] md:text-[52px] lg:text-[64px]"
+              className="font-forum max-w-xl text-[36px] leading-[1.1] font-normal text-foreground drop-shadow-lg sm:text-[42px] md:text-[52px] lg:text-[64px]"
             >
               Ramadhan dan Idul Adha
               <br />
               bersama P3RI
             </h1>
 
-            <p className="font-montserrat mt-5 max-w-lg text-sm leading-relaxed font-medium text-white/90 drop-shadow-md md:mt-6 md:text-base lg:text-lg">
+            <p className="font-montserrat mt-5 max-w-lg text-sm leading-relaxed font-medium text-foreground drop-shadow-md md:mt-6 md:text-base lg:text-lg">
               Sambut Ramadhan 1447 H dan rangkaian Idul Adha bersama
               program-program P3RI Masjid Salman ITB. Dari terawih berjamaah,
               berbagi buka, hingga festival Ramadhan — mari hidupkan semangat
