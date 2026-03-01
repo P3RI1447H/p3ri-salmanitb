@@ -39,7 +39,7 @@ function FAQItem({
           </span>
           <span
             aria-hidden="true"
-            className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-border text-sm font-bold text-card-foreground transition-transform duration-200 ${isOpen ? "rotate-45" : ""}`}
+            className={`flex h-7 w-7 flex-shrink-0 hover:cursor-pointer items-center justify-center rounded-full border border-border text-sm font-bold text-card-foreground transition-transform duration-200 ${isOpen ? "rotate-45" : ""}`}
           >
             +
           </span>
