@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import {
   MapPin,
   Calendar,
@@ -37,6 +38,64 @@ interface Program {
   };
 }
 
+const innerShadowStyle = {
+  boxShadow: "inset 0 0 28px 6px rgba(163, 196, 100, 0.35)",
+};
+
+function GalleryCarousel({ images, title }: { images: string[]; title: string }) {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <>
+      {/* Desktop: 3 foto statis tanpa animasi */}
+      <div className="hidden md:grid grid-cols-3 gap-4 lg:gap-6 items-center">
+        {[0, 1, 2].map((offset) => {
+          const idx = offset % images.length;
+          const isCenter = offset === 1;
+          return (
+            <div
+              key={offset}
+              className={cn(
+                "relative aspect-[4/3] overflow-hidden border border-white/10",
+                isCenter ? "rounded-2xl shadow-xl" : "rounded-xl",
+              )}
+            >
+              <img src={images[idx]} alt={`${title} ${offset + 1}`} className="h-full w-full object-cover" />
+              {/* Inner shadow overlay */}
+              <div className="absolute inset-0 rounded-[inherit] pointer-events-none" style={innerShadowStyle} />
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Mobile: 1 foto dengan fade transition */}
+      <div className="relative md:hidden w-full aspect-[4/3] overflow-hidden rounded-2xl border border-white/10">
+        {images.map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt={`${title} ${i + 1}`}
+            className={cn(
+              "absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out",
+              i === current ? "opacity-100" : "opacity-0",
+            )}
+          />
+        ))}
+        {/* Inner shadow overlay mobile */}
+        <div className="absolute inset-0 rounded-2xl pointer-events-none" style={innerShadowStyle} />
+      </div>
+    </>
+  );
+}
+
 function IramaTimelineCard({ item }: { item: TimelineItem }) {
   const lines = item.info.split("\n");
   const pembicara = lines
@@ -68,9 +127,7 @@ function IramaTimelineCard({ item }: { item: TimelineItem }) {
           </div>
         )}
       </div>
-
       <div className="flex items-center gap-4 px-6 py-5">
-        {/* Kolom foto */}
         {item.photo && !isPlaceholder && (
           <div className="flex-shrink-0">
             <img
@@ -80,21 +137,12 @@ function IramaTimelineCard({ item }: { item: TimelineItem }) {
             />
           </div>
         )}
-
-        {/* Kolom teks */}
         <div className="flex flex-col gap-2 min-w-0">
           <div className="flex items-start gap-2">
             <span className="font-montserrat min-w-[60px] text-xs font-semibold text-text-gray/70 flex-shrink-0">
               Pembicara
             </span>
-            <span
-              className={cn(
-                "font-montserrat text-xs",
-                isPlaceholder
-                  ? "italic text-text-gray/50"
-                  : "font-medium text-text-gray",
-              )}
-            >
+            <span className={cn("font-montserrat text-xs", isPlaceholder ? "italic text-text-gray/50" : "font-medium text-text-gray")}>
               {isPlaceholder ? "Akan segera diumumkan" : pembicara}
             </span>
           </div>
@@ -102,14 +150,7 @@ function IramaTimelineCard({ item }: { item: TimelineItem }) {
             <span className="font-montserrat min-w-[60px] text-xs font-semibold text-text-gray/70 flex-shrink-0">
               Topik
             </span>
-            <span
-              className={cn(
-                "font-montserrat text-xs pl-1.5",
-                isPlaceholder
-                  ? "italic text-text-gray/50"
-                  : "font-medium text-text-gray",
-              )}
-            >
+            <span className={cn("font-montserrat text-xs pl-1.5", isPlaceholder ? "italic text-text-gray/50" : "font-medium text-text-gray")}>
               {isPlaceholder ? "Akan segera diumumkan" : topik}
             </span>
           </div>
@@ -125,36 +166,26 @@ function IramaTimelineCard({ item }: { item: TimelineItem }) {
 }
 
 export default function ProgramDetailClient({ program }: { program: Program }) {
+  const timelineItems = program.details.timeline;
+  const timelineLength = timelineItems.length;
+
   return (
     <>
       {/* ─── Hero Section ─── */}
       <section className="bg-primary relative overflow-hidden pt-14 pb-20 md:pt-24 md:pb-28 lg:pt-28 lg:pb-32">
-        {/* Decorative background */}
         <div className="pointer-events-none absolute inset-0">
           <div className="bg-hero-bg/20 absolute -top-20 -right-20 h-80 w-80 rounded-full blur-3xl" />
           <div className="bg-accent/10 absolute -bottom-32 -left-20 h-96 w-96 rounded-full blur-3xl" />
           <div className="bg-primary/10 absolute top-1/3 right-1/4 h-40 w-40 rounded-full blur-2xl" />
         </div>
-
-        {/* Dot pattern */}
         <div className="pointer-events-none absolute inset-0 opacity-[0.04]">
-          <div
-            className="h-full w-full"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle, white 1px, transparent 1px)",
-              backgroundSize: "32px 32px",
-            }}
-          />
+          <div className="h-full w-full" style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
         </div>
 
         <div className="relative mx-auto max-w-6xl px-6 md:px-12 lg:px-20">
           {/* Back Button */}
           <div className="mb-8 flex justify-start">
-            <Link
-              href="/program"
-              className="font-montserrat group inline-flex items-center gap-2 text-sm font-medium text-white/80 transition-colors hover:text-white"
-            >
+            <Link href="/program" className="font-montserrat group inline-flex items-center gap-2 text-sm font-medium text-white/80 transition-colors hover:text-white">
               <div className="group-hover:bg-accent flex h-8 w-8 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm transition-all group-hover:text-black">
                 <ChevronLeft size={16} />
               </div>
@@ -166,9 +197,7 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
             {/* Badge */}
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
               <Sparkles size={16} className="text-accent" />
-              <span className="font-montserrat text-accent text-xs font-semibold tracking-wider uppercase">
-                Ramadhan 1447 H
-              </span>
+              <span className="font-montserrat text-accent text-xs font-semibold tracking-wider uppercase">Ramadhan 1447 H</span>
             </div>
 
             {/* Title */}
@@ -199,25 +228,11 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
 
             {/* Gallery */}
             {program.details.gallery && program.details.gallery.images.length > 0 && (
-              <div className="mt-10 w-full max-w-sm lg:max-w-xl">
-                <div className="grid grid-cols-3 gap-4 sm:gap-7">
-                  {program.details.gallery.images.slice(0, 3).map((src, i) => (
-                    <div
-                      key={i}
-                      className="aspect-square overflow-hidden rounded-xl border border-white/10 sm:rounded-2xl"
-                    >
-                      <img
-                        src={src}
-                        alt={`Dokumentasi ${program.title} ${i + 1}`}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-10 flex justify-center">
+              <div className="mt-10 w-full max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-3xl">
+                <GalleryCarousel images={program.details.gallery.images} title={program.title} />
+                <div className="mt-8 flex justify-center">
                   <a
-                    href={program.details.gallery.folder_url ? program.details.gallery.folder_url : "#"}
+                    href={program.details.gallery.folder_url ?? "#"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group font-montserrat relative inline-flex items-center rounded-full bg-accent py-2.5 pl-6 pr-12 text-sm font-bold text-accent-foreground shadow-lg transition-all duration-300 hover:shadow-xl hover:brightness-105"
@@ -249,11 +264,8 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
       </section>
 
       {/* ─── Timeline Section ─── */}
-      {program.details.timeline.length > 0 && (
-        <section
-          id="detailtimeline"
-          className="scroll-mt-20 px-6 pt-6 pb-10 md:px-12 md:pt-12 md:pb-16 lg:px-20 lg:pb-20"
-        >
+      {timelineLength > 0 && (
+        <section id="detailtimeline" className="scroll-mt-20 px-6 pt-6 pb-10 md:px-12 md:pt-12 md:pb-16 lg:px-20 lg:pb-20">
           <div className="mx-auto max-w-5xl">
             <h2 className="font-forum text-foreground mb-8 text-center text-3xl sm:text-4xl md:mb-12 md:text-5xl lg:text-6xl">
               Timeline
@@ -269,123 +281,106 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
               </div>
             </div>
 
-            {/* Timeline items */}
-            {program.details.timeline.length === 1 ? (
+            {/* Single item */}
+            {timelineLength === 1 ? (
               <div className="flex flex-col items-center gap-6">
                 <div className="from-[#91AE4C] to-[#4C782B] rounded-full bg-gradient-to-r px-8 py-3 shadow-md">
-                  <span className="font-montserrat text-sm font-bold text-white">
-                    {program.details.timeline[0]!.date}
-                  </span>
+                  <span className="font-montserrat text-sm font-bold text-white">{timelineItems[0]!.date}</span>
                 </div>
                 <div className="border-border bg-card w-full max-w-md rounded-2xl border p-8 text-center shadow-lg">
-                  <h3 className="font-montserrat text-primary mb-2 text-xl font-bold">
-                    {program.details.timeline[0]!.activity}
-                  </h3>
-                  {program.details.timeline[0]!.time && (
-                    <p className="font-montserrat text-primary/70 mb-4 text-sm font-semibold">
-                      {program.details.timeline[0]!.time}
-                    </p>
+                  <h3 className="font-montserrat text-primary mb-2 text-xl font-bold">{timelineItems[0]!.activity}</h3>
+                  {timelineItems[0]!.time && (
+                    <p className="font-montserrat text-primary/70 mb-4 text-sm font-semibold">{timelineItems[0]!.time}</p>
                   )}
-                  <p className="font-montserrat text-text-gray text-sm font-medium whitespace-pre-line">
-                    {program.details.timeline[0]!.info}
-                  </p>
+                  <p className="font-montserrat text-text-gray text-sm font-medium whitespace-pre-line">{timelineItems[0]!.info}</p>
                 </div>
               </div>
             ) : (
+              /*
+               * Timeline multi-item.
+               * Kunci agar garis nyambung:
+               * - Tidak pakai gap antar row, tapi pakai py-6/py-8 di dalam tiap row
+               * - Garis vertikal di center column adalah satu elemen absolute full-height
+               *   yang dibatasi dari dot pertama ke dot terakhir menggunakan top/bottom padding
+               * - Dot diposisikan absolute di tengah card (top-1/2)
+               */
               <div className="relative">
-                {/* Center line (desktop) */}
-                <div className="bg-primary/20 absolute top-0 left-6 hidden h-full w-0.5 md:left-1/2 md:block md:-translate-x-1/2" />
-                {/* Left line (mobile) */}
-                <div className="bg-primary/20 absolute top-0 left-6 h-full w-0.5 md:hidden" />
+                {/* Mobile: garis kiri absolute full height, dikurangi setengah row pertama & terakhir */}
+                <div
+                  className="md:hidden absolute left-[7px] w-0.5 bg-primary/20"
+                  style={{ top: "calc(1.5rem + 8px)", bottom: "calc(1.5rem + 8px)" }}
+                />
+                {/* Desktop: garis tengah absolute full height */}
+                <div
+                  className="hidden md:block absolute left-1/2 -translate-x-1/2 w-0.5 bg-primary/20"
+                  style={{ top: "calc(3rem + 10px)", bottom: "calc(3rem + 10px)" }}
+                />
 
-                <div className="flex flex-col gap-12 md:gap-16">
-                  {program.details.timeline.map((item, index) => {
-                    const isEven = index % 2 === 0;
+                {timelineItems.map((item, index) => {
+                  const isEven = index % 2 === 0;
 
-                    return (
-                      <div
-                        key={index}
-                        className={cn(
-                          "flex w-full items-start",
-                          "flex-row",
-                          isEven ? "md:flex-row" : "md:flex-row-reverse",
-                        )}
-                      >
-                        {/* Mobile dot */}
-                        <div className="relative mr-6 flex flex-col items-center md:hidden">
-                          <div className="bg-primary ring-background-page z-20 h-4 w-4 rounded-full ring-4" />
+                  return (
+                    <div
+                      key={index}
+                      className={cn(
+                        "flex w-full items-center py-6 md:py-8",
+                        "flex-row",
+                        isEven ? "md:flex-row" : "md:flex-row-reverse",
+                      )}
+                    >
+                      {/* Mobile: dot */}
+                      <div className="relative mr-6 flex-shrink-0 md:hidden">
+                        <div className="bg-primary ring-background-page z-20 h-4 w-4 rounded-full ring-4" />
+                      </div>
+
+                      {/* Content side */}
+                      <div className={cn("flex w-full flex-col gap-3 md:w-[42%]", isEven ? "md:items-start" : "md:items-end")}>
+                        {/* Date badge */}
+                        <div className="from-[#91AE4C] to-[#4C782B] w-fit rounded-full bg-gradient-to-r px-6 py-2 shadow-sm">
+                          <span className="font-montserrat text-xs font-bold text-white sm:text-sm">{item.date}</span>
                         </div>
 
-                        {/* Content side */}
-                        <div
-                          className={cn(
-                            "flex w-full flex-col gap-3 md:w-[42%]",
-                            isEven ? "md:items-start" : "md:items-end",
-                          )}
-                        >
-                          {/* Date badge */}
-                          <div className="from-[#91AE4C] to-[#4C782B] w-fit rounded-full bg-gradient-to-r px-6 py-2 shadow-sm">
-                            <span className="font-montserrat text-xs font-bold text-white sm:text-sm">
-                              {item.date}
-                            </span>
-                          </div>
-
-                          {/* Card */}
-                          {program.slug === "irama" ? (
-                            <IramaTimelineCard item={item} />
-                          ) : (
-                            <div className="border-border bg-card w-full rounded-2xl border p-6 shadow-lg">
-                              <h3 className="font-montserrat text-primary text-lg font-bold md:text-xl mb-4">
-                                {item.activity}
-                              </h3>
-                              <div className="flex items-center gap-4">
-                                {item.photo && (
-                                  <div className="flex-shrink-0">
-                                    <img
-                                      src={item.photo}
-                                      alt="Imam"
-                                      className="h-16 w-16 rounded-full object-cover ring-2 ring-primary/20"
-                                    />
-                                  </div>
-                                )}
-                                <div className="min-w-0">
-                                  {item.time && (
-                                    <p className="font-montserrat text-primary/70 mb-2 text-xs font-semibold md:text-sm">
-                                      {item.time}
-                                    </p>
-                                  )}
-                                  <p className="font-montserrat text-text-gray text-xs leading-relaxed font-medium whitespace-pre-line md:text-sm">
-                                    {item.info}
-                                  </p>
+                        {/* Card */}
+                        {program.slug === "irama" ? (
+                          <IramaTimelineCard item={item} />
+                        ) : (
+                          <div className="border-border bg-card w-full rounded-2xl border p-6 shadow-lg">
+                            <h3 className="font-montserrat text-primary text-lg font-bold md:text-xl mb-4">{item.activity}</h3>
+                            <div className="flex items-center gap-4">
+                              {item.photo && (
+                                <div className="flex-shrink-0">
+                                  <img src={item.photo} alt="Imam" className="h-16 w-16 rounded-full object-cover ring-2 ring-primary/20" />
                                 </div>
+                              )}
+                              <div className="min-w-0">
+                                {item.time && (
+                                  <p className="font-montserrat text-primary/70 mb-2 text-xs font-semibold md:text-sm">{item.time}</p>
+                                )}
+                                <p className="font-montserrat text-text-gray text-xs leading-relaxed font-medium whitespace-pre-line md:text-sm">
+                                  {item.info}
+                                </p>
                               </div>
                             </div>
-                          )}
-                        </div>
-
-                        {/* Center dot (desktop) */}
-                        <div className="relative hidden items-center justify-center md:flex md:w-[16%]">
-                          <div
-                            className={cn(
-                              "absolute top-1/2 h-0.5 w-12",
-                              isEven
-                                ? "right-[calc(50%+14px)]"
-                                : "left-[calc(50%+14px)]",
-                            )}
-                            style={{
-                              backgroundImage:
-                                "repeating-linear-gradient(to right, var(--color-primary) 0, var(--color-primary) 6px, transparent 6px, transparent 12px)",
-                            }}
-                          />
-                          <div className="bg-primary ring-background-page z-20 h-5 w-5 rounded-full ring-4" />
-                        </div>
-
-                        {/* Spacer for opposite side (desktop) */}
-                        <div className="hidden md:block md:w-[42%]" />
+                          </div>
+                        )}
                       </div>
-                    );
-                  })}
-                </div>
+
+                      {/* Desktop: center column with dot + dashed connector */}
+                      <div className="relative hidden md:flex md:w-[16%] items-center justify-center">
+                        {/* Dashed line to card */}
+                        <div
+                          className={cn("absolute h-0.5 w-12", isEven ? "right-[calc(50%+12px)]" : "left-[calc(50%+12px)]")}
+                          style={{ backgroundImage: "repeating-linear-gradient(to right, var(--color-primary) 0, var(--color-primary) 6px, transparent 6px, transparent 12px)" }}
+                        />
+                        {/* Dot */}
+                        <div className="bg-primary ring-background-page z-20 h-5 w-5 rounded-full ring-4" />
+                      </div>
+
+                      {/* Spacer */}
+                      <div className="hidden md:block md:w-[42%]" />
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
