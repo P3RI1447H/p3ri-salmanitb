@@ -872,6 +872,7 @@ export const SPONSORS_DATA = [
   { id: 6, name: "Pegadaian", logo: "/images/sponsors/pegadaian.jpg" },
   { id: 7, name: "Syaamil", logo: "/images/sponsors/syaamil.png" },
   { id: 8, name: "PaninDubai Syariah Bank", logo: "/images/sponsors/panindubai-syariah.jpg" },
+  { id: 9, name: "Bening", logo: "/images/sponsors/bening.jpeg" },
 ];
 
 export const MITRA_INFORMASI_DATA = [

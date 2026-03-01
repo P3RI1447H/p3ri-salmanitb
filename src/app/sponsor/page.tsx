@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Mail } from "lucide-react";
 import SponsorGrid from "@/components/features/SponsorGrid";
+import whatsappIcon from "@/assets/whatsapp-icon.svg";
 
 export const metadata: Metadata = {
   title: "Sponsor & Partner",
@@ -50,9 +52,9 @@ export default function SponsorPage() {
           <Image
             src="/images/footer-flower.png"
             alt=""
-            width={260}
-            height={260}
-            className="object-contain drop-shadow-xl"
+            width={380}
+            height={380}
+            className="drop-shadow-xl"
             aria-hidden="true"
           />
         </div>
@@ -72,12 +74,33 @@ export default function SponsorPage() {
             penerima manfaat kepada semua kalangan masyarakat. Mari jadi bagian
             nyala lentera inspirasi dengan menjadi sponsor kami.
           </p>
-          <Link
-            href="mailto:p3ri@salmanitb.com"
-            className="bg-accent hover:bg-accent-hover inline-flex w-fit items-center rounded-full px-7 py-3.5 font-montserrat text-sm font-bold text-white shadow-md transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:text-base"
-          >
-            Hubungi Kami
-          </Link>
+
+          <div className="flex flex-wrap items-center gap-3">
+            <p className="font-montserrat text-sm font-semibold text-accent md:text-base">
+              Hubungi Kami :
+            </p>
+            <a
+              href="mailto:p3ri@salmanitb.com"
+              aria-label="Email P3RI"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-black shadow-md transition-colors duration-200 hover:bg-accent-hover"
+            >
+              <Mail className="h-5 w-5" />
+            </a>
+            <a
+              href="https://wa.me/6281319487627"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp Kayla Celesti"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-accent shadow-md transition-colors duration-200 hover:bg-accent-hover"
+            >
+              <Image
+                src={whatsappIcon}
+                alt="WhatsApp"
+                width={22}
+                height={22}
+              />
+            </a>
+          </div>
         </div>
       </section>
 
