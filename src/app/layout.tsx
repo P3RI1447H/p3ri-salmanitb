@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat, Forum } from "next/font/google";
+// @ts-ignore
 import "../styles/globals.css";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";

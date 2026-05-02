@@ -27,7 +27,7 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-0 z-50">
-      <nav className="bg-primary flex h-16 w-full items-center border-b border-white/10 md:h-20">
+      <nav className="bg-secondary flex h-16 w-full items-center border-b border-white/10 md:h-20">
         <div className="flex h-full w-full items-center justify-between gap-6 px-4 sm:px-8 md:gap-[48px] md:px-12 lg:px-20">
           <Link
             href="/"
@@ -45,7 +45,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Menu */}
-          <ul className="bg-secondary m-0 hidden flex-1 list-none items-center justify-end gap-4 rounded-3xl p-1 md:flex">
+          <ul className="bg-[#C86F0B] m-0 hidden flex-1 list-none items-center justify-end gap-4 rounded-3xl p-1 md:flex">
             {menuItems.map((item) => (
               <li key={item.name}>
                 <Link
@@ -53,8 +53,8 @@ const Navbar = () => {
                   className={cn(
                     "flex items-center justify-start gap-3 rounded-3xl px-4 py-3 transition-colors",
                     isActive(item.href)
-                      ? "bg-accent text-accent-foreground"
-                      : "hover:text-accent text-white"
+                      ? "bg-[#FFD640] text-accent-foreground"
+                      : "hover:text-[#FFEA5A] text-white"
                   )}
                   aria-current={isActive(item.href) ? "page" : undefined}
                 >
@@ -84,7 +84,7 @@ const Navbar = () => {
       {isOpen && (
         <div
           id="mobile-menu"
-          className="bg-primary fixed inset-0 z-40 overflow-y-auto md:hidden"
+          className="bg-[#C86F0B] fixed inset-0 z-40 overflow-y-auto md:hidden"
         >
           <div className="flex h-16 items-center justify-between border-b border-white/10 px-4 sm:px-8">
             <Link

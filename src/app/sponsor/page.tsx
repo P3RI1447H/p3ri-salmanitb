@@ -32,8 +32,7 @@ export default function SponsorPage() {
       {/* ── Hero Section ── */}
       <section
         aria-labelledby="sponsor-hero-heading"
-        className="relative min-h-[340px] w-full overflow-hidden md:min-h-[400px]"
-        style={{ backgroundColor: "var(--color-secondary)" }}
+        className="relative min-h-[340px] w-full overflow-hidden md:min-h-[400px] bg-gradient-to-br from-primary to-secondary"
       >
         {/* Background texture */}
         <div
@@ -118,7 +117,7 @@ export default function SponsorPage() {
       {/* ── Tahun Lalu di P3RI ── */}
       <section
         aria-labelledby="tahun-lalu-heading"
-        className="from-primary to-secondary bg-gradient-to-br relative w-full overflow-hidden"
+        className="from-primary to-[#FFD640] bg-gradient-to-br relative w-full overflow-hidden"
       >
         <div className="mx-auto flex max-w-[1440px] flex-col items-center gap-10 px-8 py-16 md:flex-row md:gap-16 md:px-16 md:py-20 lg:px-20">
           {/* Teks kiri */}

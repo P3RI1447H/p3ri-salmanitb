@@ -32,7 +32,7 @@ export default function ProgramPageClient({
   return (
     <>
       {/* Hero Header */}
-      <section className="bg-primary relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-36 lg:pb-28">
+        <section className="bg-gradient-to-br from-[#C14020] from-40% to-[#F4AB0C] to-100% relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-36 lg:pb-28">
         {/* Decorative background elements */}
         <div className="pointer-events-none absolute inset-0">
           <div className="bg-hero-bg/20 absolute -top-20 -right-20 h-80 w-80 rounded-full blur-3xl" />

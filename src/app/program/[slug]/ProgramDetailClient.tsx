@@ -336,7 +336,7 @@ export default function ProgramDetailClient({ program }: { program: Program }) {
                       {/* Content side */}
                       <div className={cn("flex w-full flex-col gap-3 md:w-[42%]", isEven ? "md:items-start" : "md:items-end")}>
                         {/* Date badge */}
-                        <div className="from-[#91AE4C] to-[#4C782B] w-fit rounded-full bg-gradient-to-r px-6 py-2 shadow-sm">
+                        <div className="from-[#F4AB0C] to-[#C86F0B] w-fit rounded-full bg-gradient-to-r px-6 py-2 shadow-sm">
                           <span className="font-montserrat text-xs font-bold text-white sm:text-sm">{item.date}</span>
                         </div>
 

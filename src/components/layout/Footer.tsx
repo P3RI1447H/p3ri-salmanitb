@@ -46,7 +46,7 @@ export default function Footer() {
   const isActive = (href: string) => pathname === href;
 
   return (
-    <footer className="relative w-full bg-primary overflow-hidden">
+    <footer className="relative w-full bg-[#C86F0B] overflow-hidden">
       <div
         className="absolute inset-0 z-0 opacity-8"
         style={{
