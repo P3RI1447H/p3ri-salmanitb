@@ -10,8 +10,8 @@
   --color-accent: #FFD640;
   --color-accent-foreground: #353b00;
 
-  --color-background-page: #f7ffd8;
-  --color-background-section: #ededbc;
+  --color-background-page: #FFFBE0;
+  --color-background-section: #F7FFD8;
 
   --color-text-main: #21272a;
   --color-text-muted: #C86F0B;
@@ -24,7 +24,7 @@
   
   --color-text-gray: #52525B;
   
-  --color-background: #FFFFFF;
+  --color-background: #F7FFD8;
   --color-foreground: #21272A;
   
   --color-card: #FFFFFF;
