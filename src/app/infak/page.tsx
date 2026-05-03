@@ -51,7 +51,7 @@ export default function InfakPage() {
       {/* Hero + QRIS */}
       <section
         aria-labelledby="infak-heading"
-        className="bg-primary px-6 py-16 sm:px-8 md:px-12 md:py-20 lg:px-20 lg:py-24"
+        className="bg-gradient-to-br from-[#C14020] from-40% to-[#F4AB0C] to-100% px-6 py-16 sm:px-8 md:px-12 md:py-20 lg:px-20 lg:py-24"
       >
         <div className="mx-auto max-w-4xl text-center">
           <h1

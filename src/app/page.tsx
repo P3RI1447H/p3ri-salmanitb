@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image"; // Import Image dari Next.js
 import { useState, useEffect } from "react";
 import ProgramCard from "../components/features/ProgramCard";
 import FAQAccordion from "../components/features/FAQBox";
 import RamadhanInfoSection from "../components/features/RamadhanInfoSection";
-import HeroCarousel from "../components/features/HeroCarousel";
 import { PROGRAMS_DATA, FAQ_DATA } from "../lib/constants";
 import {
   ChevronLeft,
@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 import HeroDashboard from "../components/features/HeroDashboard";
 import JsonLd from "../components/JsonLd";
-
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -111,37 +110,40 @@ export default function Home() {
         aria-labelledby="hero-heading"
         className="relative z-10 w-full overflow-hidden rounded-b-[20px] md:rounded-b-[40px]"
         style={{
-          backgroundImage: "linear-gradient(rgba(239, 239, 239, 0.1), rgba(239, 239, 239, 0.1)), url('/images/section-2.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
+          backgroundColor: "#AF3933",
+          backgroundImage: "linear-gradient(180deg, #FFD64020 0%, #F4AB0C80 100%)",
           boxShadow: "0 10px 30px -10px rgba(0,0,0,0.2)",
         }}
       >
-        {/* Image — absolute, bleeds to left edge on md+ */}
-        <div className="relative h-[280px] w-full sm:h-[340px] md:absolute md:inset-y-0 md:left-0 md:h-full md:w-[55%]">
-          <HeroCarousel />
+        {/* Container untuk Gambar - Selalu nempel kiri (left-0) */}
+        <div className="relative h-[380px] w-full overflow-hidden md:absolute md:inset-y-0 md:left-0 md:h-full md:w-[6%] lg:w-[70%]">
+          <Image
+            src="/images/illust.png"
+            alt="Ilustrasi Ramadhan P3RI"
+            fill
+            className="object-contain object-left scale-90 md:scale-75 origin-left" 
+            priority
+          />
         </div>
 
         {/* Content container */}
         <div className="relative z-20 mx-auto max-w-[1200px] px-6 py-10 md:flex md:min-h-[520px] md:items-center md:justify-end md:px-12 md:py-20 lg:min-h-[580px] lg:px-20 lg:py-24">
-          {/* Text — right side on md+ */}
+          {/* Text — Disebelah kanan gambar pada layar md+ */}
           <div className="flex w-full flex-col items-start text-left md:w-[48%] md:pl-4 lg:w-[45%]">
-            {/* Ramadhan badge / countdown */}
             <div className="mb-6 md:mb-8">
               <HeroDashboard />
             </div>
 
             <h1
               id="hero-heading"
-              className="font-forum max-w-xl text-[36px] leading-[1.1] font-normal text-foreground drop-shadow-lg sm:text-[42px] md:text-[52px] lg:text-[64px]"
+              className="font-forum max-w-xl text-[36px] leading-[1.1] font-normal text-white drop-shadow-lg sm:text-[42px] md:text-[52px] lg:text-[64px]"
             >
               Ramadhan dan Idul Adha
               <br />
               bersama P3RI
             </h1>
 
-            <p className="font-montserrat mt-5 max-w-lg text-sm leading-relaxed font-medium text-foreground drop-shadow-md md:mt-6 md:text-base lg:text-lg">
+            <p className="font-montserrat mt-5 max-w-lg text-sm leading-relaxed font-medium text-white/90 drop-shadow-md md:mt-6 md:text-base lg:text-lg">
               Sambut Ramadhan 1447 H dan rangkaian Idul Adha bersama
               program-program P3RI Masjid Salman ITB. Dari terawih berjamaah,
               berbagi buka, hingga festival Ramadhan — mari hidupkan semangat
@@ -166,10 +168,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Ramadhan Info Cards (Imsakiyah, Tarawih, IRAMA) */}
+      {/* Sisa komponen lainnya tetap sama */}
       <RamadhanInfoSection />
 
-      {/* Programs */}
+      {/* Programs Section */}
       <section
         aria-labelledby="programs-heading"
         className="bg-background-page px-6 py-10 sm:py-14 md:px-12 md:py-16 lg:px-20 lg:py-20"
@@ -216,10 +218,7 @@ export default function Home() {
             <div className="flex items-center gap-1.5 md:gap-3">
               {getPaginationGroup().length > 0 &&
                 getPaginationGroup()[0]! > 1 && (
-                  <span
-                    className="font-montserrat text-text-gray px-1 text-sm"
-                    aria-hidden="true"
-                  >
+                  <span className="font-montserrat text-text-gray px-1 text-sm" aria-hidden="true">
                     ...
                   </span>
                 )}
@@ -242,10 +241,7 @@ export default function Home() {
               {getPaginationGroup().length > 0 &&
                 getPaginationGroup()[getPaginationGroup().length - 1]! <
                 totalPages && (
-                  <span
-                    className="font-montserrat text-text-gray px-1 text-sm"
-                    aria-hidden="true"
-                  >
+                  <span className="font-montserrat text-text-gray px-1 text-sm" aria-hidden="true">
                     ...
                   </span>
                 )}
@@ -263,16 +259,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats */}
+      {/* Stats Section */}
       <section
         aria-labelledby="stats-heading"
-        className="bg-background-section px-6 py-12 md:px-12 md:py-16 lg:px-20 lg:py-20"
+        className="bg-gradient-to-b from-background-page from-5% to-[#FFD640]/70 to-85% px-6 py-12 md:px-12 md:py-16 lg:px-20 lg:py-20"
       >
         <div className="mx-auto max-w-5xl text-center">
-          <h2
-            id="stats-heading"
-            className="font-forum text-foreground mb-4 text-4xl leading-tight font-normal md:mb-6 md:text-5xl"
-          >
+          <h2 id="stats-heading" className="font-forum text-foreground mb-4 text-4xl leading-tight font-normal md:mb-6 md:text-5xl">
             Tahun Lalu di P3RI
           </h2>
           <p className="font-montserrat text-text-gray mx-auto mb-10 max-w-2xl text-sm leading-relaxed font-medium md:mb-14 md:text-base">
@@ -280,46 +273,25 @@ export default function Home() {
           </p>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 md:gap-8">
             {stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="bg-card flex flex-col items-center gap-3 rounded-2xl p-6 md:gap-4 md:p-8"
-              >
+              <div key={stat.label} className="bg-card flex flex-col items-center gap-3 rounded-2xl p-6 md:gap-4 md:p-8">
                 <div className="bg-primary/10 flex h-12 w-12 items-center justify-center rounded-full md:h-14 md:w-14">
-                  <stat.icon
-                    className="text-primary h-6 w-6 md:h-7 md:w-7"
-                    aria-hidden="true"
-                  />
+                  <stat.icon className="text-primary h-6 w-6 md:h-7 md:w-7" aria-hidden="true" />
                 </div>
-                <span className="font-forum text-primary text-3xl md:text-4xl">
-                  {stat.value}
-                </span>
-                <span className="font-montserrat text-text-gray text-sm font-medium md:text-base">
-                  {stat.label}
-                </span>
+                <span className="font-forum text-primary text-3xl md:text-4xl">{stat.value}</span>
+                <span className="font-montserrat text-text-gray text-sm font-medium md:text-base">{stat.label}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ Section */}
       <section
         aria-labelledby="faq-heading"
         className="bg-background-page relative overflow-hidden px-4 py-10 sm:px-6 sm:py-14 md:px-12 md:py-16 lg:px-20 lg:py-20"
       >
-        <div className="absolute inset-0">
-          <div
-            className="relative h-full w-full"
-            style={{ clipPath: "url(#faq-mask)" }}
-          >
-          </div>
-        </div>
-
         <div className="relative z-10 mx-auto max-w-[1440px]">
-          <h2
-            id="faq-heading"
-            className="font-forum text-foreground mb-8 text-center text-4xl font-normal md:mb-10 md:text-5xl lg:mb-12"
-          >
+          <h2 id="faq-heading" className="font-forum text-foreground mb-8 text-center text-4xl font-normal md:mb-10 md:text-5xl lg:mb-12">
             Pertanyaan Umum
           </h2>
           <div className="mx-auto max-w-3xl p-4 sm:p-6">
