@@ -217,9 +217,9 @@ export const PROGRAMS_DATA = [
         "Kegiatan syi'ar kompetisi dengan kegiatan yang beragam dalam lingkup umur yang beragam.",
       gallery: {
         images: [
-          "/images/empty-img.png",
-          "/images/empty-img.png",
-          "/images/empty-img.png",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D17_EJvREqdEepigXaXJNLM7Jq3UiU_RXD%26sz%3Dw400",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1VKt5SpLznpfTB6R7wfiUyYmNdFTDwxGn%26sz%3Dw400",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D11ktbbvh0ew4aTljkYwIERBNwA5d60CVT%26sz%3Dw400",
         ],
         folder_url: "#",
       },
@@ -253,11 +253,11 @@ export const PROGRAMS_DATA = [
         "Kegiatan menyemarakkan Ramadan dalam bentuk UTBK Camp yang terdiri dari workshop komunitas, talkshow menarik, dan kegiatan belajar bersama yang dilakukan pada bulan Ramadan. Semarak Ramadan menyambut seluruh siswa/i SMA dan Gap year untuk meramaikan Masjid Salman ITB dengan menuntut ilmu bersama di bulan yang mulia.",
       gallery: {
         images: [
-          "/images/empty-img.png",
-          "/images/empty-img.png",
-          "/images/empty-img.png",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1KdLhobQNFK4olvGLlBA0LbqixSOHOzA6%26sz%3Dw400",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1wwwrTxOw3r6ZQnKCmlRa0yZ72R_XlnOl%26sz%3Dw400",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1hSYC0IJaELhtNXNLw78sDx9FPNNdGMAL%26sz%3Dw400",
         ],
-        folder_url: "#",
+        folder_url: "https://drive.google.com/drive/folders/1j5dIXrxoCtUJi2RZkgiPhlPXd-Db4IOK?usp=drive_link",
       },
       timeline: [
         {
@@ -526,11 +526,11 @@ export const PROGRAMS_DATA = [
         "Program yang memfasilitasi jamaah Masjid Salman ITB dalam memaksimalkan ibadah di sepuluh hari terakhir bulan Ramadhan dengan fasilitas berupa suasana ibadah yang aman, nyaman dan kondusif, konsumsi sahur dan berbuka puasa, rangkaian kajian Islam, shalat Qiyamul Lail yang dipimpin oleh imam berkualitas, serta pelayanan yang ramah. Fasilitas meliputi Qiyamullail, pembagian sahur dan makanan berbuka, penitipan barang, peminjaman alat tidur, laundry, keamanan barang jamaah, kuliah subuh, tilawah bersama, dan Al-Ma'tsurot Pagi Bersama. HTM: Rp25.000/Malam.",
       gallery: {
         images: [
-          "/images/empty-img.png",
-          "/images/empty-img.png",
-          "/images/empty-img.png",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1XZcqiJOueX0ARFzOsVE3EH3FONDj4nyb%26sz%3Dw400",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1gEX9ujbwtafYfSxwMGZAh6I2A_TBdwxy%26sz%3Dw400",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1E_u-ar19BMKa1_PiQ0K9h1ICDGovGpb5%26sz%3Dw400",
         ],
-        folder_url: "#",
+        folder_url: "https://drive.google.com/drive/folders/1Kx79PBrZdwPD2mKW74YzBE4yP7CXjZfB?usp=drive_link",
       },
       timeline: [
         { date: "9 Maret 2026", time: "", activity: "Hari ke-1 I'tikaf", info: "Kuliah Subuh oleh Syaikh Khanova" },
@@ -561,9 +561,9 @@ export const PROGRAMS_DATA = [
         "Program yang memfasilitasi jamaah untuk mendapat pelatihan/dauroh seputar Alquran berupa program Khataman, Tahsin, Tahfidz, dan Qur'an of the Day yang dilaksanakan secara daring selama bulan Ramadan dan beberapa hari secara luring bersama ustadz yang tepercaya.",
       gallery: {
         images: [
-          "/images/empty-img.png",
-          "/images/empty-img.png",
-          "/images/empty-img.png",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1mJDEThLP-GMQwHJxVcwE4y79fNvuw0UQ%26sz%3Dw400",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1sh8uJc1Z1FX23JTxlHenNhI0JvVzvy8P%26sz%3Dw400",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1mJDEThLP-GMQwHJxVcwE4y79fNvuw0UQ%26sz%3Dw400",
         ],
         folder_url: "#",
       },
@@ -584,11 +584,11 @@ export const PROGRAMS_DATA = [
         "Program penyediaan fasilitas yang aman, nyaman, dan kondusif untuk ibadah Shalat Idulfitri dan Iduladha bagi jamaah Masjid Salman dan sekitarnya dalam rangka menyemarakkan hari kemenangan setelah melalui bulan Ramadan dan menyambut hari raya Qurban.",
       gallery: {
         images: [
-          "/images/empty-img.png",
-          "/images/empty-img.png",
-          "/images/empty-img.png",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1ZwDKee0W5lae3-miS28jUwpCXy_fL2pu%26sz%3Dw400",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1AwwJTncvAiaiYogyf74m_MHNElfj-dsG%26sz%3Dw400",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1OpPn99gpITq9tnOBXVS4Mq-IoRXIv_V4%26sz%3Dw400",
         ],
-        folder_url: "#",
+        folder_url: "https://drive.google.com/drive/folders/1F1S83iQU7zGPnB3acp7kCPkhaZhohjwW?usp=drive_link",
       },
       timeline: [],
     },
@@ -657,6 +657,14 @@ export const PROGRAMS_DATA = [
     details: {
       description:
         "Penggalangan donasi Salman Charity yang menampung banyak kebaikan untuk disalurkan di kegiatan pengabdian masyarakat yang dilakukan di beberapa tempat selama Ramadan dan Iduladha.",
+      gallery: {
+        images: [
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1xRo9ua6YjSgU7fk8REw2vhMFrGRhvKBj%26sz%3Dw400",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1nPqVwyIH1GIMMsc4-u97QwxeV6l6Vici%26sz%3Dw400",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D12CzIgJk6QSd-7egA_2MPBqzOvC4hzfRs%26sz%3Dw400",
+        ],
+        folder_url: "#",
+      },
       timeline: [],
     },
   },
