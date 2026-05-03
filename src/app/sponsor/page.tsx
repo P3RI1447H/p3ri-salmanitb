@@ -117,7 +117,7 @@ export default function SponsorPage() {
       {/* ── Tahun Lalu di P3RI ── */}
       <section
         aria-labelledby="tahun-lalu-heading"
-        className="from-primary to-[#FFD640] bg-gradient-to-b relative w-full overflow-hidden"
+        className="from-primary from-30% to-secondary to-85% bg-gradient-to-b relative w-full overflow-hidden"
       >
         <div className="mx-auto flex max-w-[1440px] flex-col items-center gap-10 px-8 py-16 md:flex-row md:gap-16 md:px-16 md:py-20 lg:px-20">
           {/* Teks kiri */}
