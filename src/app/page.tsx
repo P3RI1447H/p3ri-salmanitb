@@ -116,7 +116,7 @@ export default function Home() {
         }}
       >
         {/* Container untuk Gambar - Selalu nempel kiri (left-0) */}
-        <div className="relative h-[380px] w-full overflow-hidden md:absolute md:inset-y-0 md:left-0 md:h-full md:w-[65%] lg:w-[70%]">
+        <div className="relative h-[380px] w-full overflow-hidden md:absolute md:inset-y-0 md:left-0 md:h-full md:w-[6%] lg:w-[70%]">
           <Image
             src="/images/illust.png"
             alt="Ilustrasi Ramadhan P3RI"
