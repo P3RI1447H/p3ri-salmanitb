@@ -217,9 +217,9 @@ export const PROGRAMS_DATA = [
         "Kegiatan syi'ar kompetisi dengan kegiatan yang beragam dalam lingkup umur yang beragam.",
       gallery: {
         images: [
-          "/images/empty-img.png",
-          "/images/empty-img.png",
-          "/images/empty-img.png",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D17_EJvREqdEepigXaXJNLM7Jq3UiU_RXD%26sz%3Dw400",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1VKt5SpLznpfTB6R7wfiUyYmNdFTDwxGn%26sz%3Dw400",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D11ktbbvh0ew4aTljkYwIERBNwA5d60CVT%26sz%3Dw400",
         ],
         folder_url: "#",
       },
@@ -561,9 +561,9 @@ export const PROGRAMS_DATA = [
         "Program yang memfasilitasi jamaah untuk mendapat pelatihan/dauroh seputar Alquran berupa program Khataman, Tahsin, Tahfidz, dan Qur'an of the Day yang dilaksanakan secara daring selama bulan Ramadan dan beberapa hari secara luring bersama ustadz yang tepercaya.",
       gallery: {
         images: [
-          "/images/empty-img.png",
-          "/images/empty-img.png",
-          "/images/empty-img.png",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1mJDEThLP-GMQwHJxVcwE4y79fNvuw0UQ%26sz%3Dw400",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1sh8uJc1Z1FX23JTxlHenNhI0JvVzvy8P%26sz%3Dw400",
+          "https://res.cloudinary.com/dntins7ck/image/fetch/g_face,c_fill,w_400,h_400/https://drive.google.com/thumbnail%3Fid%3D1mJDEThLP-GMQwHJxVcwE4y79fNvuw0UQ%26sz%3Dw400",
         ],
         folder_url: "#",
       },
