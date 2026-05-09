@@ -6,6 +6,7 @@ import { Moon } from "lucide-react";
 // Ramadhan starts at Maghrib (18:00 WIB) on Feb 18, 2026
 const RAMADHAN_START_MAGHRIB = new Date("2026-02-18T18:00:00+07:00").getTime();
 const RAMADHAN_END = new Date(2026, 2, 19); // Mar 19, 2026 (30 Ramadhan)
+const ADHA_START = new Date(2026, 5, 27); // Mar 27, 2026
 
 interface TimeLeft {
   days: number;
@@ -15,8 +16,21 @@ interface TimeLeft {
 }
 
 function getTimeLeft(): TimeLeft | null {
-  const diff = RAMADHAN_START_MAGHRIB - Date.now();
+  // Ramadhan
+  // const diff = RAMADHAN_START_MAGHRIB - Date.now();
+  // if (diff <= 0) return null;
+
+  // Adha
+  const now = Date.now();
+  let target = RAMADHAN_START_MAGHRIB;
+  
+  if (now > RAMADHAN_START_MAGHRIB) {
+    target = ADHA_START.getTime();
+  }
+
+  const diff = target - now;
   if (diff <= 0) return null;
+
   return {
     days: Math.floor(diff / (1000 * 60 * 60 * 24)),
     hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
@@ -25,19 +39,31 @@ function getTimeLeft(): TimeLeft | null {
   };
 }
 
-function getRamadhanDay(now: Date): number | null {
-  if (now.getTime() < RAMADHAN_START_MAGHRIB) return null;
-  const end = new Date(RAMADHAN_END);
-  end.setHours(23, 59, 59, 999);
-  if (now > end) return null;
-  const start = new Date(2026, 1, 18);
-  start.setHours(0, 0, 0, 0);
-  const today = new Date(now);
-  today.setHours(0, 0, 0, 0);
-  const diff = Math.floor(
-    (today.getTime() - start.getTime()) / (1000 * 60 * 60 * 24),
-  );
-  return diff + 1;
+// function getRamadhanDay(now: Date): number | null {
+//   if (now.getTime() < RAMADHAN_START_MAGHRIB) return null;
+//   const end = new Date(RAMADHAN_END);
+//   end.setHours(23, 59, 59, 999);
+//   if (now > end) return null;
+//   const start = new Date(2026, 1, 18);
+//   start.setHours(0, 0, 0, 0);
+//   const today = new Date(now);
+//   today.setHours(0, 0, 0, 0);
+//   const diff = Math.floor(
+//     (today.getTime() - start.getTime()) / (1000 * 60 * 60 * 24),
+//   );
+//   return diff + 1;
+// }
+
+function getAdhaDay(now: Date): number | null {
+if (now.getTime() > ADHA_START.getTime() + 86400000) return null; 
+  
+  // Jika masih sebelum Idul Adha tapi sudah lewat Ramadhan
+  if (now.getTime() > RAMADHAN_END.getTime()) {
+     // Anda bisa menggunakan ini untuk menampilkan "H-X Idul Adha"
+     const diff = ADHA_START.getTime() - now.getTime();
+     return Math.ceil(diff / (1000 * 60 * 60 * 24));
+  }
+  return null;
 }
 
 function CountdownUnit({ value, label }: { value: number; label: string }) {
@@ -59,14 +85,15 @@ export default function HeroDashboard() {
   const [mounted, setMounted] = useState(false);
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
   const [ramadhanDay, setRamadhanDay] = useState<number | null>(null);
+  const [adhaDay, setAdhaDay] = useState<number | null>(null);
 
   useEffect(() => {
     setMounted(true);
     setTimeLeft(getTimeLeft());
-    setRamadhanDay(getRamadhanDay(new Date()));
+    setAdhaDay(getAdhaDay(new Date()));
     const timer = setInterval(() => {
       setTimeLeft(getTimeLeft());
-      setRamadhanDay(getRamadhanDay(new Date()));
+      setAdhaDay(getAdhaDay(new Date()));
     }, 1000);
     return () => clearInterval(timer);
   }, []);
@@ -81,11 +108,13 @@ export default function HeroDashboard() {
       <div className="inline-flex items-center gap-2 rounded-full border border-white/90 bg-white/10 px-5 py-2.5 backdrop-blur-md">
         <Moon size={16} className="text-white" />
         <span className="font-montserrat text-white text-xs font-semibold tracking-wider uppercase md:text-sm">
-          {ramadhanDay} Ramadhan 1447 H
+          {/* {ramadhanDay} Ramadhan 1447 H */}
+          {adhaDay} Idul Adha 1447 H
         </span>
       </div>
     );
   }
+
 
   // Before Ramadhan: show countdown
   const tl = timeLeft ?? { days: 0, hours: 0, minutes: 0, seconds: 0 };
@@ -95,7 +124,7 @@ export default function HeroDashboard() {
       <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-md">
         <Moon size={14} className="text-accent" />
         <span className="font-montserrat text-accent text-[10px] font-semibold tracking-widest uppercase md:text-xs">
-          Menuju Ramadhan 1447 H
+          Menuju Idul Adha 1447 H
         </span>
       </div>
       <div className="flex items-start gap-2 md:gap-3">
