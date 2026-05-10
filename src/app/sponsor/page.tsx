@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Dropdown from "@/components/features/Dropdown";
+import DropdownTimeFilter from "@/components/features/DropdownTimeFilter";
 import { Mail } from "lucide-react";
 import SponsorGrid from "@/components/features/SponsorGrid";
 import whatsappIcon from "@/assets/whatsapp-icon.svg";
+import {
+  Podcast,
+  Utensils,
+  MoonStar,
+} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Sponsor & Partner",
@@ -26,6 +33,24 @@ export const metadata: Metadata = {
 };
 
 export default function SponsorPage() {
+  const stats = [
+      {
+        icon: Podcast,
+        value: "20.000+",
+        label: "Pendengar IRAMA",
+      },
+      {
+        icon: Utensils,
+        value: "20.100+",
+        label: "Total Jumlah Porsi Buka & Sahur",
+      },
+      {
+        icon: MoonStar,
+        value: "20k+",
+        label: "Jama'ah Tarawih",
+      },
+    ];
+
   return (
     <main id="main-content" className="bg-background-page">
 
@@ -100,6 +125,45 @@ export default function SponsorPage() {
               />
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section
+        aria-labelledby="stats-heading"
+        className="bg-gradient-to-b from-background-page from-5% to-[#FFD640]/70 to-85% px-6 py-12 md:px-12 md:py-16 lg:px-20 lg:py-20"
+      >
+        <div className="mx-auto max-w-5xl text-center">
+          <h2 id="stats-heading" className="font-forum text-foreground mb-4 text-4xl leading-tight font-normal md:mb-6 md:text-5xl">
+            Ringkasan Ramadhan P3RI 1447H
+          </h2>
+          <p className="font-montserrat text-text-gray mx-auto mb-10 max-w-2xl text-sm leading-relaxed font-medium md:mb-14 md:text-base">
+            Jumlah Penerima Manfaat
+          </p>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 md:gap-8">
+            {stats.map((stat) => (
+              <div key={stat.label} className="bg-card flex flex-col items-center gap-3 rounded-2xl p-6 md:gap-4 md:p-8">
+                <div className="bg-primary/10 flex h-12 w-12 items-center justify-center rounded-full md:h-14 md:w-14">
+                  <stat.icon className="text-primary h-6 w-6 md:h-7 md:w-7" aria-hidden="true" />
+                </div>
+                <span className="font-forum text-primary text-3xl md:text-4xl">{stat.value}</span>
+                <span className="font-montserrat text-text-gray text-sm font-medium md:text-base">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+          <h2 id="stats-heading" className="font-forum text-foreground mt-8 mb-4 text-4xl leading-tight font-normal md:mb-6 md:text-5xl">
+            Grafik
+          </h2>
+
+          {/* Dropdown Menu */} 
+          <div className="flex flex-wrap justify-center gap-4">
+            <Dropdown />
+
+            <DropdownTimeFilter />
+          </div>
+          
+          {/* Jama'ah Statistics */}
+
         </div>
       </section>
 
