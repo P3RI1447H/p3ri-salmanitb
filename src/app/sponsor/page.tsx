@@ -151,16 +151,16 @@ export default function SponsorPage() {
               </div>
             ))}
           </div>
-          <h2 id="stats-heading" className="font-forum text-foreground mt-8 mb-4 text-4xl leading-tight font-normal md:mb-6 md:text-5xl">
+          {/* <h2 id="stats-heading" className="font-forum text-foreground mt-8 mb-4 text-4xl leading-tight font-normal md:mb-6 md:text-5xl">
             Grafik
-          </h2>
+          </h2> */}
 
           {/* Dropdown Menu */} 
-          <div className="flex flex-wrap justify-center gap-4">
+          {/* <div className="flex flex-wrap justify-center gap-4">
             <Dropdown />
 
             <DropdownTimeFilter />
-          </div>
+          </div> */}
           
           {/* Jama'ah Statistics */}
 
