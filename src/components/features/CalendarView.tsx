@@ -146,7 +146,8 @@ function getUniquePrograms(events: CalendarEvent[]): string[] {
 }
 
 export default function CalendarView() {
-  const [activePeriod, setActivePeriod] = useState("ramadhan");
+  // const [activePeriod, setActivePeriod] = useState("ramadhan");
+  const [activePeriod, setActivePeriod] = useState("adha");
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
 
   const events = useMemo(() => getAllCalendarEvents(), []);
