@@ -42,9 +42,24 @@ function parseIndonesianDate(dateStr: string): Date | null {
 function parseDateRange(
   dateStr: string,
 ): { start: Date; end: Date } | null {
+  // Match "23 – 25 Mei 2026" (shared month/year, en-dash or hyphen)
+  const sharedMonthMatch = dateStr.match(
+    /^(\d{1,2})\s*[-–]\s*(\d{1,2})\s+(\w+)\s+(\d{4})$/,
+  );
+  if (sharedMonthMatch) {
+    const [, startDay, endDay, monthStr, yearStr] = sharedMonthMatch;
+    const monthNum = INDONESIAN_MONTHS[monthStr!];
+    if (monthNum === undefined) return null;
+    return {
+      start: new Date(Number(yearStr), monthNum, Number(startDay)),
+      end: new Date(Number(yearStr), monthNum, Number(endDay)),
+    };
+  }
+
   // Match "18 Februari - 27 Februari 2026" or "28 Februari 2026 - 1 Maret 2026"
+  // Also supports en-dash (–) as separator
   const rangeMatch = dateStr.match(
-    /^(\d{1,2})\s+(\w+)(?:\s+(\d{4}))?\s*-\s*(\d{1,2})\s+(\w+)\s+(\d{4})$/,
+    /^(\d{1,2})\s+(\w+)(?:\s+(\d{4}))?\s*[-–]\s*(\d{1,2})\s+(\w+)\s+(\d{4})$/,
   );
   if (!rangeMatch) return null;
 

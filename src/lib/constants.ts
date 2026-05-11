@@ -708,7 +708,7 @@ export const PROGRAMS_DATA = [
     id: 13,
     slug: "festival-adha",
     title: "Festival Adha",
-    date_display: "Coming Soon",
+    date_display: "30 Mei 2026",
     location: "Masjid Salman ITB",
     summary:
       "Festival yang menyemarakkan Iduladha dengan perlombaan, booth UMKM, dan hiburan yang family friendly.",
@@ -725,7 +725,7 @@ export const PROGRAMS_DATA = [
         folder_url: "#",
       },
       timeline: [
-        { date: "Coming Soon", time: "", activity: "Festival Adha", info: "" },
+        { date: "30 Mei 2026", time: "06.00 – 21.00", activity: "Adha Fest", info: "Masjid Salman ITB" },
       ],
     },
   },
@@ -775,7 +775,7 @@ export const PROGRAMS_DATA = [
         folder_url: "#",
       },
       timeline: [
-        { date: "Mei 2026", time: "", activity: "Sekolah Juleha (Juru Sembelih Halal)", info: "Masjid Salman ITB" },
+        { date: "23 – 25 Mei 2026", time: "", activity: "Sekolah Juleha (Juru Sembelih Halal)", info: "Masjid Salman ITB" },
         { date: "27 Mei 2026", time: "", activity: "Idul Adha — Penyembelihan & Pendistribusian Qurban", info: "Masjid Salman ITB" },
       ],
     },
