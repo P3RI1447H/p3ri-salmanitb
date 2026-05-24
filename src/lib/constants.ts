@@ -775,7 +775,7 @@ export const PROGRAMS_DATA = [
         folder_url: "#",
       },
       timeline: [
-        { date: "26 Mei 2026", time: "", activity: "Sekolah Juleha (Juru Sembelih Halal)", info: "Masjid Salman ITB" },
+        { date: "24 Mei 2026", time: "", activity: "Sekolah Juleha (Juru Sembelih Halal)", info: "Masjid Salman ITB" },
         { date: "27 Mei 2026", time: "", activity: "Idul Adha — Penyembelihan & Pendistribusian Qurban", info: "Masjid Salman ITB" },
       ],
     },
