@@ -718,11 +718,11 @@ export const PROGRAMS_DATA = [
         "Festival Adha adalah kegiatan festival yang menyemarakkan Iduladha. Festival ini diselenggarakan pada akhir pekan setelah Iduladha yang akan diwarnai dengan perlombaan, booth dan stand UMKM, serta hiburan yang menarik. Suasana Festival Adha dibuat se-family friendly mungkin sehingga menciptakan suasana yang hangat di tengah hari raya Qurban.",
       gallery: {
         images: [
-          "/images/empty-img.png",
-          "/images/empty-img.png",
-          "/images/empty-img.png",
+          "https://drive.google.com/thumbnail?id=1ttbvXuLhub73P4FeMiqKIh1NwCzVnGgg&sz=w800",
+          "https://drive.google.com/thumbnail?id=1fEEPYKmr9yfwr2z9swa1Z8tM6lnF7usW&sz=w800",
+          "https://drive.google.com/thumbnail?id=1ywPasejLQew2xQvVyQKFOT1-gsLf4F-G&sz=w800",
         ],
-        folder_url: "#",
+        folder_url: "https://drive.google.com/drive/folders/18CqdHugFXZD1LpSGQscz3kKkl2boPANg?usp=sharing",
       },
       timeline: [
         { date: "30 Mei 2026", time: "06.00 – 21.00", activity: "Adha Fest", info: "Masjid Salman ITB" },
@@ -743,11 +743,11 @@ export const PROGRAMS_DATA = [
         "Satisfy atau Sate Gratis is For You adalah kegiatan berbagi sate gratis di Festival Adha Salman ITB yang diselenggarakan oleh P3RI Salman ITB pada akhir pekan setelah Iduladha. Setiap tahunnya, Satisfy membagikan sate gratis sebanyak ribuan tusuk sate. Selain itu, terdapat tambahan menu lain seperti lontong dan gulai.",
       gallery: {
         images: [
-          "/images/empty-img.png",
-          "/images/empty-img.png",
-          "/images/empty-img.png",
+          "https://drive.google.com/thumbnail?id=1AFGXr954G76eCIjR8aU-_QmOJRVRch7X&sz=w800",
+          "https://drive.google.com/thumbnail?id=1uXLHt1kq9h-xYzCv2rfYJ5Eu06ncGP4E&sz=w800",
+          "https://drive.google.com/thumbnail?id=1CNZhHxUwmxzMRVvP5RSDwW87yhPFNJZq&sz=w800",
         ],
-        folder_url: "#",
+        folder_url: "https://drive.google.com/drive/u/3/folders/1FDrI1ylHSwdFLoi75N0M2QFa2PDQxkUh",
       },
       timeline: [
         { date: "31 Mei 2026 (Perkiraan)", time: "", activity: "Berbagi sate, lontong, dan gulai gratis", info: "Lapangan Futsal Masjid Salman ITB" },
@@ -768,11 +768,11 @@ export const PROGRAMS_DATA = [
         "Penyelenggaraan Qurban di Masjid Salman ITB merupakan hasil kolaborasi banyak pihak antara RAS, Wakaf, YPM Salman ITB, dan P3RI. Penyelenggaraan Qurban dimulai dari pelatihan Juru Sembelih Halal (Juleha), lalu penyembelihan, pengulitan, pencacahan, dan pendistribusian. Setiap tahunnya, Masjid Salman ITB menerima banyak sekali hewan qurban untuk diqurbankan pada momen Iduladha.",
       gallery: {
         images: [
-          "/images/empty-img.png",
-          "/images/empty-img.png",
-          "/images/empty-img.png",
+          "https://drive.google.com/thumbnail?id=1CAYgliIDP-ZgvJGlTKtle4JwWOdH4J1D&sz=w800",
+          "https://drive.google.com/thumbnail?id=1JYK4mxcucZD3BVBorTk3uIqUdk0__IKY&sz=w800",
+          "https://drive.google.com/thumbnail?id=19eMdymZJ1KgHDOT4FIumjDVCB3hs5E91&sz=w800",
         ],
-        folder_url: "#",
+        folder_url: "https://drive.google.com/drive/folders/1dpkMEQ7jUdeU3JEtxid4ytYlQGn__9oN?usp=sharing",
       },
       timeline: [
         { date: "24 Mei 2026", time: "", activity: "Sekolah Juleha (Juru Sembelih Halal)", info: "Masjid Salman ITB" },
