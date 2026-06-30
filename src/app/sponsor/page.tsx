@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import Dropdown from "@/components/features/Dropdown";
-import DropdownTimeFilter from "@/components/features/DropdownTimeFilter";
 import { Mail } from "lucide-react";
 import SponsorGrid from "@/components/features/SponsorGrid";
 import whatsappIcon from "@/assets/whatsapp-icon.svg";
+import { StatisticsSection } from "@/components/features/StatisticsSection";
 import {
   Podcast,
   Utensils,
@@ -32,7 +30,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SponsorPage() {
+interface PageProps {
+  searchParams: Promise<{ program?: string; pekan?: string }>;
+}
+
+export default async function SponsorPage({ searchParams }: PageProps) {
   const stats = [
       {
         icon: Podcast,
@@ -50,7 +52,7 @@ export default function SponsorPage() {
         label: "Jama'ah Tarawih",
       },
     ];
-
+  
   return (
     <main id="main-content" className="bg-background-page">
 
@@ -151,19 +153,14 @@ export default function SponsorPage() {
               </div>
             ))}
           </div>
-          {/* <h2 id="stats-heading" className="font-forum text-foreground mt-8 mb-4 text-4xl leading-tight font-normal md:mb-6 md:text-5xl">
+
+          <h2 id="stats-heading" className="font-forum text-foreground mt-8 mb-4 text-4xl leading-tight font-normal md:mb-6 md:text-5xl">
             Grafik
-          </h2> */}
-
-          {/* Dropdown Menu */} 
-          {/* <div className="flex flex-wrap justify-center gap-4">
-            <Dropdown />
-
-            <DropdownTimeFilter />
-          </div> */}
+          </h2>
           
           {/* Jama'ah Statistics */}
-
+          <StatisticsSection searchParams={searchParams} />
+          
         </div>
       </section>
 
