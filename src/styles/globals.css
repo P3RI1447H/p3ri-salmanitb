@@ -1,111 +1,108 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #BA3E1A;
-  --color-primary-foreground: #ffffff;
-  --color-secondary: #F4AB0C;
-  --color-secondary-foreground: #ffffff;
-
-  --color-accent: #FFD640;
-  --color-accent-foreground: #353b00;
-
-  --color-background-page: #FFFBE0;
-  --color-background-section: #F7FFD8;
-
-  --color-text-main: #21272a;
-  --color-text-muted: #C86F0B;
-  --color-text-highlight: #FFEA5A;
-  
-  --color-brand-purple: #9C4299;
-  --color-brand-purple-dark: #7B1F78;
-  --color-hero-bg: #7A9440;
-  --color-status-warning: #FFD640;
-  
-  --color-text-gray: #52525B;
-  
-  --color-background: #F7FFD8;
-  --color-foreground: #21272A;
-  
-  --color-card: #FFFFFF;
-  --color-card-foreground: #21272A;
-  
-  --color-popover: #FFFFFF;
-  --color-popover-foreground: #21272A;
-  
-  --color-border: #e4e4e7;
-  
-  --color-muted: #f4f4f5;
-  --color-muted-foreground: #C86F0B; /* Matching text-muted */
-  
-  --color-accent-hover: #FFB800;
-  --color-brand-purple-hover: #8014A6;
-
-  --color-destructive: #ef4444;
-  --color-destructive-foreground: #fafafa;
-
-  --color-input: #e4e4e7;
-  --color-ring: #4f5900;
+  --color-navy: #0b1638;
+  --color-olive: #7f8a24;
+  --color-sky: #c3cdf0;
+  --color-frost: #eef1fb;
+  --color-mustard: #c9c045;
 
   --font-montserrat: var(--font-montserrat);
-  --font-forum: var(--font-forum);
-
-  --radius-lg: 0.5rem;
-  --radius-md: calc(0.5rem - 2px);
-  --radius-sm: calc(0.5rem - 4px);
-
-  --animate-fadeInUp: fadeInUp 0.6s ease-out;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
+body {
+  background-color: var(--color-sky);
+}
+
+/* Winter gradient: periwinkle sky fading into mustard-olive ground */
+.coming-soon {
+  background:
+    radial-gradient(
+      120% 60% at 15% 10%,
+      var(--color-frost) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      170deg,
+      var(--color-sky) 0%,
+      #d9ddea 38%,
+      #dcd796 66%,
+      var(--color-mustard) 100%
+    );
+}
+
+/* Soft, speckled snow drifts */
+.snow-drift {
+  background: radial-gradient(
+    closest-side,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(240, 243, 255, 0.85) 45%,
+    rgba(170, 184, 230, 0.55) 72%,
+    transparent 100%
+  );
+  filter: blur(6px);
+  -webkit-mask-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 1.7'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(closest-side, black 55%, transparent 100%);
+  mask-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 1.7'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(closest-side, black 55%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.snow-drift-soft {
+  opacity: 0.7;
+}
+
+/* Fine film grain over everything */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+}
+
+.sparkle {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.95))
+    drop-shadow(0 0 18px rgba(255, 255, 255, 0.6));
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.sparkle:nth-of-type(2n) {
+  animation-delay: -1.6s;
+}
+
+.sparkle:nth-of-type(3n) {
+  animation-delay: -2.8s;
+}
+
+.title-glow {
+  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.55));
+}
+
+/* Tall, condensed serif headline */
+.display-word {
+  font-family: var(--font-instrument-serif), serif;
+  font-size: clamp(6.5rem, 30vw, 15rem);
+  letter-spacing: -0.02em;
+  transform: scaleY(1.3);
+  transform-origin: center;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(0.88);
   }
 }
 
-/* Custom Utilities if needed, matching shadcn/ui conventions where possible */
-:root {
-  --background: 0 0% 100%;
-  --foreground: 240 10% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 3.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 3.9%;
-  --primary: 142 86% 28%;
-  --primary-foreground: 356 29% 95%;
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  --accent: 240 4.8% 95.9%;
-  --accent-foreground: 240 5.9% 10%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 142 86% 28%;
-  --radius: 0.5rem;
-}
-
-/* Hero image mask – responsive fade direction */
-.hero-image-mask {
-  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-}
-
-@media (min-width: 768px) {
-  .hero-image-mask {
-    -webkit-mask-image:
-      linear-gradient(to right, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%),
-      linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%);
-    mask-image:
-      linear-gradient(to right, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%),
-      linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%);
-    -webkit-mask-composite: destination-in;
-    mask-composite: intersect;
+@media (prefers-reduced-motion: reduce) {
+  .sparkle {
+    animation: none;
   }
 }

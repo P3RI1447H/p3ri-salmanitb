@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import { Montserrat, Forum } from "next/font/google";
-// @ts-ignore
+import { Montserrat, Instrument_Serif } from "next/font/google";
 import "../styles/globals.css";
-import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
 import JsonLd from "../components/JsonLd";
 
 const montserrat = Montserrat({
@@ -12,23 +9,22 @@ const montserrat = Montserrat({
   weight: ["400", "500", "600", "700"],
 });
 
-const forum = Forum({
-  variable: "--font-forum",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
   subsets: ["latin"],
   weight: ["400"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_API_URL || "https://p3ri.salmanitb.com",
+    process.env.NEXT_PUBLIC_API_URL || "https://p3ri.salmanitb.com"
   ),
   title: {
-    default:
-      "P3RI Salman ITB — Program Ramadhan & Idul Adha Masjid Salman ITB",
+    default: "P3RI Salman ITB — Program Ramadhan & Idul Adha Masjid Salman ITB",
     template: "%s | P3RI Salman ITB",
   },
   description:
-    "Website resmi P3RI Masjid Salman ITB. Informasi program Ramadhan, Idul Fitri, dan Idul Adha 1447 H — jadwal kegiatan, live streaming, dan donasi.",
+    "Website resmi P3RI Masjid Salman ITB sedang disiapkan. Nantikan informasi program Ramadhan dan Idul Adha berikutnya.",
   openGraph: {
     type: "website",
     locale: "id_ID",
@@ -46,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "P3RI Salman ITB — Program Ramadhan & Idul Adha Masjid Salman ITB",
     description:
-      "Website resmi P3RI Masjid Salman ITB. Informasi program Ramadhan, Idul Fitri, dan Idul Adha 1447 H — jadwal kegiatan, live streaming, dan donasi.",
+      "Website resmi P3RI Masjid Salman ITB sedang disiapkan. Nantikan informasi program Ramadhan dan Idul Adha berikutnya.",
     images: ["/images/og-image.jpg"],
   },
 };
@@ -58,7 +54,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <body className={`${montserrat.variable} ${forum.variable} font-montserrat antialiased`}>
+      <body
+        className={`${montserrat.variable} ${instrumentSerif.variable} font-montserrat antialiased`}
+      >
         <JsonLd
           data={{
             "@context": "https://schema.org",
@@ -67,8 +65,8 @@ export default function RootLayout({
             url:
               process.env.NEXT_PUBLIC_API_URL || "https://p3ri.salmanitb.com",
             logo:
-              (process.env.NEXT_PUBLIC_API_URL || "https://p3ri.salmanitb.com") +
-              "/images/logo-p3ri.png",
+              (process.env.NEXT_PUBLIC_API_URL ||
+                "https://p3ri.salmanitb.com") + "/images/logo-p3ri.png",
             description:
               "Panitia Pelaksana Program Ramadhan dan Idul Adha Masjid Salman ITB.",
             address: {
@@ -94,15 +92,7 @@ export default function RootLayout({
               process.env.NEXT_PUBLIC_API_URL || "https://p3ri.salmanitb.com",
           }}
         />
-        <a
-          href="#main-content"
-          className="fixed left-4 top-4 z-[100] -translate-y-20 rounded-lg bg-primary px-4 py-2 font-montserrat text-sm font-semibold text-primary-foreground shadow-lg transition-transform focus:translate-y-0"
-        >
-          Langsung ke konten
-        </a>
-        <Navbar />
         {children}
-        <Footer />
       </body>
     </html>
   );
