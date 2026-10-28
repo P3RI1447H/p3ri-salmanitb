@@ -4,6 +4,22 @@ Repository resmi untuk pengembangan website P3RI (Panitia Pelaksana Program Rama
 
 Website ini berfungsi sebagai pusat informasi kegiatan, pendaftaran program, jadwal imsakiyah/kegiatan, serta portal donasi/infak selama bulan Ramadhan dan Zulhijjah.
 
+## Open Recruitment Panitia 1448 H
+
+Situs ini sekarang berisi pendaftaran panitia P3RI 1448 H:
+
+- `/` — halaman Open Recruitment (atau Coming Soon / Pendaftaran Ditutup di luar masa pendaftaran).
+- `/masuk` — masuk dengan akun Kaderisasi Salman (`POST /v2/auth/login`); token disimpan di cookie httpOnly `session`.
+- `/daftar` — formulir bertahap; pertanyaan diambil dari `GET /v2/p3ri/form`. Jawaban yang belum terkirim disimpan di browser.
+- `/status` — status seleksi (Terdaftar → Seleksi Berkas → Wawancara → Diterima / Tidak Diterima).
+
+Semua data lewat API publik Kaderisasi (`kaderisasi-web-be-go`, lihat `docs/P3RI.md` di repo itu); panitia meninjau pendaftar di Kaderisasi admin. Isi formulir dan tenggat ada di `internal/p3ri/form_1448h.json` pada repo API, bukan di sini.
+
+Environment (lihat `.env.example`):
+
+- `SERVER_BE_API` — URL API publik Kaderisasi, misalnya `https://api-kaderisasi.salmanitb.com/v2` (hanya dibaca server).
+- `NEXT_PUBLIC_KADERISASI_URL` — situs Kaderisasi untuk tautan daftar akun dan lupa kata sandi.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Tech Stack

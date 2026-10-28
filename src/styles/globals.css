@@ -12,10 +12,21 @@
 
 body {
   background-color: var(--color-sky);
+  color: var(--color-navy);
+}
+
+/* Frosted card for forms and status panels */
+.frost-card {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px -18px rgba(11, 22, 56, 0.35);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 /* Winter gradient: periwinkle sky fading into mustard-olive ground */
-.coming-soon {
+.coming-soon,
+.winter {
   background:
     radial-gradient(
       120% 60% at 15% 10%,
@@ -105,4 +116,9 @@ body {
   .sparkle {
     animation: none;
   }
+}
+
+/* Long pages keep the gradient behind the scrolling content. */
+.winter {
+  background-attachment: fixed;
 }
