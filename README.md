@@ -9,8 +9,8 @@ Website ini berfungsi sebagai pusat informasi kegiatan, pendaftaran program, jad
 Situs ini sekarang berisi pendaftaran panitia P3RI 1448 H:
 
 - `/` — halaman Open Recruitment (atau Coming Soon / Pendaftaran Ditutup di luar masa pendaftaran).
-- `/masuk` — masuk dengan akun Kaderisasi Salman, lewat email/kata sandi (`POST /v2/auth/login`) atau Google (`POST /v2/auth/google`); token disimpan di cookie httpOnly `session`.
-- `/daftar` — formulir bertahap; pertanyaan diambil dari `GET /v2/p3ri/form`. Jawaban yang belum terkirim disimpan di browser.
+- `/masuk` — masuk tanpa mengisi formulir (dipakai halaman status). Sama seperti langkah akun di `/daftar`.
+- `/daftar` — formulir bertahap. Langkah 1 adalah akun: Google (akun Kaderisasi dibuat otomatis bila belum ada), atau email dulu — email terdaftar diminta kata sandi, email baru langsung dibuatkan akun Kaderisasi (`POST /v2/auth/register`, lalu masuk). Pertanyaan diambil dari `GET /v2/p3ri/form`; jawaban yang belum terkirim disimpan di browser per akun.
 - `/status` — status pendaftaran (Terdaftar → Diterima, beserta divisi penerimaan).
 
 Semua data lewat API publik Kaderisasi (`kaderisasi-web-be-go`, lihat `docs/P3RI.md` di repo itu); panitia meninjau pendaftar di Kaderisasi admin. Isi formulir dan tenggat ada di `internal/p3ri/form_1448h.json` pada repo API, bukan di sini.

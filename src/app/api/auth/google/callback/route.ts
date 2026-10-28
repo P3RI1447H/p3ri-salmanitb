@@ -45,9 +45,10 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     response.headers.set("Referrer-Policy", "no-referrer");
     return response;
   };
+  // Sign-ins started from the registration form stay on it, with the error.
   const fail = (code: string) =>
     finish(
-      `/masuk?${new URLSearchParams({ googleError: code, next: destination })}`
+      `${destination === "/daftar" ? "/daftar" : "/masuk"}?${new URLSearchParams({ googleError: code, next: destination })}`
     );
   try {
     const flow = flowSchema.parse(JSON.parse(rawFlow || "null"));

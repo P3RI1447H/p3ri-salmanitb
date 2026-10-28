@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-// Pages that need a Kaderisasi sign-in send visitors without a session to
-// /masuk and bring them back afterwards.
+// The status page needs a Kaderisasi sign-in: visitors without a session go
+// to /masuk and come back afterwards. /daftar handles sign-in as its first step.
 export default function proxy(req: NextRequest) {
   if (!req.cookies.get("session")?.value) {
     const login = new URL("/masuk", req.nextUrl);
@@ -12,5 +12,5 @@ export default function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/daftar", "/status"],
+  matcher: ["/status"],
 };

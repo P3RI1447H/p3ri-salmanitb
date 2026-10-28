@@ -12,30 +12,59 @@ import {
   safeNext,
 } from "../lib/google";
 
-type LoginResult = { error?: string };
+export type AccountResult = { error?: string; exists?: boolean };
+
+const isEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 const LOGIN_ERRORS: Record<string, string> = {
-  USER_NOT_FOUND: "Email belum terdaftar di Kaderisasi Salman.",
-  WRONG_PASSWORD: "Kata sandi salah.",
+  USER_NOT_FOUND: "Email belum terdaftar.",
+  WRONG_PASSWORD:
+    "Kata sandi salah. Kalau biasanya masuk dengan Google, pakai tombol Google di atas.",
 };
 
-export async function login(
-  _: LoginResult,
-  data: FormData
-): Promise<LoginResult> {
-  const email = String(data.get("email") ?? "").trim();
-  const password = String(data.get("password") ?? "");
-  const next = String(data.get("next") ?? "");
-  if (!email || !password) return { error: "Isi email dan kata sandi." };
+/** Email-first step: tells the form whether to ask for a password or a new account. */
+export async function checkEmail(rawEmail: string): Promise<AccountResult> {
+  const email = rawEmail.trim().toLowerCase();
+  if (!isEmail(email)) return { error: "Masukkan alamat email yang valid." };
   try {
-    const res = await api<{ token?: { token?: string } }>(
-      "/auth/login",
-      { method: "POST", body: JSON.stringify({ email, password }) },
+    const res = await api<{ exists: boolean }>(
+      "/auth/check-email",
+      { method: "POST", body: JSON.stringify({ email }) },
       ""
     );
-    const token = res.token?.token;
-    if (!token) return { error: "Gagal masuk. Coba lagi." };
-    await setToken(token);
+    return { exists: res.exists };
+  } catch {
+    return { error: "Gagal memeriksa email. Coba lagi." };
+  }
+}
+
+async function loginWith(
+  email: string,
+  password: string
+): Promise<string | null> {
+  const res = await api<{ token?: { token?: string } }>(
+    "/auth/login",
+    { method: "POST", body: JSON.stringify({ email, password }) },
+    ""
+  );
+  const token = res.token?.token;
+  if (!token) return null;
+  await setToken(token);
+  return token;
+}
+
+/** Signs an existing Kaderisasi member in, then continues to next. */
+export async function signIn(input: {
+  email: string;
+  password: string;
+  next: string;
+}): Promise<AccountResult> {
+  const email = input.email.trim().toLowerCase();
+  if (!isEmail(email) || !input.password)
+    return { error: "Isi email dan kata sandi." };
+  try {
+    if (!(await loginWith(email, input.password)))
+      return { error: "Gagal masuk. Coba lagi." };
   } catch (error) {
     if (error instanceof ApiError)
       return {
@@ -47,7 +76,56 @@ export async function login(
       };
     return { error: "Gagal masuk. Coba lagi." };
   }
-  redirect(safeNext(next));
+  redirect(safeNext(input.next));
+}
+
+/** Creates a Kaderisasi account (usable on kaderisasi.salmanitb.com too) and signs in. */
+export async function signUp(input: {
+  fullname: string;
+  email: string;
+  password: string;
+  next: string;
+}): Promise<AccountResult> {
+  const fullname = input.fullname.trim().replace(/\s+/g, " ");
+  const email = input.email.trim().toLowerCase();
+  if (fullname.length < 2) return { error: "Isi nama lengkapmu." };
+  if (fullname.length > 255) return { error: "Nama terlalu panjang." };
+  if (!isEmail(email)) return { error: "Masukkan alamat email yang valid." };
+  if (input.password.length < 6)
+    return { error: "Kata sandi minimal 6 karakter." };
+  try {
+    await api(
+      "/auth/register",
+      {
+        method: "POST",
+        body: JSON.stringify({ fullname, email, password: input.password }),
+      },
+      ""
+    );
+  } catch (error) {
+    if (
+      error instanceof ApiError &&
+      error.message === "EMAIL_ALREADY_REGISTERED"
+    )
+      return {
+        error: "Email ini sudah terdaftar. Masuk dengan kata sandimu.",
+        exists: true,
+      };
+    return { error: "Gagal membuat akun. Coba lagi." };
+  }
+  try {
+    if (!(await loginWith(email, input.password)))
+      return {
+        error: "Akun dibuat, tapi gagal masuk. Silakan masuk.",
+        exists: true,
+      };
+  } catch {
+    return {
+      error: "Akun dibuat, tapi gagal masuk. Silakan masuk.",
+      exists: true,
+    };
+  }
+  redirect(safeNext(input.next));
 }
 
 /** Starts Google sign-in: PKCE flow kept in a short-lived httpOnly cookie. */
@@ -56,7 +134,7 @@ export async function startGoogleLogin(data: FormData): Promise<never> {
   const config = getGoogleConfig();
   if (!config)
     redirect(
-      `/masuk?${new URLSearchParams({ googleError: "GOOGLE_LOGIN_UNAVAILABLE", next: destination })}`
+      `${destination === "/daftar" ? "/daftar" : "/masuk"}?${new URLSearchParams({ googleError: "GOOGLE_LOGIN_UNAVAILABLE", next: destination })}`
     );
   const state = randomBytes(32).toString("base64url");
   const codeVerifier = randomBytes(32).toString("base64url");

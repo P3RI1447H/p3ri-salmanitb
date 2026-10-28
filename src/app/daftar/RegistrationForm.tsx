@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { saveRegistration } from "../actions";
+import { logout, saveRegistration } from "../actions";
 import {
   answerText,
   checkQuestions,
@@ -49,13 +49,16 @@ export default function RegistrationForm({
   form,
   initial,
   editing,
+  email,
 }: {
   form: Form;
   initial: Draft;
   editing: boolean;
+  email: string | null;
 }) {
   const router = useRouter();
-  const draftKey = `p3ri-draft-${form.code}`;
+  // Per account, so a shared device never shows someone else's answers.
+  const draftKey = `p3ri-draft-${form.code}-${email ?? "anon"}`;
   const [choices, setChoices] = useState<string[]>(initial.choices);
   const [answers, setAnswers] = useState<Answers>(initial.answers);
   const [index, setIndex] = useState(0);
@@ -215,14 +218,17 @@ export default function RegistrationForm({
     router.push("/status?saved=1");
   };
 
-  const progress = Math.round(((index + 1) / steps.length) * 100);
+  // A new registration counted signing in as step 1.
+  const offset = editing ? 0 : 1;
+  const total = steps.length + offset;
+  const progress = Math.round(((index + 1 + offset) / total) * 100);
 
   return (
     <div className="frost-card rounded-3xl p-5 sm:p-8">
       <div className="mb-6">
         <div className="font-montserrat text-navy/70 flex items-center justify-between text-xs font-semibold md:text-sm">
           <span>
-            Langkah {index + 1} dari {steps.length}
+            Langkah {index + 1 + offset} dari {total}
           </span>
           {editing && <span>Mengubah pendaftaran</span>}
         </div>
@@ -236,6 +242,23 @@ export default function RegistrationForm({
           />
         </div>
       </div>
+
+      {email && index === 0 && (
+        <form
+          action={logout}
+          className="font-montserrat text-navy/70 mb-5 flex flex-wrap items-center gap-x-2 text-xs md:text-sm"
+        >
+          <span>
+            Masuk sebagai <strong className="text-navy">{email}</strong>
+          </span>
+          <button
+            type="submit"
+            className="hover:text-navy underline underline-offset-4"
+          >
+            Bukan kamu?
+          </button>
+        </form>
+      )}
 
       {restored && index === 0 && (
         <p className="font-montserrat mb-5 rounded-xl bg-sky-50 px-4 py-3 text-sm text-sky-900">

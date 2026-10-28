@@ -87,10 +87,17 @@ export type Profile = {
   university?: { name?: string | null } | null;
 };
 
-export async function getProfile(): Promise<Profile | null> {
+export async function getProfile(): Promise<
+  (Profile & { email?: string | null }) | null
+> {
   try {
-    const data = await api<{ profile?: Profile }>("/profiles");
-    return data.profile ?? null;
+    const data = await api<{
+      profile?: Profile;
+      userData?: { email?: string | null };
+    }>("/profiles");
+    return data.profile
+      ? { ...data.profile, email: data.userData?.email ?? null }
+      : null;
   } catch (error) {
     if (error instanceof ApiError && error.status === 401) throw error;
     return null;

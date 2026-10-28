@@ -84,8 +84,8 @@ export default async function Home() {
             )}
           </div>
           <p className="font-montserrat text-navy/70 mt-5 max-w-md text-xs md:text-sm">
-            Masuk dengan akun Kaderisasi Salman. Belum punya akun? Daftar dulu
-            di situs Kaderisasi, lalu kembali ke sini.
+            Belum punya akun Kaderisasi Salman? Tidak masalah, akunnya dibuat
+            langsung di langkah pertama pendaftaran, atau cukup pakai Google.
           </p>
           {form.contacts.length > 0 && (
             <p className="font-montserrat text-navy/70 mt-3 text-xs md:text-sm">
