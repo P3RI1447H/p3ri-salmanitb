@@ -1,8 +1,16 @@
 "use server";
 
+import { createHash, randomBytes } from "node:crypto";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { ApiError, api, clearToken, setToken } from "../lib/api";
 import type { Answers, Registration } from "../lib/form";
+import {
+  GOOGLE_FLOW_COOKIE,
+  getGoogleConfig,
+  googleFlowCookieOptions,
+  safeNext,
+} from "../lib/google";
 
 type LoginResult = { error?: string };
 
@@ -39,8 +47,46 @@ export async function login(
       };
     return { error: "Gagal masuk. Coba lagi." };
   }
-  // Only same-site paths are followed after signing in.
-  redirect(next.startsWith("/") && !next.startsWith("//") ? next : "/status");
+  redirect(safeNext(next));
+}
+
+/** Starts Google sign-in: PKCE flow kept in a short-lived httpOnly cookie. */
+export async function startGoogleLogin(data: FormData): Promise<never> {
+  const destination = safeNext(String(data.get("next") ?? ""));
+  const config = getGoogleConfig();
+  if (!config)
+    redirect(
+      `/masuk?${new URLSearchParams({ googleError: "GOOGLE_LOGIN_UNAVAILABLE", next: destination })}`
+    );
+  const state = randomBytes(32).toString("base64url");
+  const codeVerifier = randomBytes(32).toString("base64url");
+  const nonce = randomBytes(32).toString("base64url");
+  (await cookies()).set(
+    GOOGLE_FLOW_COOKIE,
+    JSON.stringify({
+      state,
+      codeVerifier,
+      nonce,
+      destination,
+      createdAt: Date.now(),
+    }),
+    googleFlowCookieOptions
+  );
+  const url = new URL("https://accounts.google.com/o/oauth2/v2/auth");
+  url.search = new URLSearchParams({
+    client_id: config.clientId,
+    redirect_uri: config.redirectUri,
+    response_type: "code",
+    scope: "openid email profile",
+    state,
+    nonce,
+    code_challenge: createHash("sha256")
+      .update(codeVerifier)
+      .digest("base64url"),
+    code_challenge_method: "S256",
+    prompt: "select_account",
+  }).toString();
+  redirect(url.toString());
 }
 
 export async function logout() {

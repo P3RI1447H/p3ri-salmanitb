@@ -10,6 +10,11 @@ const envSchema = z.object({
   NEXT_PUBLIC_KADERISASI_URL: z
     .url()
     .default("https://kaderisasi.salmanitb.com"),
+  // Google sign-in (the shared Kaderisasi OAuth client). The redirect URI must
+  // be registered on that client and listed in the web API's
+  // GOOGLE_EXTRA_REDIRECT_URIS. Without both, the Google button is hidden.
+  GOOGLE_CLIENT_ID: z.string().optional(),
+  GOOGLE_REDIRECT_URI: z.string().optional(),
 });
 
 const env = envSchema.safeParse(process.env);

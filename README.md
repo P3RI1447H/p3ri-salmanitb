@@ -9,7 +9,7 @@ Website ini berfungsi sebagai pusat informasi kegiatan, pendaftaran program, jad
 Situs ini sekarang berisi pendaftaran panitia P3RI 1448 H:
 
 - `/` — halaman Open Recruitment (atau Coming Soon / Pendaftaran Ditutup di luar masa pendaftaran).
-- `/masuk` — masuk dengan akun Kaderisasi Salman (`POST /v2/auth/login`); token disimpan di cookie httpOnly `session`.
+- `/masuk` — masuk dengan akun Kaderisasi Salman, lewat email/kata sandi (`POST /v2/auth/login`) atau Google (`POST /v2/auth/google`); token disimpan di cookie httpOnly `session`.
 - `/daftar` — formulir bertahap; pertanyaan diambil dari `GET /v2/p3ri/form`. Jawaban yang belum terkirim disimpan di browser.
 - `/status` — status pendaftaran (Terdaftar → Diterima, beserta divisi penerimaan).
 
@@ -19,6 +19,7 @@ Environment (lihat `.env.example`):
 
 - `SERVER_BE_API` — URL API publik Kaderisasi, misalnya `https://api-kaderisasi.salmanitb.com/v2` (hanya dibaca server).
 - `NEXT_PUBLIC_KADERISASI_URL` — situs Kaderisasi untuk tautan daftar akun dan lupa kata sandi.
+- `GOOGLE_CLIENT_ID`, `GOOGLE_REDIRECT_URI` — masuk dengan Google memakai OAuth client Kaderisasi yang sama. `GOOGLE_REDIRECT_URI` harus `https://<domain>/api/auth/google/callback`, terdaftar di OAuth client tersebut (Google Cloud), dan tercantum di `GOOGLE_EXTRA_REDIRECT_URIS` API publik. Tanpa keduanya tombol Google disembunyikan.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
