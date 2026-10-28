@@ -73,12 +73,7 @@ export type Answers = {
   divisions: Record<string, Record<string, AnswerValue>>;
 };
 
-export type Status =
-  | "terdaftar"
-  | "seleksi_berkas"
-  | "wawancara"
-  | "diterima"
-  | "tidak_diterima";
+export type Status = "terdaftar" | "diterima";
 
 export type Registration = {
   id: number;
@@ -97,17 +92,7 @@ export const STATUS_STEPS: { status: Status; label: string; hint: string }[] = [
   {
     status: "terdaftar",
     label: "Terdaftar",
-    hint: "Pendaftaranmu sudah kami terima.",
-  },
-  {
-    status: "seleksi_berkas",
-    label: "Seleksi Berkas",
-    hint: "Panitia sedang meninjau jawaban dan berkasmu.",
-  },
-  {
-    status: "wawancara",
-    label: "Wawancara",
-    hint: "Kamu lolos seleksi berkas. Tunggu info jadwal wawancara dari panitia.",
+    hint: "Pendaftaranmu sudah kami terima. Panitia akan meninjaunya dan mengabarkan hasilnya.",
   },
   {
     status: "diterima",
@@ -118,10 +103,7 @@ export const STATUS_STEPS: { status: Status; label: string; hint: string }[] = [
 
 export const STATUS_LABELS: Record<Status, string> = {
   terdaftar: "Terdaftar",
-  seleksi_berkas: "Seleksi Berkas",
-  wawancara: "Wawancara",
   diterima: "Diterima",
-  tidak_diterima: "Tidak Diterima",
 };
 
 export const MAX_SHORT = 300;

@@ -31,17 +31,7 @@ function Timeline({
   registration: Registration;
   form: Form;
 }) {
-  const rejected = registration.status === "tidak_diterima";
-  const steps = rejected
-    ? [
-        ...STATUS_STEPS.slice(0, 2),
-        {
-          status: "tidak_diterima" as const,
-          label: STATUS_LABELS.tidak_diterima,
-          hint: "Terima kasih sudah mendaftar. Kamu belum lolos seleksi kali ini, semoga bertemu di kesempatan berikutnya.",
-        },
-      ]
-    : STATUS_STEPS;
+  const steps = STATUS_STEPS;
   const current = steps.findIndex((s) => s.status === registration.status);
   return (
     <ol className="space-y-0">
@@ -60,9 +50,7 @@ function Timeline({
               aria-hidden="true"
               className={`font-montserrat relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold ${
                 active
-                  ? rejected && step.status === "tidak_diterima"
-                    ? "bg-red-700 text-white"
-                    : "bg-navy text-white"
+                  ? "bg-navy text-white"
                   : done
                     ? "bg-navy/80 text-white"
                     : "text-navy/40 border-navy/15 border bg-white"
