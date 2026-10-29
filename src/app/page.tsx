@@ -83,12 +83,8 @@ export default async function Home() {
               </Link>
             )}
           </div>
-          <p className="font-montserrat text-navy/70 mt-5 max-w-md text-xs md:text-sm">
-            Belum punya akun Kaderisasi Salman? Tidak masalah, akunnya dibuat
-            langsung di langkah pertama pendaftaran, atau cukup pakai Google.
-          </p>
           {form.contacts.length > 0 && (
-            <p className="font-montserrat text-navy/70 mt-3 text-xs md:text-sm">
+            <p className="font-montserrat text-navy/70 mt-5 text-xs md:text-sm">
               Ada pertanyaan? Hubungi{" "}
               {form.contacts.map((c) => `${c.name} (${c.role})`).join(" atau ")}
               .

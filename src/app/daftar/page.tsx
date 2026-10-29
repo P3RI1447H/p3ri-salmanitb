@@ -51,15 +51,6 @@ function fromRegistration(form: Form, registration: Registration): Answers {
 
 const serif = { fontFamily: "var(--font-instrument-serif), serif" };
 
-const STEPS_PREVIEW = [
-  "Identitas & data akademik",
-  "Kontak, kesehatan & kaderisasi",
-  "Pertanyaan umum",
-  "Pilih hingga 3 bidang/divisi",
-  "Pertanyaan tiap pilihan",
-  "Unggah berkas",
-];
-
 /** Signed-out visitors start the form here: the account is its first step. */
 function AccountStep({
   form,
@@ -120,18 +111,6 @@ function AccountStep({
             googleEnabled={getGoogleConfig() !== null}
             kaderisasiUrl={ENV.NEXT_PUBLIC_KADERISASI_URL}
           />
-          <div className="mt-8 border-t border-slate-200 pt-5">
-            <p className="font-montserrat text-navy text-sm font-semibold">
-              Setelah ini
-            </p>
-            <ol className="font-montserrat text-navy/70 mt-2 grid gap-1 text-sm sm:grid-cols-2">
-              {STEPS_PREVIEW.map((step, i) => (
-                <li key={step}>
-                  {i + 2}. {step}
-                </li>
-              ))}
-            </ol>
-          </div>
         </div>
       </div>
     </main>
